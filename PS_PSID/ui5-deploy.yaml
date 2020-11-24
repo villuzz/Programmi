@@ -1,0 +1,23 @@
+specVersion: "1.0"
+metadata:
+  name: Z001.ZPS_PSID
+type: application
+ui5Theme: sap_fiori_3
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          destination: DEVEPTA_2
+          url: http://sapdev.epta.internal:8011
+          client: "200"
+        app:
+          name: Z001.ZPS_PSID
+          package: Z001
+          transport: DEVK9H0NDP
+        index: true
