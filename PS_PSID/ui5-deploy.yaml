@@ -16,8 +16,12 @@ builder:
           destination: DEVEPTA_2
           url: http://sapdev.epta.internal:8011
           client: "200"
+          auth: basic
+        credentials:
+          username: env:UI5_USERNAME
+          password: env:UI5_PASSWORD
         app:
           name: Z001.ZPS_PSID
           package: Z001
-          transport: DEVK9H0NDP
-        index: true
+          transport: DEVK9H0NDQ
+        
