@@ -1,0 +1,53 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:ui="sap.ui.table" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Dialog id="DialogListItems" afterClose="onAfterClose" contentWidth="50%" contentHeight="70%" class="sapUiSizeCozy" showHeader="false">
+		<Page title="{i18n>VariantChange}" enableScrolling="false">
+			<content>
+				<ScrollContainer height="100%" width="100%" class="sapUiNoContentPadding" vertical="true">
+					<Table id="tableListItems" items="{SortItems>/}" sticky="ColumnHeaders">
+						<columns>
+							<Column width="10%"></Column>
+							<Column width="70%"><Label text="{i18n>Name}" wrapping="true"/></Column>
+							<Column width="10%"></Column>
+							<Column width="10%"></Column>
+						</columns>
+						<items>
+							<ColumnListItem vAlign="Middle" type="Active" press="onVariantPress">
+								<cells>
+										<CheckBox selected="{SortItems>Visible}" />
+									<Label text="{SortItems>Name}" wrapping="true"/>
+									<Button type="Transparent" icon="sap-icon://arrow-top" press="onUpPressed"/>
+									<Button type="Transparent" icon="sap-icon://arrow-bottom" press="onDownPressed"/>
+								
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</ScrollContainer>
+				<!--<ui:Table id="tableListItems" rows="{SortItems>/}" columnMove="true" selectionMode="MultiToggle" visibleRowCount="9" ariaLabelledBy="title">-->
+				<!--	<ui:extension>-->
+				<!--		<OverflowToolbar>-->
+				<!--			<ToolbarSpacer/>-->
+				<!--			<Button type="Transparent" icon="sap-icon://arrow-top" press="onUpPressed"/>-->
+				<!--			<Button type="Transparent" icon="sap-icon://arrow-bottom" press="onDownPressed"/>-->
+				<!--		</OverflowToolbar>-->
+				<!--	</ui:extension>-->
+				<!--	<ui:columns>-->
+				<!--		<ui:Column width="80%">-->
+				<!--			<Label text="{i18n>Name}"/>-->
+				<!--			<ui:template>-->
+				<!--				<Text text="{SortItems>Name}" wrapping="false"/>-->
+				<!--			</ui:template>-->
+				<!--		</ui:Column>-->
+				<!--	</ui:columns>-->
+				<!--</ui:Table>-->
+			</content>
+			<footer>
+				<Toolbar>
+					<ToolbarSpacer/>
+					<Button icon="sap-icon://save" text="{i18n>Save}" press="onSaveSortItems"/>
+					<Button icon="sap-icon://decline" text="{i18n>btAccept}" press="onCloseSortItems"/>
+				</Toolbar>
+			</footer>
+		</Page>
+	</Dialog>
+</core:FragmentDefinition>

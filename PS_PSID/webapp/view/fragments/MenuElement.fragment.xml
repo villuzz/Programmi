@@ -1,0 +1,5 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified">
+	<u:Menu itemSelect="handleMenuElementPress" id="MenuElement">
+		<u:MenuItem id="mnAddWBS" text="{i18n>addWBS}" icon="sap-icon://add" />
+	</u:Menu>
+</core:FragmentDefinition>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema Namespace="ZPS_WBS_ELEMENT_SRV" xml:lang="it" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+			<EntityType Name="StQuotation" sap:content-version="1">
+				<Key><PropertyRef Name="JStsma"/></Key><Property Name="JStsma" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Schema stato" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="StProject" sap:content-version="1">
+				<Key><PropertyRef Name="JStsma"/></Key><Property Name="JStsma" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Schema stato" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="WbsElement" sap:content-version="1">
+				<Key><PropertyRef Name="NodeID"/></Key><Property Name="NodeID" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"/><Property Name="Descrizione" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false"/><Property Name="Stufe" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"/><Property Name="ID" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:creatable="false" sap:updatable="false"/><Property Name="ParentID" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"/><Property Name="DrillState" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false"/><Property Name="WBS_Element" Type="Edm.String" Nullable="false" MaxLength="24" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false"/><Property Name="Description" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false"/><Property Name="Project_Definition" Type="Edm.String" Nullable="false" MaxLength="24" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false"/><Property Name="Responsible_No" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false"/></EntityType>
+			<EntityType Name="Project" sap:content-version="1">
+				<Key><PropertyRef Name="Pspid"/><PropertyRef Name="Stsma"/></Key><Property Name="Pspid" Type="Edm.String" Nullable="false" MaxLength="24" sap:unicode="false" sap:label="Def. prog." sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Stsma" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Schema stato" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Pspnr" Type="Edm.String" Nullable="false" MaxLength="24" sap:unicode="false" sap:label="Def. progetto" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Post1" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Definizione" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Profl" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Dppprof" Type="Edm.String" Nullable="false" MaxLength="61" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="37" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Vkorg" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Org. comm." sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Vtweg" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Can. distr." sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Spart" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Settore merc." sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Zzvkbur" Type="Edm.String" Nullable="false" MaxLength="27" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Zzvkgrp" Type="Edm.String" Nullable="false" MaxLength="26" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Soldto" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Soldtoadd" Type="Edm.String" Nullable="false" MaxLength="184" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Soldtocountry" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Paese" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Shipto" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Shiptoadd" Type="Edm.String" Nullable="false" MaxLength="184" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Shiptocountry" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Paese" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="BillingType" sap:content-version="1">
+				<Key><PropertyRef Name="Auart"/></Key><Property Name="Auart" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Tp.doc.vendita" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="PspidSet" sap:content-version="1">
+				<Key><PropertyRef Name="PsPspid"/></Key><Property Name="PsPspid" Type="Edm.String" Nullable="false" MaxLength="24" sap:unicode="false" sap:label="Def. prog." sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="PsPost1" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Descr. prog."
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityContainer Name="ZPS_WBS_ELEMENT_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="StQuotationSet" EntityType="ZPS_WBS_ELEMENT_SRV.StQuotation" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="StProjectSet" EntityType="ZPS_WBS_ELEMENT_SRV.StProject" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:content-version="1"/><EntitySet Name="WbsElementSet" EntityType="ZPS_WBS_ELEMENT_SRV.WbsElement" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="ProjectSet" EntityType="ZPS_WBS_ELEMENT_SRV.Project" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:content-version="1"/><EntitySet Name="BillingTypeSet" EntityType="ZPS_WBS_ELEMENT_SRV.BillingType" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="PspidSetSet" EntityType="ZPS_WBS_ELEMENT_SRV.PspidSet" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:content-version="1"/></EntityContainer><atom:link rel="self"
+				href="https://webidecp-s0011509266trial.dispatcher.hanatrial.ondemand.com/destinations/DEVEPTA_2/sap/opu/odata/sap/ZPS_WBS_ELEMENT_SRV/$metadata"
+				xmlns:atom="http://www.w3.org/2005/Atom"/><atom:link rel="latest-version"
+				href="https://webidecp-s0011509266trial.dispatcher.hanatrial.ondemand.com/destinations/DEVEPTA_2/sap/opu/odata/sap/ZPS_WBS_ELEMENT_SRV/$metadata"
+				xmlns:atom="http://www.w3.org/2005/Atom"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

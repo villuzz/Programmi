@@ -1,0 +1,20 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Dialog id="DialogAuart" afterClose="onAfterClose" contentWidth="10%" contentHeight="20%" class="sapUiSizeCozy" showHeader="false">
+		<Page title="{i18n>TitleAuart}">
+			<content>
+				<VBox renderType="Bare" height="100%" class="BoxAllBt" justifyContent="Center">
+					<ComboBox id="tableAuart" showSecondaryValues="true" items="{/SelAuartSet}" class="sapUiSmallMarginBeginEnd">
+						<core:ListItem key="{Auart}" text="{Auart}" additionalText="{Bezei}"/>
+					</ComboBox>
+				</VBox>
+			</content>
+			<footer>
+				<Toolbar>
+					<ToolbarSpacer/>
+					<Button icon="sap-icon://decline" text="{i18n>btAccept}" press="onCloseAuart"/>
+					<Button icon="sap-icon://open-command-field" text="{i18n>btNext}" press="callSalesOrderCreate"/>
+				</Toolbar>
+			</footer>
+		</Page>
+	</Dialog>
+</core:FragmentDefinition>

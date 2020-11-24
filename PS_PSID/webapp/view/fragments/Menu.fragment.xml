@@ -1,0 +1,19 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified">
+	<u:Menu itemSelect="handleMenuPress" id="Menu">
+		<u:MenuItem id="mncj20n" text="{i18n>cj20n}" icon="sap-icon://edit" />
+		
+		<!--<u:MenuItem text="{i18n>SALES}" icon="sap-icon://sales-document">-->
+		<!--	<u:Menu>-->
+		<!--		<u:MenuItem id="mnBilling" text="{i18n>BILLING}" icon="sap-icon://travel-expense-report"/>-->
+		<!--		<u:MenuItem id="mnLogistic" text="{i18n>LOGISTIC}" icon="sap-icon://collaborate"/>-->
+		<!--	</u:Menu>-->
+		<!--</u:MenuItem>-->
+		<!--<u:MenuItem text="{i18n>PURCHASING}" icon="sap-icon://batch-payments">-->
+		<!--	<u:Menu>-->
+		<!--		<u:MenuItem id="mnPurchRe" text="{i18n>PURCHASEREQUEST}" icon="sap-icon://batch-payments"/>-->
+		<!--		<u:MenuItem id="mnPurchOr" text="{i18n>PURCHASEORDER}" icon="sap-icon://batch-payments"/>-->
+		<!--	</u:Menu>-->
+		<!--</u:MenuItem>-->
+		<!--<u:MenuItem id="mnAdvance" text="{i18n>ADVANCE}" startsSection="true" icon="sap-icon://favorite"/>-->
+	</u:Menu>
+</core:FragmentDefinition>

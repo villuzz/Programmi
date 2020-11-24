@@ -1,0 +1,937 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:ui="sap.ui.table" xmlns:f="sap.f"
+	xmlns:smartTable="sap.ui.comp.smarttable" controllerName="Z001.ZPS_PSID.controller.ElementView" xmlns:html="http://www.w3.org/1999/xhtml">
+	<!--<NavContainer id="navCon" width="100%" height="100%">-->
+	<f:FlexibleColumnLayout id="fcl" class="ContFlex">
+		<f:beginColumnPages>
+			<Page id="PageSel">
+				<customHeader>
+					<Bar class="custom-header header-background">
+						<contentLeft>
+							<Button type="Default" tooltip="List" text="{i18n>List}" icon="sap-icon://activity-items" press="onListVariant"/>
+							<Button type="Default" tooltip="Save" text="{i18n>Save}" icon="sap-icon://save" press="onPressVariant"/>
+						</contentLeft>
+						<contentMiddle>
+							<!--<Image src="./resource/img/epta_logo.png" densityAware="false" width="2.2rem"/>-->
+						</contentMiddle>
+						<contentRight ></contentRight>
+					</Bar>
+				</customHeader>
+				<content>
+					
+					<Panel expandable="true" expanded="true" headerText="{i18n>Expand}" width="100%" class="sapUiTinyMarginBegin">
+						<headerToolbar>
+							<Toolbar height="6em">
+								<HBox height="6em" width="100%">
+									<VBox justifyContent="Center" class="sapUiTinyMarginBegin">
+										<Label text="{i18n>P_PS_PSID}"/>
+										<ComboBox id="Project" items="{/PspidSetSet}" placeholder="{i18n>P_PS_PSID}" width="15em">
+											<core:ListItem key="{PsPspid}" text="{PsPspid} - {PsPost1}" /></ComboBox>
+									</VBox>
+								</HBox>
+							</Toolbar>
+						</headerToolbar>
+						<VBox height="78%" width="100%">
+						<HBox height="7em" width="100%">
+							<VBox justifyContent="Center" class="sapUiTinyMarginBegin">
+								<Label text="{i18n>P_PROJ_STSMA}"/>
+								<ComboBox id="StProject" items="{/StProjectSet}" showSecondaryValues="true" placeholder="{i18n>P_PROJ_STSMA}">
+									<core:ListItem key="{JStsma}" text="{JStsma}" additionalText="{Txt30}"/>
+								</ComboBox>
+							</VBox>
+							<VBox justifyContent="Center" class="sapUiTinyMarginBegin">
+								<Label text="{i18n>P_QUOT_STSMA}"/>
+								<ComboBox id="StQuotation" items="{/StQuotationSet}" showSecondaryValues="true" placeholder="{i18n>P_QUOT_STSMA}"><core:ListItem key="{JStsma}" text="{JStsma}" additionalText="{Txt30}"/></ComboBox>
+							</VBox>
+						</HBox>
+						<HBox height="7em" width="100%">
+							<VBox justifyContent="Center" class="sapUiTinyMarginBegin">
+								<Label text="{i18n>S_QUOT_AUART}"/>
+								<MultiComboBox id="DcQuotation" items="{/DcQuotationSet}" showSecondaryValues="true" placeholder="{i18n>S_QUOT_AUART}"><core:ListItem key="{Auart}" text="{Auart}" additionalText="{Bezei}"/></MultiComboBox>
+							</VBox>
+							<VBox justifyContent="Center" class="sapUiTinyMarginBegin">
+								<Label text="{i18n>S_BIL_AUART}"/>
+								<MultiComboBox id="BillingType" items="{/BillingTypeSet}" showSecondaryValues="true" placeholder="{i18n>S_BIL_AUART}"><core:ListItem key="{Auart}" text="{Auart}" additionalText="{Bezei}"/></MultiComboBox>
+							</VBox>
+						</HBox>
+						<HBox height="7em" width="100%">
+							<VBox justifyContent="Center" class="sapUiTinyMarginBegin">
+								<Label text="{i18n>S_LOG_AUART}"/>
+								<MultiComboBox id="Logistic" items="{/LogisticSet}" showSecondaryValues="true" placeholder="{i18n>S_LOG_AUART}"><core:ListItem key="{Auart}" text="{Auart}" additionalText="{Bezei}"/></MultiComboBox>
+							</VBox>
+							<VBox justifyContent="Center" class="sapUiTinyMarginBegin">
+								<Label text="{i18n>P_C_KSCHL}"/>
+								<ComboBox id="CostConditionType" items="{/CostConditionTypeSet}" showSecondaryValues="true" placeholder="{i18n>P_C_KSCHL}"><core:ListItem key="{Kschl}" text="{Kschl}" additionalText="{Vtext}"/></ComboBox>
+							</VBox>
+							<!--<VBox justifyContent="Center" class="sapUiTinyMarginBegin">-->
+							<!--	<Label text="{i18n>P_PSTYV}"/>-->
+							<!--	<ComboBox id="OrdItemCat" items="{/OrdItemCatSet}" showSecondaryValues="true"><core:ListItem key="{Pstyv}" text="{Pstyv}" additionalText="{Vtext}"/></ComboBox>-->
+							<!--</VBox>-->
+						</HBox>
+						<HBox height="7em" width="100%">
+							<VBox justifyContent="Center" class="sapUiTinyMarginBegin">
+								<Label text="{i18n>P_TM_KSCHL}"/>
+								<ComboBox id="TargetMarginCondition" items="{/TargetMarginConditionSet}" placeholder="{i18n>P_TM_KSCHL}" showSecondaryValues="true"><core:ListItem key="{Kschl}" text="{Kschl}" additionalText="{Vtext}"/></ComboBox>
+							</VBox>
+							<VBox justifyContent="Center" class="sapUiTinyMarginBegin">
+								<Label text="{i18n>P_AM_KSCHL}"/>
+								<ComboBox id="ActualMarginCondition" items="{/ActualMarginConditionSet}" placeholder="{i18n>P_AM_KSCHL}" showSecondaryValues="true"><core:ListItem key="{Kschl}" text="{Kschl}" additionalText="{Vtext}"/></ComboBox>
+							</VBox>
+							<VBox justifyContent="Center" class="sapUiTinyMarginBeginLast"></VBox>
+						</HBox>
+							</VBox>
+					</Panel>
+				
+				</content>
+				<footer>
+					<Toolbar>
+						<ToolbarSpacer/>
+						<Button type="Default" tooltip="Search" text="{i18n>Search}" icon="sap-icon://search" press="onFilterHeader"/>
+					</Toolbar>
+				</footer>
+			</Page>
+		</f:beginColumnPages>
+		<f:midColumnPages>
+			<Page id="Page1" enableScrolling="false">
+				<customHeader>
+					<Bar class="custom-header header-background">
+						<contentLeft>
+							<Button id="openMenu" text="Menu" press="handlePressOpenMenu" icon="sap-icon://menu2"/>
+							<!--<Button type="Default" tooltip="Indietro" icon="sap-icon://nav-back" press="onPressBackBtn1"/>-->
+						</contentLeft>
+						<contentMiddle>
+							<Image src="./resource/img/epta_logo.png" densityAware="false" width="2.2rem"/>
+						</contentMiddle>
+						<contentRight >
+							<ToggleButton id="BtFullBanc" icon="sap-icon://full-screen" press="onPressFullBanc"/>
+							<Button icon="sap-icon://decline" press="onPressDecline"/>
+						</contentRight>
+					</Bar>
+				</customHeader>
+				<content>
+					<HBox id="Testata" height="10%" width="100%" renderType="Bare" class="White">
+						<List id="table" items="{ path: '/ProjectSet', suspended: true , sorter : { path : 'Pspid' } }" width="100%" showNoData="false">
+							<items>
+								<CustomListItem>
+									<Panel expandable="true" headerText="{i18n>Project} {Pspid}" width="auto" expand="onPressExpand" class="sapUiResponsiveMargin">
+										<content>
+											<HBox height="100%" width="100%" class="paddingAll" renderType="Bare">
+												<VBox height="100%" width="50%">
+													<HBox class="sapUiTinyMarginTop">
+														<Label text="{i18n>Project}" width="11rem"/>
+														<core:Icon tooltip="{i18n>Project}" src="sap-icon://group" size="1em"/>
+														<Label text="{Pspid}" wrapping="true" class="sapUiTinyMarginBegin"/>
+													</HBox>
+													<HBox class="sapUiTinyMarginTop">
+														<Label text="{i18n>Post1}" width="11rem"/>
+														<Label text="{Post1}" wrapping="true"></Label>
+													</HBox>
+													<HBox class="sapUiTinyMarginTop">
+														<Label text="{i18n>Profl}" width="11rem"/>
+														<VBox justifyContent="Center">
+															<Label text="{Profl}" design="Bold" wrapping="true"/>
+															<Label text="{Profltext}" wrapping="true"/>
+														</VBox>
+													</HBox>
+													<HBox class="sapUiTinyMarginTop">
+														<Label text="{i18n>Dppprof}" width="11rem"/>
+														<VBox justifyContent="Center">
+															<Label text="{Dppprof}" design="Bold" wrapping="true"/>
+															<Label text="{Dppproftext}" wrapping="true"/>
+														</VBox>
+													</HBox>
+													<HBox class="sapUiTinyMarginTop">
+														<Label text="{i18n>Status}" width="11rem"/>
+														<VBox justifyContent="Center">
+															<Label text="{Status}" design="Bold" wrapping="true"/>
+															<Label text="{Statustext}" wrapping="true"/>
+														</VBox>
+													</HBox>
+													<HBox class="sapUiTinyMarginTop">
+														<Label text="{i18n>Vkorg}" width="11rem"/>
+														<Label text="{Vkorg}" design="Bold" wrapping="true"></Label>
+													</HBox>
+													<HBox class="sapUiTinyMarginTop">
+														<Label text="{i18n>Vtweg}" width="11rem"/>
+														<Label text="{Vtweg}" design="Bold" wrapping="true"></Label>
+													</HBox>
+													<HBox class="sapUiTinyMarginTop">
+														<Label text="{i18n>Spart}" width="11rem"/>
+														<Label text="{Spart}" design="Bold" wrapping="true"></Label>
+													</HBox>
+													<HBox class="sapUiTinyMarginTop">
+														<Label text="{i18n>Zzvkbur}" width="11rem"/>
+														<VBox justifyContent="Center">
+															<Label text="{Zzvkbur}" design="Bold" wrapping="true"/>
+															<Label text="{Zzvkburtext}" wrapping="true"/>
+														</VBox>
+													</HBox>
+													<HBox class="sapUiTinyMarginTop">
+														<Label text="{i18n>Zzvkgrp}" width="11rem"/>
+														<VBox justifyContent="Center">
+															<Label text="{Zzvkgrp}" design="Bold" wrapping="true"/>
+															<Label text="{Zzvkgrptext}" wrapping="true"/>
+														</VBox>
+													</HBox>
+												</VBox>
+												<VBox height="100%" width="50%" class="NoMargin">
+													<Panel expandable="false" expanded="true" headerText="{i18n>Soldto}" width="auto" class="NoMargin">
+														<content>
+															<HBox class="sapUiSmallMarginTop">
+																<!--<Label text="" design="Bold" width="11rem"/>-->
+																<Label text="{Soldto}" wrapping="true"></Label>
+															</HBox>
+															<HBox class="sapUiTinyMarginTop">
+																<Label text="{i18n>Soldtoadd}" width="11rem"/>
+																<Label text="{Soldtoadd}" wrapping="true"></Label>
+															</HBox>
+															<HBox class="sapUiTinyMarginTop">
+																<Label text="{i18n>Soldtocountry}" width="11rem"/>
+																<Label text="{Soldtocountry}" wrapping="true"></Label>
+															</HBox>
+														</content>
+													</Panel>
+													<Panel expandable="false" expanded="true" headerText="{i18n>Shipto}" width="auto" class="NoMargin">
+														<content>
+															<HBox class="sapUiSmallMarginTop">
+																<!--<Label text="" design="Bold" width="11rem"/>-->
+																<Label text="{Shipto}" wrapping="true"></Label>
+															</HBox>
+															<HBox class="sapUiTinyMarginTop">
+																<Label text="{i18n>Shiptoadd}" width="11rem"/>
+																<Label text="{Shiptoadd}" wrapping="true"></Label>
+															</HBox>
+															<HBox class="sapUiTinyMarginTop">
+																<Label text="{i18n>Shiptocountry}" width="11rem"/>
+																<Label text="{Shiptocountry}" wrapping="true"></Label>
+															</HBox>
+														</content>
+													</Panel>
+												</VBox>
+											</HBox>
+										</content>
+									</Panel>
+								</CustomListItem>
+							</items>
+						</List>
+						<!--	<ScrollContainer height="100%" width="100%" class="sapUiNoContentPadding" horizontal="true">
+							<ui:Table id="table" rows="{ path: '/ProjectSet', suspended: true , sorter : { path : 'Pspid' } }" visibleRowCount="1" selectionMode="None">
+								<ui:columns>
+									<ui:Column width="11rem">
+										<Label text="{i18n>Project}"/>
+										<ui:template>
+											<HBox alignContent="Center" alignItems="Center" class="sapUiTinyMarginTop">
+												<core:Icon tooltip="{i18n>Project}" src="sap-icon://group" size="1.5em"/>
+												<Label text="{Pspid}" wrapping="true" class="sapUiTinyMarginBegin"></Label>
+											</HBox>
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="11rem">
+										<Label text="{i18n>Post1}"/>
+										<ui:template>
+											<Label text="{Post1}" wrapping="true" class="sapUiTinyMarginTop"></Label>
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="11rem">
+										<Label text="{i18n>Profl}"/>
+										<ui:template>
+											<VBox justifyContent="Center" class="sapUiTinyMarginTop">
+												<Label text="{Profl}" design="Bold" wrapping="true"/>
+												<Label text="{Profltext}" wrapping="true"/>
+											</VBox>
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="20rem">
+										<Label text="{i18n>Dppprof}"/>
+										<ui:template>
+											<VBox justifyContent="Center" class="sapUiTinyMarginTop">
+												<Label text="{Dppprof}" design="Bold" wrapping="true"/>
+												<Label text="{Dppproftext}" wrapping="true"/>
+											</VBox>
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="11rem">
+										<Label text="{i18n>Status}"/>
+										<ui:template>
+											<VBox justifyContent="Center" class="sapUiTinyMarginTop">
+												<Label text="{Status}" design="Bold" wrapping="true"/>
+												<Label text="{Statustext}" wrapping="true"/>
+											</VBox>
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="11rem">
+										<Label text="{i18n>Vkorg}"/>
+										<ui:template>
+											<Label text="{Vkorg}" wrapping="true" class="sapUiTinyMarginTop"></Label>
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="11rem">
+										<Label text="{i18n>Vtweg}"/>
+										<ui:template>
+											<Label text="{Vtweg}" wrapping="true" class="sapUiTinyMarginTop"></Label>
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="11rem">
+										<Label text="{i18n>Spart}"/>
+										<ui:template>
+											<Label text="{Spart}" wrapping="true" class="sapUiTinyMarginTop"></Label>
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="11rem">
+										<Label text="{i18n>Zzvkbur}"/>
+										<ui:template>
+											<VBox justifyContent="Center" class="sapUiTinyMarginTop">
+												<Label text="{Zzvkbur}" design="Bold" wrapping="true"/>
+												<Label text="{Zzvkburtext}" wrapping="true"/>
+											</VBox>
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="11rem">
+										<Label text="{i18n>Zzvkgrp}"/>
+										<ui:template>
+											<VBox justifyContent="Center" class="sapUiTinyMarginTop">
+												<Label text="{Zzvkgrp}" design="Bold" wrapping="true"/>
+												<Label text="{Zzvkgrptext}" wrapping="true"/>
+											</VBox>
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="20rem">
+										<Label text="{i18n>Soldto}"/>
+										<ui:template>
+											<Label text="{Soldto}" class="sapUiTinyMarginTop" wrapping="true"></Label>
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="20rem">
+										<Label text="{i18n>Soldtoadd}"/>
+										<ui:template>
+											<Label text="{Soldtoadd}" class="sapUiTinyMarginTop" wrapping="true"></Label>
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="5rem">
+										<Label text="{i18n>Soldtocountry}"/>
+										<ui:template>
+											<Label text="{Soldtocountry}" class="sapUiTinyMarginTop" wrapping="true"></Label>
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="20rem">
+										<Label text="{i18n>Shipto}"/>
+										<ui:template>
+											<Label text="{Shipto}" class="sapUiTinyMarginTop" wrapping="true"></Label>
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="20rem">
+										<Label text="{i18n>Shiptoadd}"/>
+										<ui:template>
+											<Label text="{Shiptoadd}" class="sapUiTinyMarginTop" wrapping="true"></Label>
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="5rem">
+										<Label text="{i18n>Shiptocountry}"/>
+										<ui:template>
+											<Label text="{Shiptocountry}" class="sapUiTinyMarginTop" wrapping="true"></Label>
+										</ui:template>
+									</ui:Column>
+								</ui:columns>
+							</ui:Table>
+						</ScrollContainer>-->
+						<!--	<ScrollContainer height="100%" width="100%" class="sapUiNoContentPadding" vertical="true">
+							<Table id="table" items="{ path: '/ProjectSet', suspended: true , sorter : { path : 'Pspid' } }" sticky="ColumnHeaders">
+								<columns>
+									<Column width="10%"><Label text="{i18n>Project}" wrapping="true"/></Column>
+									<Column width="10%"><Label text="{i18n>Post1}" wrapping="true"/></Column>
+									<Column width="10%"><Label text="{i18n>Profl}" wrapping="true"/></Column>
+									<Column width="10%"><Label text="{i18n>Dppprof}" wrapping="true"/></Column>
+									<Column width="10%"><Label text="{i18n>Status}" wrapping="true"/></Column>
+									<Column hAlign="Center"><Label text="{i18n>Vkorg}" wrapping="true"/></Column>
+									<Column hAlign="Center"><Label text="{i18n>Vtweg}" wrapping="true"/></Column>
+									<Column hAlign="Center"><Label text="{i18n>Spart}" wrapping="true"/></Column>
+									<Column><Label text="{i18n>Zzvkbur}" wrapping="true"/></Column>
+									<Column><Label text="{i18n>Zzvkgrp}" wrapping="true"/></Column>
+									<Column><Label text="{i18n>Soldto}" wrapping="true"/></Column>
+									<Column><Label text="{i18n>Shipto}" wrapping="true"/></Column>
+								</columns>
+								<items>
+									<ColumnListItem vAlign="Middle" type="Inactive">
+										<cells>
+											<HBox alignContent="Center" alignItems="Center">
+												<core:Icon tooltip="{i18n>Project}" src="sap-icon://group" size="1.5em"/>
+												<Label text="{Pspid}" wrapping="true" class="sapUiTinyMarginBegin"></Label>
+											</HBox>
+											<Label text="{Post1}" wrapping="true"/>
+											<VBox justifyContent="Center">
+												<Label text="{Profl}" design="Bold" wrapping="true"/>
+												<Label text="{Profltext}" wrapping="true"/>
+											</VBox>
+											<VBox justifyContent="Center">
+												<Label text="{Dppprof}" design="Bold" wrapping="true"/>
+												<Label text="{Dppproftext}" wrapping="true"/>
+											</VBox>
+											<VBox justifyContent="Center">
+												<Label text="{Status}" design="Bold" wrapping="true"/>
+												<Label text="{Statustext}" wrapping="true"/>
+											</VBox>
+											<Label text="{Vkorg}" wrapping="true"/>
+											<Label text="{Vtweg}" wrapping="true"/>
+											<Label text="{Spart}" wrapping="true"/>
+											<VBox justifyContent="Center">
+												<Label text="{Zzvkbur}" design="Bold" wrapping="true"/>
+												<Label text="{Zzvkburtext}" wrapping="true"/>
+											</VBox>
+											<VBox justifyContent="Center">
+												<Label text="{Zzvkgrp}" design="Bold" wrapping="true"/>
+												<Label text="{Zzvkgrptext}" wrapping="true"/>
+											</VBox>
+											<Label text="{Soldto}" wrapping="true"/>
+											<Label text="{Shipto}" wrapping="true"/>
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</ScrollContainer>-->
+					</HBox>
+					<!--		<HBox alignItems="Center" alignContent="Center" justifyContent="Center" height="7%" width="100%" renderType="Bare">
+						<Button id="Up" type="Transparent" icon="sap-icon://slim-arrow-up" press="onPressUp"/>
+						<Button id="Down" type="Transparent" icon="sap-icon://slim-arrow-down" press="onPressDown" visible="false"/>
+					</HBox>-->
+					<HBox alignItems="Center" alignContent="Center" height="7%" width="100%" renderType="Bare">
+						<Button type="Transparent" class="sapUiTinyMarginBegin" tooltip="{i18n>Quotation}" text="{i18n>Quotation}" icon="sap-icon://approvals"
+							press="onPressQuotation" id="btQuotation"/>
+						<Button type="Transparent" class="sapUiTinyMarginBegin" tooltip="{i18n>Billing}" text="{i18n>Billing}"
+							icon="sap-icon://travel-expense-report" press="onPressBilling" id="btBilling"/>
+						<Button type="Transparent" class="sapUiTinyMarginBegin" tooltip="{i18n>Dates}" text="{i18n>Dates}" icon="sap-icon://check-availability"
+							press="onPressDates" id="btDates"/>
+						<Button type="Transparent" class="sapUiTinyMarginBegin" tooltip="{i18n>Logistic}" text="{i18n>Logistic}" icon="sap-icon://collaborate"
+							press="onPressLogistic" id="btLogistic"/>
+						<Button type="Transparent" class="sapUiTinyMarginBeginEnd" tooltip="{i18n>Purchasing}" text="{i18n>Purchasing}"
+							icon="sap-icon://batch-payments" press="onPressPurchasing" id="btPurchasing"/>
+						<Button type="Transparent" id="openMenuElement" icon="sap-icon://grid" text="{i18n>MenuLayout}" press="handlePressOpenMenuLayout"/>
+						<Button type="Transparent" icon="sap-icon://expand-all" text="{i18n>ExpandAll}" press="onExpandFirstLevel"/>
+						<Button type="Transparent" icon="sap-icon://collapse-all" text="{i18n>CollapseAll}" press="onCollapseAll"/>
+						<!--<Button type="Transparent" class="sapUiTinyMarginBegin" tooltip="List" text="{i18n>List}" icon="sap-icon://activity-items"-->
+						<!--	press="onListItems"/>-->
+						<!--<Button type="Transparent" class="sapUiTinyMarginBegin" tooltip="Select" text="{i18n>Select}" icon="sap-icon://activity-items"-->
+						<!--	press="onUseSort"/>-->
+						<!--<Button type="Transparent" class="sapUiTinyMarginBegin" tooltip="Save" text="{i18n>Save}" icon="sap-icon://save" press="onPressSave"/>-->
+					</HBox>
+					<HBox id="Posizione" alignItems="Center" height="83%" width="100%" renderType="Bare">
+						<Page id="Element1" showHeader="false" class="sapUiNoContentPadding" enableScrolling="true">
+							<!--<smartTable:SmartTable id="smart" entitySet="WbsElementSet" tableBindingPath="/WbsElementSet" header="Hierarchy" tableType="TreeTable"-->
+							<!--	enableAutoBinding="true" useVariantManagement="false" showVariantManagement="false" useTablePersonalisation="true" useExportToExcel="false"-->
+							<!--	showRowCount="false" beforeRebindTable="onBeforeRebindTable" >-->
+							<!--<smartTable:layoutData>-->
+							<!--	<FlexItemData growFactor="1"/>-->
+							<!--</smartTable:layoutData>-->
+							<ui:TreeTable id="tableElement" toggleOpenState="saveToggleState" selectionMode="Single" columnMove="true" visibleRowCountMode="Interactive"
+								filter="sofilter" showNoData="false" >
+								<!--visibleRowCountMode="Auto"-->
+								<ui:columns >
+									<ui:Column id="S0" width="18em" showSortMenuEntry="true" sortProperty="WBS_Element" filterProperty="WBS_Element">
+										<Label text="{i18n>WBS_Element}"/>
+										<ui:template>
+											<!--<Text text="{WBS_Element}"/>-->
+											<Button type="Transparent" id="openMenuItems" text="{WBS_Element}" press="handlePressOpenMenuItems"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="S1" width="7em" hAlign="Center" sortProperty="Filter" filterProperty="Filter" filterType="sap.ui.model.type.Integer">
+										<Label text="{i18n>Stufe}"/>
+										<!--<Button type="{= ${LOCALPARAMS>/Stufe} !== '' ? 'Emphasized' : 'Default' }" text="{i18n>Stufe}" class="sapUiTinyMarginBegin"-->
+										<!--	icon="sap-icon://filter" press="onStufePress" id="btStufe"/>-->
+										<ui:template>
+											<!--<Button type="Transparent" enabled="{= ${Stufe} !== 0 ? false : true }" text="{ parts:['Stufe'], formatter: '.LocalFormatter.addOne'}"-->
+											<!--	press="handlePressOpenMenuElement" id="StufeID" />-->
+											<Label text="{ parts:['Stufe'], formatter: '.LocalFormatter.addOne'}" id="StufeID"/>
+										</ui:template>
+									</ui:Column>
+									<!--<ui:Column id="S2" width="7em" hAlign="Center">-->
+									<!--	<Label text="{i18n>Addrow}"/>-->
+									<!--	<ui:template>-->
+									<!--	</ui:template>-->
+									<!--</ui:Column>-->
+									<ui:Column id="S3" width="15em" sortProperty="Description" filterProperty="Description">
+										<Label text="{i18n>Description}"/>
+										<ui:template>
+											<Text text="{Description}" wrapping="false"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="S4" width="10em" hAlign="Center" sortProperty="KDKG1" filterProperty="KDKG1">
+										<Label text="{i18n>KDKG1}"/>
+										<ui:template>
+											<Text text="{KDKG1}" wrapping="false"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="S5" width="10em" hAlign="Center" sortProperty="KDKG2" filterProperty="KDKG2">
+										<Label text="{i18n>KDKG2}"/>
+										<ui:template>
+											<Text text="{KDKG2}"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="S6" width="12em" sortProperty="Project_User_Status" filterProperty="Project_User_Status">
+										<Label text="{i18n>Project_User_Status}"/>
+										<ui:template>
+											<Text text="{Project_User_Status}"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="S7" width="15em" sortProperty="Responsible_No" filterProperty="Responsible_No">
+										<Label text="{i18n>Responsible_No}"/>
+										<ui:template>
+											<VBox justifyContent="Center">
+												<Label text="{Responsible_No}" design="Bold"/>
+												<Label text="{ResponsibleDesc}"/>
+											</VBox>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="B1" visible="{= ${LOCALPARAMS>/Billing} }" width="8em" hAlign="Center" sortProperty="VbelnB" filterProperty="VbelnB">
+										<Label text="{i18n>VbelnB}"/>
+										<ui:template>
+											<HBox justifyContent="Center">
+												<!--<Text text="{ parts: [{path: 'VbelnB'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>-->
+												<Button type="Transparent" id="openMenuBilling" text="{ parts: [{path: 'VbelnB'}], formatter: '.LocalFormatter.alphaOutput' }"
+													press="handlePressOpenMenuBilling" visible="{ parts:['VbelnB'], formatter: '.LocalFormatter.Visible'}"/>
+												<Button type="Reject" text="{i18n>NoOrder}" class="redText" press="handlePressOpenMenuBilling" id="openMenuBillingNo"
+													visible="{ parts:[{ path: 'VbelnB'},{ path: 'ServGroup'},{ path: 'Stufe'}], formatter: '.LocalFormatter.BillingVisibleVal'}"></Button>
+											</HBox>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="B2" visible="{= ${LOCALPARAMS>/Billing} }" width="8em" hAlign="Center" sortProperty="PosnrB" filterProperty="PosnrB">
+										<Label text="{i18n>PosnrB}"/>
+										<ui:template>
+											<HBox width="100%" height="100%" justifyContent="Center">
+												<Text text="{ parts: [{path: 'PosnrB'}], formatter: '.LocalFormatter.alphaOutput' }" wrapping="true"/>
+											</HBox>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="B3" visible="{= ${LOCALPARAMS>/Billing} }" width="8em" hAlign="Center" sortProperty="FKSAA" filterProperty="FKSAA">
+										<Label text="{i18n>FKSAA}"/>
+										<ui:template>
+											<Text text="{FKSAA}" wrapping="true"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="B4" visible="{= ${LOCALPARAMS>/Billing} }" width="8em" hAlign="Center" sortProperty="BillingTypeB"
+										filterProperty="BillingTypeB">
+										<Label text="{i18n>BillingType}"/>
+										<ui:template>
+											<Text text="{BillingTypeB}" wrapping="true"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="B5" visible="{= ${LOCALPARAMS>/Billing} }" width="8em" hAlign="Center" sortProperty="Material" filterProperty="Material">
+										<Label text="{i18n>Material}"/>
+										<ui:template>
+											<Text text="{Material}" wrapping="true"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="B6" visible="{= ${LOCALPARAMS>/Billing} }" width="8em" hAlign="Center" sortProperty="RejReason" filterProperty="RejReason">
+										<Label text="{i18n>RejReason}"/>
+										<ui:template>
+											<HBox justifyContent="Center">
+											<Text text="{RejReason} - {RejReasonTxt}" visible="{= !${ parts:[{ path: 'RejReason'}], formatter: '.LocalFormatter.ReasonVisibleVal'} }" wrapping="true"/>
+											<Button type="Reject" text="{i18n>NoOrder}" class="redText" press="handlePressOpenMenuBilling"
+												visible="{ parts:[{ path: 'RejReason'}], formatter: '.LocalFormatter.ReasonVisibleVal'}"/>
+											</HBox>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="D1" visible="{= ${LOCALPARAMS>/Dates} }" width="8em" hAlign="Center" sortProperty="Estrt" filterProperty="Estrt">
+										<Label text="{i18n>Estrt}"/>
+										<ui:template>
+											<Label text="{ parts:['Estrt'], formatter: '.LocalFormatter.DateSet'}"/>
+											<!--<Text text="{Estrt}" wrapping="true"/>-->
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="D2" visible="{= ${LOCALPARAMS>/Dates} }" width="8em" hAlign="Center" sortProperty="Eende" filterProperty="Eende">
+										<Label text="{i18n>Eende}"/>
+										<ui:template>
+											<!--<Text text="{Eende}" wrapping="true"/>-->
+											<Label text="{ parts:['Eende'], formatter: '.LocalFormatter.DateSet'}"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="D3" visible="{= ${LOCALPARAMS>/Dates} }" width="8em" hAlign="Center" sortProperty="Pstrt" filterProperty="Pstrt">
+										<Label text="{i18n>Pstrt}"/>
+										<ui:template>
+											<!--<Text text="{Pstrt}" wrapping="true"/>-->
+											<Label text="{ parts:['Pstrt'], formatter: '.LocalFormatter.DateSet'}"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="D4" visible="{= ${LOCALPARAMS>/Dates} }" width="8em" hAlign="Center" sortProperty="Pende" filterProperty="Pende">
+										<Label text="{i18n>Pende}"/>
+										<ui:template>
+											<!--<Text text="{Pende}" wrapping="true"/>-->
+											<Label text="{ parts:['Pende'], formatter: '.LocalFormatter.DateSet'}"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="P1" visible="{= ${LOCALPARAMS>/Purchasing} }" width="8em" hAlign="Center" sortProperty="Banfn" filterProperty="Banfn">
+										<Label text="{i18n>Banfn}"/>
+										<ui:template>
+											<!--<Text text="{ parts: [{path: 'Banfn'}], formatter: '.LocalFormatter.alphaOutput' }" wrapping="true"/>-->
+											<Button type="Transparent" text="{ parts: [{path: 'Banfn'}], formatter: '.LocalFormatter.alphaOutput' }" press="handlePressOpenMenuPurReq"
+												visible="{ parts:['Banfn'], formatter: '.LocalFormatter.Visible'}"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="P2" visible="{= ${LOCALPARAMS>/Purchasing} }" width="8em" hAlign="Center" sortProperty="Bnfpo" filterProperty="Bnfpo">
+										<Label text="{i18n>Bnfpo}"/>
+										<ui:template>
+											<Text text="{ parts: [{path: 'Bnfpo'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="P3" visible="{= ${LOCALPARAMS>/Purchasing} }" width="8em" hAlign="Center" sortProperty="Eban_Txz01"
+										filterProperty="Eban_Txz01">
+										<Label text="{i18n>Eban_Txz01}"/>
+										<ui:template>
+											<Text text="{ parts: [{path: 'Eban_Txz01'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="P4" visible="{= ${LOCALPARAMS>/Purchasing} }" width="8em" hAlign="Center" sortProperty="Ekkn_Ebeln"
+										filterProperty="Ekkn_Ebeln">
+										<Label text="{i18n>Ekkn_Ebeln}"/>
+										<ui:template>
+											<!--<Text text="{ parts: [{path: 'Ekkn_Ebeln'}], formatter: '.LocalFormatter.alphaOutput' }" wrapping="true"/>-->
+											<Button type="Transparent" text="{ parts: [{path: 'Ekkn_Ebeln'}], formatter: '.LocalFormatter.alphaOutput' }"
+												press="handlePressOpenMenuPurOrd" visible="{ parts:['Ekkn_Ebeln'], formatter: '.LocalFormatter.Visible'}"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="P5" visible="{= ${LOCALPARAMS>/Purchasing} }" width="8em" hAlign="Center" sortProperty="Ekkn_Ebelp"
+										filterProperty="Ekkn_Ebelp">
+										<Label text="{i18n>Ekkn_Ebelp}"/>
+										<ui:template>
+											<Text text="{ parts: [{path: 'Ekkn_Ebelp'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="P6" visible="{= ${LOCALPARAMS>/Purchasing} }" width="8em" hAlign="Center" sortProperty="Ekpo_Txz01"
+										filterProperty="Ekpo_Txz01">
+										<Label text="{i18n>Ekpo_Txz01}"/>
+										<ui:template>
+											<Text text="{ parts: [{path: 'Ekpo_Txz01'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="P7" visible="{= ${LOCALPARAMS>/Purchasing} }" width="8em" hAlign="Center" sortProperty="Eindt" filterProperty="Eindt">
+										<Label text="{i18n>Eindt}"/>
+										<ui:template>
+											<!--<Text text="{Eindt}" wrapping="true"/>-->
+											<Label text="{ parts:['Eindt'], formatter: '.LocalFormatter.DateSet'}"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="Q1" visible="{= ${LOCALPARAMS>/Quotation} }" width="8em" hAlign="Center" sortProperty="Auart" filterProperty="Auart">
+										<Label text="{i18n>Auart}"/>
+										<ui:template>
+											<Text text="{ parts: [{path: 'Auart'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="Q2" visible="{= ${LOCALPARAMS>/Quotation} }" width="8em" hAlign="Center" sortProperty="Vbeln" filterProperty="Vbeln">
+										<Label text="{i18n>VbelnQ}"/>
+										<ui:template>
+											<!--<Text text="{ parts: [{path: 'Vbeln'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>-->
+											<Button type="Transparent" id="openMenuQuotation" text="{ parts: [{path: 'Vbeln'}], formatter: '.LocalFormatter.alphaOutput' }"
+												press="handlePressOpenMenuQuotation" visible="{ parts:['Vbeln'], formatter: '.LocalFormatter.Visible'}"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="Q3" visible="{= ${LOCALPARAMS>/Quotation} }" width="8em" hAlign="Center" sortProperty="Posnr" filterProperty="Posnr">
+										<Label text="{i18n>PosnrQ}"/>
+										<ui:template>
+											<Text text="{ parts: [{path: 'Posnr'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="Q4" visible="{= ${LOCALPARAMS>/Quotation} }" width="8em" hAlign="Center" sortProperty="Matnr" filterProperty="Matnr">
+										<Label text="{i18n>Matnr}"/>
+										<ui:template>
+											<Text text="{ parts: [{path: 'Matnr'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="Q5" visible="{= ${LOCALPARAMS>/Quotation} }" width="8em" hAlign="Center" sortProperty="Arktx" filterProperty="Arktx">
+										<Label text="{i18n>Arktx}"/>
+										<ui:template>
+											<Text text="{Arktx}" wrapping="true"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="Q6" visible="{= ${LOCALPARAMS>/Quotation} }" width="8em" hAlign="Center" sortProperty="Usr00" filterProperty="Usr00">
+										<Label text="{i18n>Usr00}"/>
+										<ui:template>
+											<Text text="{Usr00}" wrapping="true"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="Q7" visible="{= ${LOCALPARAMS>/Quotation} }" width="12em" hAlign="Center" sortProperty="Stsma" filterProperty="Stsma">
+										<Label text="{i18n>Stsma}"/>
+										<ui:template>
+											<HBox justifyContent="Center" class="paddingAll">
+												<Label text="{Stsma}" wrapping="true" design="Bold"/>
+												<Label text="{Txt30}" wrapping="true" class="sapUiTinyMarginBegin"/>
+											</HBox>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="Q8" visible="{= ${LOCALPARAMS>/Quotation} }" width="8em" hAlign="Center" sortProperty="Kbetr" filterProperty="Kbetr"
+										filterType="sap.ui.model.type.Integer">
+										<Label text="{i18n>Kbetr}"/>
+										<ui:template>
+											<Text text="{ parts: [{path: 'Kbetr'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="Q9" visible="{= ${LOCALPARAMS>/Quotation} }" width="8em" hAlign="Center" sortProperty="Netwr" filterProperty="Netwr"
+										filterType="sap.ui.model.type.Integer">
+										<Label text="{i18n>Netwr}"/>
+										<ui:template>
+											<Text text="{ parts: [{path: 'Netwr'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="Q10" visible="{= ${LOCALPARAMS>/Quotation} }" width="8em" hAlign="Center" sortProperty="Waerk" filterProperty="Waerk">
+										<Label text="{i18n>Waerk}"/>
+										<ui:template>
+											<Text text="{ parts: [{path: 'Waerk'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="Q11" visible="{= ${LOCALPARAMS>/Quotation} }" width="8em" hAlign="Center" sortProperty="Target_Margin"
+										filterProperty="Target_Margin" filterType="sap.ui.model.type.Integer">
+										<Label text="{i18n>Target_Margin}"/>
+										<ui:template>
+											<Text text="{ parts: [{path: 'Target_Margin'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="Q12" visible="{= ${LOCALPARAMS>/Quotation} }" width="8em" hAlign="Center" sortProperty="Total_Margin"
+										filterProperty="Total_Margin" filterType="sap.ui.model.type.Integer">
+										<Label text="{i18n>Total_Margin}"/>
+										<ui:template>
+											<Text text="{ parts: [{path: 'Total_Margin'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="L1" visible="{= ${LOCALPARAMS>/Logistic} }" width="8em" hAlign="Center" sortProperty="AuartL" filterProperty="AuartL">
+										<Label text="{i18n>AuartL}"/>
+										<ui:template>
+											<Label text="{ parts: [{path: 'AuartL'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true" design="Bold"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="L2" visible="{= ${LOCALPARAMS>/Logistic} }" width="8em" hAlign="Center" sortProperty="VbelnL" filterProperty="VbelnL">
+										<Label text="{i18n>VbelnL}"/>
+										<ui:template>
+											<!--<Text text="{ parts: [{path: 'VbelnL'}], formatter: '.LocalFormatter.alphaOutput' }" wrapping="true"/>-->
+											<Button type="Transparent" id="openMenuLogistic" text="{ parts: [{path: 'VbelnL'}], formatter: '.LocalFormatter.alphaOutput' }"
+												press="handlePressOpenMenuLogistic" visible="{ parts:['VbelnL'], formatter: '.LocalFormatter.Visible'}"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="L3" visible="{= ${LOCALPARAMS>/Logistic} }" width="8em" hAlign="Center" sortProperty="PosnrL" filterProperty="PosnrL">
+										<Label text="{i18n>PosnrL}"/>
+										<ui:template>
+											<Text text="{ parts: [{path: 'PosnrL'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="L4" visible="{= ${LOCALPARAMS>/Logistic} }" width="8em" hAlign="Center" sortProperty="MatnrL" filterProperty="MatnrL">
+										<Label text="{i18n>Matnr}"/>
+										<ui:template>
+											<Text text="{ parts: [{path: 'MatnrL'}], formatter: '.LocalFormatter.alphaOutput' }" wrapping="true"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="L5" visible="{= ${LOCALPARAMS>/Logistic} }" width="16em" sortProperty="ArktxL" filterProperty="ArktxL">
+										<Label text="{i18n>ArktxL}"/>
+										<ui:template>
+											<Text text="{ArktxL}" wrapping="true"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="L6" visible="{= ${LOCALPARAMS>/Logistic} }" width="8em" hAlign="Center" sortProperty="Pstyv" filterProperty="Pstyv">
+										<Label text="{i18n>Pstyv}"/>
+										<ui:template>
+											<Text text="{ parts: [{path: 'Pstyv'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="L7" visible="{= ${LOCALPARAMS>/Logistic} }" width="8em" hAlign="Center" sortProperty="Creation_Dat"
+										filterProperty="Creation_Dat">
+										<Label text="{i18n>Abgru}"/>
+										<ui:template>
+											<Text text="{ parts: [{path: 'Abgru'}], formatter: '.LocalFormatter.DeleteZero' } - {AbgruTxt}" wrapping="true"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="L8" visible="{= ${LOCALPARAMS>/Logistic} }" width="8em" hAlign="Center" sortProperty="" filterProperty="">
+										<Label text="{i18n>Creation_Dat}"/>
+										<ui:template>
+											<!--<Text text="{Creation_Dat}" wrapping="true"/>-->
+											<Label text="{ parts:['Creation_Dat'], formatter: '.LocalFormatter.DateSet'}"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="L9" visible="{= ${LOCALPARAMS>/Logistic} }" width="8em" hAlign="Center" sortProperty="Zzlifdt" filterProperty="Zzlifdt">
+										<Label text="{i18n>Zzlifdt}"/>
+										<ui:template>
+											<!--<Text text="{Zzlifdt}" wrapping="true"/>-->
+											<Label text="{ parts:['Zzlifdt'], formatter: '.LocalFormatter.DateSet'}"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="L10" visible="{= ${LOCALPARAMS>/Logistic} }" width="8em" hAlign="Center" sortProperty="Zzliftime" filterProperty="Zzliftime">
+										<Label text="{i18n>Zzliftime}"/>
+										<ui:template>
+											<!--<Text text="{Zzliftime}" wrapping="true"/>-->
+											<Label text="{ parts:['Zzliftime'], formatter: '.LocalFormatter.TimeSetting'}"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="L11" visible="{= ${LOCALPARAMS>/Logistic} }" width="8em" hAlign="Center" sortProperty="Zzinsdate" filterProperty="Zzinsdate">
+										<Label text="{i18n>Zzinsdate}"/>
+										<ui:template>
+											<!--<Text text="{Zzinsdate}" wrapping="true"/>-->
+											<Label text="{ parts:['Zzinsdate'], formatter: '.LocalFormatter.DateSet'}"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="L12" visible="{= ${LOCALPARAMS>/Logistic} }" width="8em" hAlign="Center" sortProperty="Zzinstime" filterProperty="Zzinstime">
+										<Label text="{i18n>Zzinstime}"/>
+										<ui:template>
+											<!--<Text text="{Zzinstime}" wrapping="true"/>-->
+											<Label text="{ parts:['Zzinstime'], formatter: '.LocalFormatter.TimeSetting'}"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="L13" visible="{= ${LOCALPARAMS>/Logistic} }" width="8em" hAlign="Center" sortProperty="Bstkd" filterProperty="Bstkd">
+										<Label text="{i18n>Bstkd}"/>
+										<ui:template>
+											<Text text="{ parts: [{path: 'Bstkd'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="L14" visible="{= ${LOCALPARAMS>/Logistic} }" width="8em" hAlign="Center" sortProperty="Bstdk" filterProperty="Bstdk">
+										<Label text="{i18n>Bstdk}"/>
+										<ui:template>
+											<Text text="{ parts:['Bstdk'], formatter: '.LocalFormatter.DateSet'}" wrapping="true"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="L15" visible="{= ${LOCALPARAMS>/Logistic} }" width="8em" hAlign="Center" sortProperty="Lifsk" filterProperty="Lifsk">
+										<Label text="{i18n>Lifsk}"/>
+										<ui:template>
+											<Text text="{ parts: [{path: 'Lifsk'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="L16" visible="{= ${LOCALPARAMS>/Logistic} }" width="8em" hAlign="Center" sortProperty="Udate" filterProperty="Udate">
+										<Label text="{i18n>Udate}"/>
+										<ui:template>
+											<Text text="{ parts:['Udate'], formatter: '.LocalFormatter.DateSet'}" wrapping="true"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="L17" visible="{= ${LOCALPARAMS>/Logistic} }" width="8em" hAlign="Center" sortProperty="Zzpwerks" filterProperty="Zzpwerks">
+										<Label text="{i18n>Zzpwerks}"/>
+										<ui:template>
+											<Text text="{Zzpwerks}" wrapping="true"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="L18" visible="{= ${LOCALPARAMS>/Logistic} }" width="8em" hAlign="Center" sortProperty="Vstel" filterProperty="Vstel">
+										<Label text="{i18n>Vstel}"/>
+										<ui:template>
+											<Text text="{ parts: [{path: 'Vstel'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="L19" visible="{= ${LOCALPARAMS>/Logistic} }" width="8em" hAlign="Center" sortProperty="Rcmid" filterProperty="Rcmid">
+										<Label text="{i18n>Rcmid}"/>
+										<ui:template>
+											<!--<Text text="{ parts: [{path: 'Rcmid'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>-->
+											<Button type="Transparent" text="{ parts: [{path: 'Rcmid'}], formatter: '.LocalFormatter.alphaOutput' }" press="handlePressOpenMenuAdvance"
+												visible="{ parts:['Rcmid'], formatter: '.LocalFormatter.Visible'}"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="L20" visible="{= ${LOCALPARAMS>/Logistic} }" width="8em" hAlign="Center" sortProperty="Ernam" filterProperty="Ernam">
+										<Label text="{i18n>Ernam}"/>
+										<ui:template>
+											<Text text="{Ernam}" wrapping="true"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="L21" visible="{= ${LOCALPARAMS>/Logistic} }" width="8em" hAlign="Center" sortProperty="Status" filterProperty="Status">
+										<Label text="{i18n>Status}"/>
+										<ui:template>
+											<Text text="{Status}" wrapping="true"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="L22" visible="{= ${LOCALPARAMS>/Logistic} }" width="8em" hAlign="Center" sortProperty="Reqmad" filterProperty="Reqmad">
+										<Label text="{i18n>Reqmad}"/>
+										<ui:template>
+											<Text text="{ parts: [{path: 'Reqmad'}], formatter: '.LocalFormatter.DateSet' }" wrapping="true"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="L23" visible="{= ${LOCALPARAMS>/Logistic} }" width="8em" hAlign="Center" sortProperty="Apprmad" filterProperty="Apprmad">
+										<Label text="{i18n>Apprmad}"/>
+										<ui:template>
+											<Text text="{ parts: [{path: 'Apprmad'}], formatter: '.LocalFormatter.DateSet' }" wrapping="true"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="L24" visible="{= ${LOCALPARAMS>/Logistic} }" width="8em" hAlign="Center" sortProperty="Ava_Status"
+										filterProperty="Ava_Status" filterType="sap.ui.model.type.Integer">
+										<Label text="{i18n>Ava_Status}"/>
+										<ui:template>
+											<Text text="{ parts: [{path: 'Ava_Status'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="L25" visible="{= ${LOCALPARAMS>/Logistic} }" width="8em" hAlign="Center" sortProperty="Lfsta" filterProperty="Lfsta">
+										<Label text="{i18n>Lfsta}"/>
+										<ui:template>
+											<Text text="{ parts: [{path: 'Lfsta'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="L26" visible="{= ${LOCALPARAMS>/Logistic} }" width="8em" hAlign="Center" sortProperty="Gs_Status" filterProperty="Gs_Status">
+										<Label text="{i18n>Gs_Status}"/>
+										<ui:template>
+											<Text text="{Gs_Status}" wrapping="true"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="L27" visible="{= ${LOCALPARAMS>/Logistic} }" width="8em" hAlign="Center" sortProperty="Vbfa_Vbeln"
+										filterProperty="Vbfa_Vbeln">
+										<Label text="{i18n>Vbfa_Vbeln}"/>
+										<ui:template>
+											<Text text="{ parts: [{path: 'Vbfa_Vbeln'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="L28" visible="{= ${LOCALPARAMS>/Logistic} }" width="8em" hAlign="Center" sortProperty="Vbfa_Posnn"
+										filterProperty="Vbfa_Posnn">
+										<Label text="{i18n>Vbfa_Posnn}"/>
+										<ui:template>
+											<Text text="{ parts: [{path: 'Vbfa_Posnn'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="L29" visible="{= ${LOCALPARAMS>/Logistic} }" width="8em" hAlign="Center" sortProperty="Xabln" filterProperty="Xabln">
+										<Label text="{i18n>Xabln}"/>
+										<ui:template>
+											<Text text="{ parts: [{path: 'Xabln'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="L30" visible="{= ${LOCALPARAMS>/Logistic} }" width="8em" hAlign="Center" sortProperty="Sernr" filterProperty="Sernr">
+										<Label text="{i18n>Sernr}"/>
+										<ui:template>
+											<Text text="{ parts: [{path: 'Sernr'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="L31" visible="{= ${LOCALPARAMS>/Logistic} }" width="8em" hAlign="Center" sortProperty="Erdat" filterProperty="Erdat">
+										<Label text="{i18n>Erdat}"/>
+										<ui:template>
+											<!--<Text text="{Erdat}" wrapping="true"/>-->
+											<Label text="{ parts:['Erdat'], formatter: '.LocalFormatter.DateSet'}"/>
+										</ui:template>
+									</ui:Column>
+								</ui:columns>
+							</ui:TreeTable>
+							<!--</smartTable:SmartTable>-->
+							<!--</smarttable:SmartTable>-->
+						</Page>
+					</HBox>
+				</content>
+				<dependents>
+					<core:Fragment fragmentName="Z001.ZPS_PSID.view.fragments.Variant" type="XML"></core:Fragment>
+					<core:Fragment fragmentName="Z001.ZPS_PSID.view.fragments.SaveVariant" type="XML"></core:Fragment>
+					<core:Fragment fragmentName="Z001.ZPS_PSID.view.fragments.StufeFilter" type="XML"></core:Fragment>
+					<core:Fragment fragmentName="Z001.ZPS_PSID.view.fragments.CreateWBS" type="XML"></core:Fragment>
+					<core:Fragment fragmentName="Z001.ZPS_PSID.view.fragments.Menu" type="XML"></core:Fragment>
+					<core:Fragment fragmentName="Z001.ZPS_PSID.view.fragments.Auart" type="XML"></core:Fragment>
+					<core:Fragment fragmentName="Z001.ZPS_PSID.view.fragments.MenuItems" type="XML"></core:Fragment>
+					<core:Fragment fragmentName="Z001.ZPS_PSID.view.fragments.MenuFilterSort" type="XML"></core:Fragment>
+					<core:Fragment fragmentName="Z001.ZPS_PSID.view.fragments.MenuLayout" type="XML"></core:Fragment>
+					<core:Fragment fragmentName="Z001.ZPS_PSID.view.fragments.MenuQuotation" type="XML"></core:Fragment>
+					<core:Fragment fragmentName="Z001.ZPS_PSID.view.fragments.MenuBilling" type="XML"></core:Fragment>
+					<core:Fragment fragmentName="Z001.ZPS_PSID.view.fragments.MenuLogistic" type="XML"></core:Fragment>
+					<core:Fragment fragmentName="Z001.ZPS_PSID.view.fragments.MenuPurReq" type="XML"></core:Fragment>
+					<core:Fragment fragmentName="Z001.ZPS_PSID.view.fragments.MenuPurOrd" type="XML"></core:Fragment>
+					<core:Fragment fragmentName="Z001.ZPS_PSID.view.fragments.MenuAdvance" type="XML"></core:Fragment>
+					<core:Fragment fragmentName="Z001.ZPS_PSID.view.fragments.Request" type="XML"></core:Fragment>
+					<core:Fragment fragmentName="Z001.ZPS_PSID.view.fragments.ListItems" type="XML"></core:Fragment>
+					<core:Fragment fragmentName="Z001.ZPS_PSID.view.fragments.SaveSort" type="XML"></core:Fragment>
+					<core:Fragment fragmentName="Z001.ZPS_PSID.view.fragments.UseSort" type="XML"></core:Fragment>
+					<core:Fragment fragmentName="Z001.ZPS_PSID.view.fragments.AddBilling" type="XML"></core:Fragment>
+					<!--<core:Fragment fragmentName="Z001.PS_PSID.view.fragments.Logistic" type="XML"></core:Fragment>-->
+					<!--<core:Fragment fragmentName="Z001.PS_PSID.view.fragments.Purchasing" type="XML"></core:Fragment>-->
+					<!--<core:Fragment fragmentName="Z001.PS_PSID.view.fragments.Quotation" type="XML"></core:Fragment>-->
+				</dependents>
+				<footer>
+					<Toolbar>
+						<Label text="{i18n>P_PS_PSID}" id="ProjectTopText" visible="false"/>
+						<ComboBox id="ProjectTop" items="{/PspidSetSet}" placeholder="{i18n>P_PS_PSID}" change="setProjectySO" visible="false" width="15em">
+							<core:ListItem key="{PsPspid}" text="{PsPspid} - {PsPost1}"/></ComboBox>
+						<ToolbarSpacer/>
+						<Button type="Transparent" icon="sap-icon://download" text="{i18n>Export}" id="Export" press="onDataExport"/>
+						<Button type="Default" icon="sap-icon://refresh" text="{i18n>Refresh}" press="onFilterHeader"/>
+					</Toolbar>
+				</footer>
+			</Page>
+		</f:midColumnPages>
+	</f:FlexibleColumnLayout>
+	<!--</NavContainer>-->
+</mvc:View>

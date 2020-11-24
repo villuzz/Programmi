@@ -1,0 +1,29 @@
+/* Enter your custom styles here */
+
+.minpadding {
+    padding: 0 0 0 3%;
+}
+
+.minpaddingLast {
+    padding: 0 1% 0 1%;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+.margintop {
+    margin-top: 1.2rem;
+}
+
+.paddingAll {
+    padding: 1%;
+}
+
+.White {}
+
+.NoMargin {
+    margin: 0rem;
+}
+

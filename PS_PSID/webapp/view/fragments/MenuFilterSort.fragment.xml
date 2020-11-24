@@ -1,0 +1,6 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified">
+	<u:Menu itemSelect="handleMenuFilterSortPress" id="MenuFilterSort">
+		<u:MenuItem id="mnFilter" text="{i18n>Filter}" icon="sap-icon://filter"/>
+		<u:MenuItem id="mnSort" text="{i18n>Sort}" icon="sap-icon://sort"/>
+	</u:Menu>
+</core:FragmentDefinition>

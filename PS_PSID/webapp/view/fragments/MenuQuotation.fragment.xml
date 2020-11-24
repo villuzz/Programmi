@@ -1,0 +1,5 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified">
+	<u:Menu itemSelect="handleMenuQuotationPress" id="MenuQuotation">
+		<u:MenuItem id="mnDisQuot" text="{i18n>DisQuot}" icon="sap-icon://request" />
+	</u:Menu>
+</core:FragmentDefinition>

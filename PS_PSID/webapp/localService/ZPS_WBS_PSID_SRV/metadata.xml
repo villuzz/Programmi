@@ -1,0 +1,28 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZPS_WBS_PSID_SRV" xml:lang="it" sap:schema-version="1">
+			<EntityType Name="ZVCDSPROJECT" sap:content-version="1">
+				<Key><PropertyRef Name="Pspid"/><PropertyRef Name="Stsma"/></Key><Property Name="Pspid" Type="Edm.String" Nullable="false" MaxLength="24" sap:unicode="false" sap:label="Def. prog." sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Stsma" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Schema stato" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Pspnr" Type="Edm.String" Nullable="false" MaxLength="24" sap:unicode="false" sap:label="Def. progetto" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Post1" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Definizione" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Profl" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Dppprof" Type="Edm.String" Nullable="false" MaxLength="61" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="37" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Vkorg" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Org. comm." sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Vtweg" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Can. distr." sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Spart" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Settore merc." sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Zzvkbur" Type="Edm.String" Nullable="false" MaxLength="27" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Zzvkgrp" Type="Edm.String" Nullable="false" MaxLength="26" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Soldto" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Soldtoadd" Type="Edm.String" Nullable="false" MaxLength="184" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Soldtocountry" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Paese" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Shipto" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Shiptoadd" Type="Edm.String" Nullable="false" MaxLength="184" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Shiptocountry" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Paese" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityContainer Name="ZPS_WBS_PSID_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="ZVCDSPROJECTSet" EntityType="ZPS_WBS_PSID_SRV.ZVCDSPROJECT" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/></EntityContainer><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZPS_WBS_PSID_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZPS_WBS_PSID_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

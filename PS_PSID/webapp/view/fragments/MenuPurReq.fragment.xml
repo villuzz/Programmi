@@ -1,0 +1,5 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified">
+	<u:Menu itemSelect="handleMenuPurReqPress" id="MenuPurReq">
+		<u:MenuItem id="mnPurReq" text="{i18n>PurReq}" icon="sap-icon://display" />
+	</u:Menu>
+</core:FragmentDefinition>

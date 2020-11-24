@@ -1,0 +1,112 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:ui="sap.ui.table" xmlns:u="sap.ui.unified">
+	<Dialog id="DialogAdd" afterClose="onAfterClose" contentWidth="75%" contentHeight="60%" class="sapUiSizeCozy" showHeader="false">
+		<Page>
+			<customHeader>
+				<Bar class="custom-header header-background">
+					<contentLeft></contentLeft>
+					<contentMiddle>
+						<Label text="{i18n>TitleCrWBS}"/>
+					</contentMiddle>
+					<contentRight>
+						<u:FileUploader id="idLoadCSVFile" sameFilenameAllowed="false" iconOnly="true" buttonText="" fileType="CSV" placeholder="Choose a CSV file"
+							style="Emphasized" fileAllowed="onPressLoadCSV" buttonOnly="true" icon="sap-icon://upload"></u:FileUploader>
+						<Button type="Default" tooltip="Add" text="{i18n>Add}" icon="sap-icon://add" press="onPressAdd"/>
+					</contentRight>
+				</Bar>
+			</customHeader>
+			<content>
+				<Input id="WBS" value="" editable="false" width="80%" visible="false"/>
+				<HBox justifyContent="Center" alignItems="Center" alignContent="Center" renderType="Bare" height="100%" width="100%">
+					<ScrollContainer height="100%" width="100%" class="sapUiNoContentPadding" vertical="true">
+						<!--	<ui:Table id="tableCreate" rows="{ path: '/WbsCreateSet', sorter : { path : 'Posid', group : true } }"  selectionMode="None"  sticky="ColumnHeaders">-->
+						<!--		<ui:columns>-->
+						<!--			<ui:Column width="16%" hAlign="Center">-->
+						<!--				<Label text="{i18n>Posid}"/>-->
+						<!--				<ui:template>-->
+						<!--					<Label text="{Posid}" wrapping="true"></Label>-->
+						<!--				</ui:template>-->
+						<!--			</ui:Column>-->
+						<!--			<ui:Column width="16%"  hAlign="Center" >-->
+						<!--				<Label text="{i18n>Kdkg1}"/>-->
+						<!--				<ui:template>-->
+						<!--					<Label text="{Kdkg1}" design="Bold" wrapping="true"/>-->
+						<!--				</ui:template>-->
+						<!--			</ui:Column>-->
+						<!--			<ui:Column width="18%"  >-->
+						<!--				<Label text="{i18n>Kdkg1Desc}"/>-->
+						<!--				<ui:template>-->
+						<!--					<Label text="{Kdkg1Desc}" wrapping="true"/>-->
+						<!--				</ui:template>-->
+						<!--			</ui:Column>-->
+						<!--			<ui:Column width="16%"  hAlign="Center" >-->
+						<!--				<Label text="{i18n>Kdkg2}"/>-->
+						<!--				<ui:template>-->
+						<!--					<Label text="{Kdkg2}" design="Bold" wrapping="true"/>-->
+						<!--				</ui:template>-->
+						<!--			</ui:Column>-->
+						<!--			<ui:Column width="18%" >-->
+						<!--				<Label text="{i18n>Kdkg2Desc}"/>-->
+						<!--				<ui:template>-->
+						<!--					<Label text="{Kdkg2Desc}" design="Bold" wrapping="true"/>-->
+						<!--				</ui:template>-->
+						<!--			</ui:Column>-->
+						<!--			<ui:Column width="16%">-->
+						<!--				<Label text="{i18n>Material}"/>-->
+						<!--				<ui:template>-->
+						<!--					<Input value=""/>-->
+						<!--				</ui:template>-->
+						<!--			</ui:Column>-->
+						<!--			<ui:Column width="16%">-->
+						<!--				<Label text="{i18n>Quantity}"/>-->
+						<!--				<ui:template>-->
+						<!--					<Input value="" type="Number"/>-->
+						<!--				</ui:template>-->
+						<!--			</ui:Column>-->
+						<!--		</ui:columns>-->
+						<!--	</ui:Table>-->
+						<!--</ScrollContainer>-->
+						<Table id="tableCreate" items="{WbsCreate>/}" sticky="ColumnHeaders">
+							<columns>
+								<Column mergeDuplicates="true"><Label text="{i18n>Posid}" wrapping="true"/></Column>
+								<Column mergeDuplicates="true"><Label text="{i18n>Kdkg1}" wrapping="true"/></Column>
+								<!--<Column mergeDuplicates="true"><Label text="{i18n>Kdkg1Desc}" wrapping="true"/></Column>-->
+								<Column mergeDuplicates="true"><Label text="{i18n>Kdkg2}" wrapping="true"/></Column>
+								<!--<Column mergeDuplicates="true"><Label text="{i18n>Kdkg2Desc}" wrapping="true"/></Column>-->
+								<Column><Label text="{i18n>Material}" wrapping="true"/></Column>
+								<Column><Label text="{i18n>Quantity}" wrapping="true"/></Column>
+							</columns>
+							<items>
+								<ColumnListItem vAlign="Middle" type="Inactive">
+									<cells>
+										<Label text="{WbsCreate>Posid}"/>
+										<ComboBox id="Group1" items="{/StKdkgrSet}" showSecondaryValues="true" visible="{= ${WbsCreate>IsNotFirst} !== true}"
+											selectedKey="{WbsCreate>Kdkg1}" enabled="{WbsCreate>Kdkg1Vis}">
+											<core:ListItem key="{Kdkgr}" text="{Kdkgr}" additionalText="{Vtext}"/>
+										</ComboBox>
+										<ComboBox id="Group2" items="{/StKdkgr2Set}" showSecondaryValues="true" visible="{= ${WbsCreate>IsNotFirst} !== true}"
+											selectedKey="{WbsCreate>Kdkg2}" enabled="{WbsCreate>Kdkg2Vis}">
+											<core:ListItem key="{Kdkgr}" text="{Kdkgr}" additionalText="{Vtext}"/>
+										</ComboBox>
+										<!--<Input value="{WbsCreate>Kdkg1}" visible="{= ${WbsCreate>IsNotFirst} !== true}"/>-->
+										<!--<Input value="{WbsCreate>Kdkg1Desc}" visible="{= ${WbsCreate>IsNotFirst} !== true}"/>-->
+										<!--<Input value="{WbsCreate>Kdkg2}" visible="{= ${WbsCreate>IsNotFirst} !== true}"/>-->
+										<!--<Input value="{WbsCreate>Kdkg2Desc}" visible="{= ${WbsCreate>IsNotFirst} !== true}"/>-->
+										<Input value="{WbsCreate>Material}"/>
+										<Input value="{WbsCreate>Quantity}" type="Number"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</ScrollContainer>
+				</HBox>
+			</content>
+			<footer>
+				<Toolbar>
+					<ToolbarSpacer/>
+					<Button icon="sap-icon://save" text="{i18n>Save}" press="onSaveAdd"/>
+					<Button icon="sap-icon://decline" text="{i18n>btAccept}" press="onCloseAdd"/>
+				</Toolbar>
+			</footer>
+		</Page>
+	</Dialog>
+</core:FragmentDefinition>

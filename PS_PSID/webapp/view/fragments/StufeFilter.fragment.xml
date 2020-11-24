@@ -1,0 +1,20 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Dialog id="DialogStufe" afterClose="onAfterClose" contentWidth="10%" contentHeight="20%" class="sapUiSizeCozy" showHeader="false">
+		<Page title="{i18n>TitleStufe}">
+			<content>
+			<VBox renderType="Bare" height="100%" class="BoxAllBt" justifyContent="Center">
+						<ComboBox id="tableStufe" change="onSelStufe" showSecondaryValues="false" items="{StufeTable>/}" class="sapUiSmallMarginBeginEnd"
+						selectedItemId="{LOCALPARAMS>/Stufe}">
+						<core:ListItem key="{StufeTable>Stufe}" text="{StufeTable>Stufe}"/>
+					</ComboBox>
+				</VBox>
+			</content>
+			<footer>
+				<Toolbar>
+					<ToolbarSpacer/>
+					<Button icon="sap-icon://accept" text="{i18n>btAccetta}" press="onCloseStufe"/>
+				</Toolbar>
+			</footer>
+		</Page>
+	</Dialog>
+</core:FragmentDefinition>

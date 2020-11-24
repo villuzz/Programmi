@@ -1,0 +1,277 @@
+{
+	"_version": "1.12.0",
+	"sap.app": {
+		"id": "Z001.ZPS_PSID",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "servicecatalog.connectivityComponentForManifest",
+			"version": "0.0.0"
+		},
+		"dataSources": {
+			"ZPS_WBS_ELEMENT_SRV": {
+				"uri": "/sap/opu/odata/sap/ZPS_WBS_ELEMENT_SRV/",
+				"type": "OData",
+				"settings": {
+					"localUri": "localService/ZPS_WBS_ELEMENT_SRV/metadata.xml"
+				}
+			}
+		},
+		"crossNavigation": {
+			"inbounds": {
+				"intent1": {
+					"signature": {
+						"parameters": {
+							"OrderType": {
+								"defaultValue": {
+									"value": "",
+									"format": "plain"
+								},
+								"filter": {
+									"value": "",
+									"format": "plain"
+								}
+							},
+							"SalesOrg": {
+								"defaultValue": {
+									"value": "",
+									"format": "plain"
+								},
+								"filter": {
+									"value": "",
+									"format": "plain"
+								}
+							},
+							"Channel": {
+								"defaultValue": {
+									"value": "",
+									"format": "plain"
+								},
+								"filter": {
+									"value": "",
+									"format": "plain"
+								}
+							},
+							"Division": {
+								"defaultValue": {
+									"value": "",
+									"format": "plain"
+								},
+								"filter": {
+									"value": "",
+									"format": "plain"
+								}
+							},
+							"SoldTo": {
+								"defaultValue": {
+									"value": "",
+									"format": "plain"
+								},
+								"filter": {
+									"value": "",
+									"format": "plain"
+								}
+							},
+							"Shipto": {
+								"defaultValue": {
+									"value": "",
+									"format": "plain"
+								},
+								"filter": {
+									"value": "",
+									"format": "plain"
+								}
+							},
+							"WBS": {
+								"defaultValue": {
+									"value": "",
+									"format": "plain"
+								},
+								"filter": {
+									"value": "",
+									"format": "plain"
+								}
+							}
+						},
+						"additionalParameters": "allowed"
+					},
+					"semanticObject": "ZVA01_WBS",
+					"action": "create"
+				},
+				"intent2": {
+					"signature": {
+						"parameters": {
+							"Quotation": {}
+						},
+						"additionalParameters": "allowed"
+					},
+					"semanticObject": "ZVA23_WBS",
+					"action": "display"
+				},
+				"intent3": {
+					"signature": {
+						"parameters": {
+							"SalesOrder": {}
+						},
+						"additionalParameters": "allowed"
+					},
+					"semanticObject": "ZVA03_WBS",
+					"action": "display"
+				},
+				"intent4": {
+					"signature": {
+						"parameters": {
+							"Requisition": {}
+						},
+						"additionalParameters": "allowed"
+					},
+					"semanticObject": "ZME53N_WBS",
+					"action": "display"
+				},
+				"intent5": {
+					"signature": {
+						"parameters": {
+							"Order": {}
+						},
+						"additionalParameters": "allowed"
+					},
+					"semanticObject": "ZME23N_WBS",
+					"action": "display"
+				},
+				"intent6": {
+					"signature": {
+						"parameters": {
+							"Order": {}
+						},
+						"additionalParameters": "allowed"
+					},
+					"semanticObject": "ZICC2N_WBS",
+					"action": "display"
+				},
+				"intent7": {
+					"signature": {
+						"parameters": {
+							"WBS": {}
+						},
+						"additionalParameters": "allowed"
+					},
+					"semanticObject": "ZCJ02_WBS",
+					"action": "change"
+				},
+				"intent8": {
+					"signature": {
+						"parameters": {},
+						"additionalParameters": "allowed"
+					},
+					"semanticObject": "ZCJ20N",
+					"action": "create"
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"fullWidth": true,
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"flexEnabled": false,
+		"rootView": {
+			"viewName": "Z001.ZPS_PSID.view.BaseView",
+			"type": "XML",
+			"async": true,
+			"id": "BaseView"
+		},
+		"dependencies": {
+			"minUI5Version": "1.65.6",
+			"libs": {
+				"sap.ui.layout": {},
+				"sap.ui.core": {},
+				"sap.m": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "Z001.ZPS_PSID.i18n.i18n"
+				}
+			},
+			"": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request"
+				},
+				"dataSource": "ZPS_WBS_ELEMENT_SRV",
+				"preload": true
+			},
+			"applicationModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {}
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"async": true,
+				"viewPath": "Z001.ZPS_PSID.view",
+				"controlAggregation": "pages",
+				"controlId": "app",
+				"clearControlAggregation": false
+			},
+			"routes": [
+				{
+					"name": "RouteElementView",
+					"pattern": "",
+					"target": [
+						"TargetElementView"
+					]
+				}
+			],
+			"targets": {
+				"TargetElementView": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewId": "ElementView",
+					"viewName": "ElementView"
+				}
+			}
+		}
+	},
+	"sap.platform.abap": {
+		"uri": "/sap/bc/ui5_ui5/sap/zps_psid/webapp",
+		"_version": "1.1.0"
+	}
+}

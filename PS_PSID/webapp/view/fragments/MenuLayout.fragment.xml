@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified">
+	<u:Menu itemSelect="handleMenuLayoutPress" id="MenuLayout">
+		<u:MenuItem id="mnLayoutChange" text="{i18n>mnLayoutChange}" icon="sap-icon://edit" />
+		<u:MenuItem id="mnLayoutDisplay" text="{i18n>mnLayoutDisplay}" icon="sap-icon://activity-items"/>
+		<u:MenuItem id="mnLayoutSave" text="{i18n>mnLayoutSave}" icon="sap-icon://save"/>
+	</u:Menu>
+</core:FragmentDefinition>

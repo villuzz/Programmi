@@ -1,0 +1,6 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified">
+	<u:Menu itemSelect="handleMenuLogisticPress" id="MenuLogistic">
+		<u:MenuItem id="mnDisLog" text="{i18n>DisBill}" icon="sap-icon://request" />
+		<u:MenuItem id="mnLogAdvance" text="{i18n>Advance}" icon="sap-icon://display" />
+	</u:Menu>
+</core:FragmentDefinition>
