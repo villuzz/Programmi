@@ -17,7 +17,6 @@
         "int-tests": "fiori run --open test/integration/opaTests.qunit.html",
         "build": "rimraf dist && ui5 build -a --include-task=generateManifestBundle generateCachebusterInfo",
         "deploy": "npx nwabap upload"
-       
     },
     "remarkConfig": {
         "plugins": [
