@@ -21,7 +21,7 @@ builder:
           username: env:UI5_USERNAME
           password: env:UI5_PASSWORD
         app:
-          name: Z001.ZPS_PSID
+          name: ZPS_PSID
           package: Z001
-          transport: DEVK9H0NDQ
+          transport: DEVK9H0N97
         
