@@ -209,6 +209,16 @@ sap.ui.define([
 				type: EdmType.String
 			});
 			aCols.push({
+				label: i18n.getText("BillingNetwr"),
+				property: 'BillingNetwr',
+				type: EdmType.String
+			});
+			aCols.push({
+				label: i18n.getText("BillingWaerk"),
+				property: 'BillingWaerk',
+				type: EdmType.String
+			});
+			aCols.push({
 				label: i18n.getText("Estrt"),
 				property: 'Estrt',
 				type: EdmType.String
@@ -582,12 +592,12 @@ sap.ui.define([
 				return;
 			}
 			switch (oItem.getId().split("-").pop()) {
-			case "mncj20n":
-				this.callcj20n(oEvent);
-				break;
-			case "mncj02":
-				this.callcj02(oEvent);
-				break;
+				case "mncj20n":
+					this.callcj20n(oEvent);
+					break;
+				case "mncj02":
+					this.callcj02(oEvent);
+					break;
 			}
 
 		},
@@ -598,19 +608,19 @@ sap.ui.define([
 				return;
 			}
 			switch (oItem.getId().split("-").pop()) {
-			case "mnItemRDA":
-				this.resumeRequest(oEvent);
-				this.byId("DialogRequest").open();
-				break;
-			case "mnCreateODV":
-				this.byId("DialogAuart").open();
-				break;
-			case "mnChangeWBS":
-				this.callChangeWBS(oEvent);
-				break;
-			case "mnAddWBS":
-				this.onPressCreate(this.getView().getModel("LOCALPARAMS").getProperty("/Line"));
-				break;
+				case "mnItemRDA":
+					this.resumeRequest(oEvent);
+					this.byId("DialogRequest").open();
+					break;
+				case "mnCreateODV":
+					this.byId("DialogAuart").open();
+					break;
+				case "mnChangeWBS":
+					this.callChangeWBS(oEvent);
+					break;
+				case "mnAddWBS":
+					this.onPressCreate(this.getView().getModel("LOCALPARAMS").getProperty("/Line"));
+					break;
 
 			}
 
@@ -621,9 +631,9 @@ sap.ui.define([
 				return;
 			}
 			switch (oItem.getId().split("-").pop()) {
-			case "mnAddWBS":
-				this.onPressCreate(this.getView().getModel("LOCALPARAMS").getProperty("/Line"));
-				break;
+				case "mnAddWBS":
+					this.onPressCreate(this.getView().getModel("LOCALPARAMS").getProperty("/Line"));
+					break;
 			}
 
 		},
@@ -633,13 +643,13 @@ sap.ui.define([
 				return;
 			}
 			switch (oItem.getId().split("-").pop()) {
-			case "mnFilter":
-				this.onPressFilter(this.getView().getModel("LOCALPARAMS").getProperty("/Line"));
-				break;
+				case "mnFilter":
+					this.onPressFilter(this.getView().getModel("LOCALPARAMS").getProperty("/Line"));
+					break;
 
-			case "mnSort":
-				this.onPressSort(this.getView().getModel("LOCALPARAMS").getProperty("/Line"));
-				break;
+				case "mnSort":
+					this.onPressSort(this.getView().getModel("LOCALPARAMS").getProperty("/Line"));
+					break;
 			}
 
 		},
@@ -710,15 +720,15 @@ sap.ui.define([
 				return;
 			}
 			switch (oItem.getId().split("-").pop()) {
-			case "mnLayoutChange":
-				this.onListItems();
-				break;
-			case "mnLayoutDisplay":
-				this.onUseSort();
-				break;
-			case "mnLayoutSave":
-				this.onPressSave();
-				break;
+				case "mnLayoutChange":
+					this.onListItems();
+					break;
+				case "mnLayoutDisplay":
+					this.onUseSort();
+					break;
+				case "mnLayoutSave":
+					this.onPressSave();
+					break;
 			}
 
 		},
@@ -730,9 +740,9 @@ sap.ui.define([
 				return;
 			}
 			switch (oItem.getId().split("-").pop()) {
-			case "mnDisQuot":
-				this.callDisplayQuotation(oEvent);
-				break;
+				case "mnDisQuot":
+					this.callDisplayQuotation(oEvent);
+					break;
 			}
 
 		},
@@ -743,12 +753,12 @@ sap.ui.define([
 				return;
 			}
 			switch (oItem.getId().split("-").pop()) {
-			case "mnDisBill":
-				this.callDisplayBilling(oEvent);
-				break;
-			case "mnCreateBill":
-				this.callAddBilling(oEvent);
-				break;
+				case "mnDisBill":
+					this.callDisplayBilling(oEvent);
+					break;
+				case "mnCreateBill":
+					this.callAddBilling(oEvent);
+					break;
 			}
 
 		},
@@ -759,13 +769,13 @@ sap.ui.define([
 				return;
 			}
 			switch (oItem.getId().split("-").pop()) {
-			case "mnDisBill":
-				this.callDisplayBilling(oEvent);
-				break;
+				case "mnDisBill":
+					this.callDisplayBilling(oEvent);
+					break;
 
-			case "mnLogAdvance":
-				this.callDisplayAdvance(oEvent);
-				break;
+				case "mnLogAdvance":
+					this.callDisplayAdvance(oEvent);
+					break;
 			}
 
 		},
@@ -776,9 +786,9 @@ sap.ui.define([
 				return;
 			}
 			switch (oItem.getId().split("-").pop()) {
-			case "mnPurReq":
-				this.callDisplayRequestRequisition(oEvent);
-				break;
+				case "mnPurReq":
+					this.callDisplayRequestRequisition(oEvent);
+					break;
 			}
 
 		},
@@ -789,9 +799,9 @@ sap.ui.define([
 				return;
 			}
 			switch (oItem.getId().split("-").pop()) {
-			case "mnPurOrd":
-				this.callDisplayRequestOrder(oEvent);
-				break;
+				case "mnPurOrd":
+					this.callDisplayRequestOrder(oEvent);
+					break;
 			}
 
 		},
@@ -802,9 +812,9 @@ sap.ui.define([
 				return;
 			}
 			switch (oItem.getId().split("-").pop()) {
-			case "mnAdvance":
-				this.callDisplayAdvance(oEvent);
-				break;
+				case "mnAdvance":
+					this.callDisplayAdvance(oEvent);
+					break;
 			}
 
 		},
@@ -903,7 +913,7 @@ sap.ui.define([
 
 		},
 		callAddBilling: function (oEvent) {
-			
+
 			this.getView().byId("AddBilling").setValue("");
 			this.getView().byId("AddBilling").setValue(this.getView().getModel("LOCALPARAMS").getProperty("/Line").getBindingContext().getObject().Padre);
 			// var ParentNode = this.getView().getModel("LOCALPARAMS").getProperty("/Line").getBindingContext().getObject().ParentID;
@@ -922,22 +932,27 @@ sap.ui.define([
 			// 		}
 			// 	}
 			// }
-			
-			this.getView().byId("AddBillingMatnr").setValue(this.getView().getModel("LOCALPARAMS").getProperty("/Line").getBindingContext().getObject().MatnrL);	
+
+			this.getView().byId("AddBillingMatnr").setValue(this.getView().getModel("LOCALPARAMS").getProperty("/Line").getBindingContext().getObject().MatnrL);
 			this.getView().byId("AddBillingQty").setValue("1");
 			var oDialog = this.byId("DialogAddBilling");
 			oDialog.open();
 		},
 		onSaveBilling: function (oEvent) {
-			this.Posid = this.getView().getModel("LOCALPARAMS").getProperty("/Line").getBindingContext().getObject().WBS_Element;
-			
+
+			var line = this.getView().getModel("LOCALPARAMS").getProperty("/Line").getBindingContext().getObject();
+			this.Posid = line.WBS_Element;
+
 			var obj = {};
-			obj.NodeID = this.getView().getModel("LOCALPARAMS").getProperty("/Line").getBindingContext().getObject().NodeID;
-			obj.WBS_Element = this.getView().getModel("LOCALPARAMS").getProperty("/Line").getBindingContext().getObject().WBS_Element;
+			obj.NodeID = line.NodeID;
+			obj.WBS_Element = line.WBS_Element;
 			obj.VbelnB = this.getView().byId("AddBilling").getValue();
-			obj.Material = this.getView().byId("AddBillingMatnr").getValue();	
+			obj.Material = this.getView().byId("AddBillingMatnr").getValue();
 			obj.Quantity = this.getView().byId("AddBillingQty").getValue();
-			
+			obj.KDKG1 = line.KDKG1;
+			obj.KDKG2 = line.KDKG2;
+			obj.WBS_Padre = line.WBS_Padre;
+
 			var myModel = sap.ui.getCore().getModel("myModel");
 
 			myModel.create('/WbsElementSet', obj, {
@@ -950,7 +965,7 @@ sap.ui.define([
 					MessageBox.alert(responseObject.error.message.value);
 				}
 			});
-			
+
 			this.byId("DialogAddBilling").close();
 		},
 		onCloseBilling: function (oEvent) {
@@ -1142,21 +1157,21 @@ sap.ui.define([
 					obj.Kdkg1 = oEvent.getBindingContext().getObject().KDKG1;
 					obj.Kdkg1Desc = oData.Kdkg1Desc;
 					obj.Kdkg2 = oEvent.getBindingContext().getObject().KDKG2;
-			
-					if( parseInt(obj.Kdkg2).toString() !== "NaN") {
+
+					if (parseInt(obj.Kdkg2).toString() !== "NaN") {
 						obj.Kdkg2 = parseInt(obj.Kdkg2).toString();
 					}
-					if(obj.Kdkg1 !== "" && obj.Kdkg1 !== "NaN"){
+					if (obj.Kdkg1 !== "" && obj.Kdkg1 !== "NaN") {
 						obj.Kdkg1Vis = false;
-					} else{
+					} else {
 						obj.Kdkg1Vis = true;
 					}
-					if(obj.Kdkg2 !== "" && obj.Kdkg2 !== "NaN"){
+					if (obj.Kdkg2 !== "" && obj.Kdkg2 !== "NaN") {
 						obj.Kdkg2Vis = false;
-					} else{
+					} else {
 						obj.Kdkg2Vis = true;
 					}
-					
+
 					obj.Kdkg2Desc = oData.Kdkg2Desc;
 					obj.Material = '';
 					obj.Quantity = '';
@@ -1582,8 +1597,8 @@ sap.ui.define([
 				}
 
 			}
-			
-				oTreeTable.bindRows({
+
+			oTreeTable.bindRows({
 				path: "/WbsElementSet",
 				filters: aFilters,
 				parameters: {
@@ -1912,7 +1927,7 @@ sap.ui.define([
 
 			var myModel = sap.ui.getCore().getModel("myModel");
 			myModel.create('/Project_variantSet', obj, {
-				success: function (oData, oResponse) {},
+				success: function (oData, oResponse) { },
 				error: function (err, oResponse) {
 					var responseObject = JSON.parse(err.responseText);
 					MessageBox.alert(responseObject.error.message.value);
@@ -1949,7 +1964,7 @@ sap.ui.define([
 
 			var myModel = sap.ui.getCore().getModel("myModel");
 			myModel.create('/SortItemSet', obj, {
-				success: function (oData, oResponse) {},
+				success: function (oData, oResponse) { },
 				error: function (err, oResponse) {
 					var responseObject = JSON.parse(err.responseText);
 					MessageBox.alert(responseObject.error.message.value);

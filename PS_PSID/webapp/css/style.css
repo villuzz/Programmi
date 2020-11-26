@@ -21,7 +21,25 @@ body {
     padding: 1%;
 }
 
-.White {}
+
+td[id*="ElementView--S"] {
+    background-color: #f5f5f5 !important;
+}
+td[id*="ElementView--B"] {
+    background-color: #ffdd00 !important;
+}
+td[id*="ElementView--P"] {
+    background-color: #0088ff !important;
+}
+td[id*="ElementView--D"] {
+    background-color: #ff9900 !important;
+}
+td[id*="ElementView--L"] {
+    background-color: #73ff00 !important;
+}
+td[id*="ElementView--Q"] {
+    background-color: #ff5100 !important;
+}
 
 .NoMargin {
     margin: 0rem;

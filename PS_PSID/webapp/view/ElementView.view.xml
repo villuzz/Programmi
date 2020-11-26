@@ -85,7 +85,7 @@
 				<footer>
 					<Toolbar>
 						<ToolbarSpacer/>
-						<Button type="Default" tooltip="Search" text="{i18n>Search}" icon="sap-icon://search" press="onFilterHeader"/>
+						<Button type="Default" tooltip="Search" text="{i18n>Search}" icon="sap-icon://search" press="onSearch"/>
 					</Toolbar>
 				</footer>
 			</Page>
@@ -425,8 +425,8 @@
 								<!--visibleRowCountMode="Auto"-->
 								<ui:columns >
 									<ui:Column id="S0" width="18em" showSortMenuEntry="true" sortProperty="WBS_Element" filterProperty="WBS_Element">
-										<Label text="{i18n>WBS_Element}"/>
-										<ui:template>
+										<Label text="{i18n>WBS_Element}" />
+										<ui:template >
 											<!--<Text text="{WBS_Element}"/>-->
 											<Button type="Transparent" id="openMenuItems" text="{WBS_Element}" press="handlePressOpenMenuItems"/>
 										</ui:template>
@@ -522,10 +522,24 @@
 										<Label text="{i18n>RejReason}"/>
 										<ui:template>
 											<HBox justifyContent="Center">
-											<Text text="{RejReason} - {RejReasonTxt}" visible="{= !${ parts:[{ path: 'RejReason'}], formatter: '.LocalFormatter.ReasonVisibleVal'} }" wrapping="true"/>
-											<Button type="Reject" text="{i18n>NoOrder}" class="redText" press="handlePressOpenMenuBilling"
+											<Text text="{RejReason}" visible="{= !${ parts:[{ path: 'RejReason'}], formatter: '.LocalFormatter.ReasonVisibleVal'} }" wrapping="true"/>
+											<Button type="Reject" text="{RejReason}" class="redText" press="handlePressOpenMenuBilling"
 												visible="{ parts:[{ path: 'RejReason'}], formatter: '.LocalFormatter.ReasonVisibleVal'}"/>
+											<Text text="{RejReasonTxt}" wrapping="true" class="sapUiTinyMarginBegin"/>
 											</HBox>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="B7" visible="{= ${LOCALPARAMS>/Billing} }" width="8em" hAlign="Center" sortProperty="BillingNetwr" filterProperty="BillingNetwr"
+										filterType="sap.ui.model.type.Integer">
+										<Label text="{i18n>BillingNetwr}"/>
+										<ui:template>
+											<Text text="{ parts: [{path: 'BillingNetwr'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="B8" visible="{= ${LOCALPARAMS>/Billing} }" width="8em" hAlign="Center" sortProperty="BillingWaerk" filterProperty="BillingWaerk" >
+										<Label text="{i18n>BillingWaerk}"/>
+										<ui:template>
+											<Text text="{BillingWaerk}" wrapping="true"/>
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="D1" visible="{= ${LOCALPARAMS>/Dates} }" width="8em" hAlign="Center" sortProperty="Estrt" filterProperty="Estrt">
