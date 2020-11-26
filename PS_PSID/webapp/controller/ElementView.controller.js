@@ -11,9 +11,14 @@ sap.ui.define([
 	'sap/m/MessageItem',
 	'sap/ui/export/library',
 	"sap/ui/export/Spreadsheet",
-	'sap/ui/model/odata/v2/ODataModel'
-], function (Controller, LocalFormatter, MessageBox, JSONModel, Log, Popup, MessagePopover, MessageItem, exportLibrary, Spreadsheet,
-	ODataModel) {
+	'sap/ui/model/odata/v2/ODataModel',
+	'sap/m/MessageView',
+	'sap/m/Button',
+	'sap/m/Bar',
+	'sap/m/Text',
+	'sap/m/Popover'
+], function (Controller, LocalFormatter, MessageBox, JSONModel, Log, Popup, MessagePopover, MessageItem, exportLibrary, Spreadsheet, ODataModel, MessageView, Button, Bar, Text, Popover
+) {
 	"use strict";
 	// TablePersoController, DemoPersoService,
 	var EdmType = exportLibrary.EdmType;
@@ -110,6 +115,68 @@ sap.ui.define([
 				verticalScrolling: false
 			});
 
+
+
+
+			//Gestione Errori
+			var MessageTemplateError = new MessageItem({
+				type: '{type}',
+				title: '{title}',
+				description: '{description}',
+				subtitle: '{subtitle}',
+			});
+
+			var BackButtonError = new Button({
+				icon: sap.ui.core.IconPool.getIconURI("nav-back"),
+				visible: false,
+				press: function () {
+					that.MessageError.navigateBack();
+					that.PopoverError.focus();
+					this.setVisible(false);
+				}
+			});
+
+
+			var oModel = new JSONModel(),
+				that = this;
+
+			this.MessageError = new MessageView({
+				showDetailsPageHeader: false,
+				itemSelect: function () {
+					BackButtonError.setVisible(true);
+				},
+				items: {
+					path: "/",
+					template: MessageTemplateError
+				}
+			});
+
+			var oCloseButton = new Button({
+				text: "Close",
+				press: function () {
+					that.PopoverError.close();
+				}
+			});
+			
+			var oVbox = new sap.m.VBox({height: "100%", justifyContent:"Center"}); 
+			oVbox.addItem(new sap.m.Text({ text: "Error Log" }));
+
+			this.PopoverError = new Popover({
+				placement: sap.m.PlacementType.Left,
+				customHeader: new sap.m.Bar({
+					contentMiddle: [ oVbox ],
+					contentLeft: [BackButtonError]
+				}),
+				contentWidth: "440px",
+				contentHeight: "440px",
+				verticalScrolling: false,
+				modal: true,
+				content: [this.MessageError],
+				footer: new Bar({ contentRight: oCloseButton }),
+				resizable: true
+			});
+			var oModel = new JSONModel([]);
+			this.getView().setModel(oModel, "returnModel2");
 		},
 		onDataExport: function () {
 			var listBinding = this.byId("tableElement").getBinding("rows");
@@ -963,6 +1030,7 @@ sap.ui.define([
 				error: function (err, oResponse) {
 					var responseObject = JSON.parse(err.responseText);
 					MessageBox.alert(responseObject.error.message.value);
+					this.PopulateError('Error', responseObject.error.message.value);
 				}
 			});
 
@@ -1029,6 +1097,7 @@ sap.ui.define([
 				error: function (err, oResponse) {
 					var responseObject = JSON.parse(err.responseText);
 					MessageBox.alert(responseObject.error.message.value);
+					this.PopulateError('Error', responseObject.error.message.value);
 				}
 			});
 
@@ -1090,6 +1159,7 @@ sap.ui.define([
 				error: function (err, oResponse) {
 					var responseObject = JSON.parse(err.responseText);
 					MessageBox.alert(responseObject.error.message.value);
+					this.PopulateError('Error', responseObject.error.message.value);
 				}
 			});
 		},
@@ -1184,6 +1254,8 @@ sap.ui.define([
 				error: function (err, oResponse) {
 					var responseObject = JSON.parse(err.responseText);
 					MessageBox.alert(responseObject.error.message.value);
+					this.PopulateError('Error', responseObject.error.message.value);
+					
 				}
 			});
 		},
@@ -1247,6 +1319,7 @@ sap.ui.define([
 					sap.ui.core.BusyIndicator.hide();
 					var responseObject = JSON.parse(oError.responseText);
 					MessageBox.alert(responseObject.error.message.value);
+					this.PopulateError('Error', responseObject.error.message.value);
 				}
 			};
 			oModel.create("/WbsCreateSet", oSOData, mParameters);
@@ -1311,6 +1384,8 @@ sap.ui.define([
 			// });
 		},
 		onSearch: function (oEvent) {
+			var oModel = new JSONModel([]);
+			this.getView().setModel(oModel, "returnModel2");
 			this.getView().byId("ProjectTop").setSelectedKey(this.getView().byId("Project").getSelectedKey());
 			this.onFilterHeader(oEvent);
 		},
@@ -1737,6 +1812,7 @@ sap.ui.define([
 				error: function (err, oResponse) {
 					var responseObject = JSON.parse(err.responseText);
 					MessageBox.alert(responseObject.error.message.value);
+					this.PopulateError('Error', responseObject.error.message.value);
 				}
 			});
 		},
@@ -1931,6 +2007,7 @@ sap.ui.define([
 				error: function (err, oResponse) {
 					var responseObject = JSON.parse(err.responseText);
 					MessageBox.alert(responseObject.error.message.value);
+					this.PopulateError('Error', responseObject.error.message.value);
 				}
 			});
 			this.useSortVariant(obj.Layout);
@@ -1968,6 +2045,7 @@ sap.ui.define([
 				error: function (err, oResponse) {
 					var responseObject = JSON.parse(err.responseText);
 					MessageBox.alert(responseObject.error.message.value);
+					this.PopulateError('Error', responseObject.error.message.value);
 				}
 			});
 			this.byId("DialogSaveSort").close();
@@ -1989,6 +2067,7 @@ sap.ui.define([
 				error: function (err, oResponse) {
 					var responseObject = JSON.parse(err.responseText);
 					MessageBox.alert(responseObject.error.message.value);
+					this.PopulateError('Error', responseObject.error.message.value);
 				}
 			});
 
@@ -2167,10 +2246,31 @@ sap.ui.define([
 		},
 
 		setProjectySO: function (oEvent) {
+			var oModel = new JSONModel([]);
+			this.getView().setModel(oModel, "returnModel2");
 			this.getView().byId("Project").setSelectedKey(this.getView().byId("ProjectTop").getSelectedKey());
 			this.onFilterHeader();
-		}
+		},
+		PopulateError: function(type, err, desc){
+			var aMockMessages = this.getView().getModel("returnModel2").getData();
+			aMockMessages.push({
+				type: type,
+				title: err,
+				description: desc,
+				subtitle: (new Date()).toLocaleString(),
+			});
 
+			var oModel = new JSONModel(aMockMessages);
+			this.getView().setModel(oModel, "returnModel2");
+		},
+		onInfoError: function (oEvent) {
+			//this.PopulateError('Error', 'Errore Titolo', 'Errore Descrizione');
+
+			this.MessageError.setModel(this.getView().getModel("returnModel2"));
+			debugger
+			this.MessageError.navigateBack();
+			this.PopoverError.openBy(oEvent.getSource());
+		}
 	});
 
 });

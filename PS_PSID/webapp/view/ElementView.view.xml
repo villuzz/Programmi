@@ -939,7 +939,9 @@
 						<Label text="{i18n>P_PS_PSID}" id="ProjectTopText" visible="false"/>
 						<ComboBox id="ProjectTop" items="{/PspidSetSet}" placeholder="{i18n>P_PS_PSID}" change="setProjectySO" visible="false" width="15em">
 							<core:ListItem key="{PsPspid}" text="{PsPspid} - {PsPost1}"/></ComboBox>
+							
 						<ToolbarSpacer/>
+						<Button type="Reject" icon="sap-icon://message-popup" press="onInfoError"/>
 						<Button type="Transparent" icon="sap-icon://download" text="{i18n>Export}" id="Export" press="onDataExport"/>
 						<Button type="Default" icon="sap-icon://refresh" text="{i18n>Refresh}" press="onFilterHeader"/>
 					</Toolbar>
