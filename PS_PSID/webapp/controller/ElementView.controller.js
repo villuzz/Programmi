@@ -665,11 +665,14 @@ sap.ui.define([
 				case "mncj02":
 					this.callcj02(oEvent);
 					break;
+
+
 			}
 
 		},
 
 		handleMenuItemPress: function (oEvent) {
+
 			var oItem = oEvent.getParameter("item");
 			if (oItem.getSubmenu()) {
 				return;
@@ -688,11 +691,15 @@ sap.ui.define([
 				case "mnAddWBS":
 					this.onPressCreate(this.getView().getModel("LOCALPARAMS").getProperty("/Line"));
 					break;
+				case "mnWBSCopy":
+					navigator.clipboard.writeText(this.getView().getModel("LOCALPARAMS").getProperty("/Line").getText());
+					break;
 
 			}
 
 		},
 		handleMenuElementPress: function (oEvent) {
+
 			var oItem = oEvent.getParameter("item");
 			if (oItem.getSubmenu()) {
 				return;
@@ -700,6 +707,9 @@ sap.ui.define([
 			switch (oItem.getId().split("-").pop()) {
 				case "mnAddWBS":
 					this.onPressCreate(this.getView().getModel("LOCALPARAMS").getProperty("/Line"));
+					break;
+				case "mnWBSCopy2":
+					navigator.clipboard.writeText(this.getView().getModel("LOCALPARAMS").getProperty("/Line").getText());
 					break;
 			}
 
@@ -748,7 +758,6 @@ sap.ui.define([
 					var columns = oTreeTable.getColumns();
 					for (var i = 0; i < columns.length; i++) {
 						if (columns[i].getFiltered()) {
-							debugger
 							filterValue = columns[i].getFilterValue();
 							filterOperator = sap.ui.model.FilterOperator.Contains;
 							if (columns[i].getFilterType() !== null && filterValue != "") {
@@ -873,6 +882,9 @@ sap.ui.define([
 				case "mnDisQuot":
 					this.callDisplayQuotation(oEvent);
 					break;
+				case "mnDisCopy":
+					navigator.clipboard.writeText(this.getView().getModel("LOCALPARAMS").getProperty("/Line").getText());
+					break;
 			}
 
 		},
@@ -888,6 +900,9 @@ sap.ui.define([
 					break;
 				case "mnCreateBill":
 					this.callAddBilling(oEvent);
+					break;
+				case "mnDisCopy3":
+					navigator.clipboard.writeText(this.getView().getModel("LOCALPARAMS").getProperty("/Line").getText());
 					break;
 			}
 
@@ -906,6 +921,9 @@ sap.ui.define([
 				case "mnLogAdvance":
 					this.callDisplayAdvance(oEvent);
 					break;
+				case "mnDisCopy2":
+					navigator.clipboard.writeText(this.getView().getModel("LOCALPARAMS").getProperty("/Line").getText());
+					break;
 			}
 
 		},
@@ -918,6 +936,9 @@ sap.ui.define([
 			switch (oItem.getId().split("-").pop()) {
 				case "mnPurReq":
 					this.callDisplayRequestRequisition(oEvent);
+					break;
+				case "mnPurCopy":
+					navigator.clipboard.writeText(this.getView().getModel("LOCALPARAMS").getProperty("/Line").getText());
 					break;
 			}
 
@@ -932,6 +953,9 @@ sap.ui.define([
 				case "mnPurOrd":
 					this.callDisplayRequestOrder(oEvent);
 					break;
+				case "mnPurCopy2":
+					navigator.clipboard.writeText(this.getView().getModel("LOCALPARAMS").getProperty("/Line").getText());
+					break;
 			}
 
 		},
@@ -944,6 +968,9 @@ sap.ui.define([
 			switch (oItem.getId().split("-").pop()) {
 				case "mnAdvance":
 					this.callDisplayAdvance(oEvent);
+					break;
+				case "mnAdvCopy":
+					navigator.clipboard.writeText(this.getView().getModel("LOCALPARAMS").getProperty("/Line").getText());
 					break;
 			}
 
@@ -1094,7 +1121,7 @@ sap.ui.define([
 					var responseObject = JSON.parse(err.responseText);
 					MessageBox.alert(responseObject.error.message.value);
 					this.PopulateError('Error', responseObject.error.message.value);
-				}
+				}.bind(this)
 			});
 
 			this.byId("DialogAddBilling").close();
@@ -1158,10 +1185,11 @@ sap.ui.define([
 					MessageBox.alert("Purchase Requisition " + oData.Number + " Created");
 				}.bind(this),
 				error: function (err, oResponse) {
+
 					var responseObject = JSON.parse(err.responseText);
 					MessageBox.alert(responseObject.error.message.value);
 					this.PopulateError('Error', responseObject.error.message.value);
-				}
+				}.bind(this)
 			});
 
 		},
@@ -1223,7 +1251,7 @@ sap.ui.define([
 					var responseObject = JSON.parse(err.responseText);
 					MessageBox.alert(responseObject.error.message.value);
 					this.PopulateError('Error', responseObject.error.message.value);
-				}
+				}.bind(this)
 			});
 		},
 		onPressLoadCSV: function (e) {
@@ -1282,6 +1310,7 @@ sap.ui.define([
 			var obj = {};
 			obj.Posid = oEvent.getBindingContext().getObject().WBS_Element;
 			this.Posid = oEvent.getBindingContext().getObject().WBS_Element;
+			this.Stufe = oEvent.getBindingContext().getObject().Stufe;
 			var myModel = sap.ui.getCore().getModel("myModel");
 			myModel.create('/WbsCreateSet', obj, {
 				success: function (oData, oResponse) {
@@ -1315,11 +1344,12 @@ sap.ui.define([
 					this.byId("DialogAdd").open();
 				}.bind(this).bind(oEvent),
 				error: function (err, oResponse) {
+
 					var responseObject = JSON.parse(err.responseText);
 					MessageBox.alert(responseObject.error.message.value);
 					this.PopulateError('Error', responseObject.error.message.value);
 
-				}
+				}.bind(this)
 			});
 		},
 		onSaveAdd: function (oEvent) {
@@ -1348,6 +1378,7 @@ sap.ui.define([
 				"Kdkg1Desc": items[0].getCells()[1].getSelectedItem().getAdditionalText(),
 				"Kdkg2": items[0].getCells()[2].getValue(),
 				"Kdkg2Desc": items[0].getCells()[2].getSelectedItem().getAdditionalText(),
+				"Stufe": this.Stufe,
 				"toWBSItems": line
 			};
 			this.createModel = new JSONModel(json);
@@ -1357,6 +1388,7 @@ sap.ui.define([
 			var oModel = this.getOwnerComponent().getModel();
 			var mParameters = {
 				success: function (oData, response) {
+					this.byId("DialogAdd").close();
 					sap.ui.core.BusyIndicator.hide();
 					var hdrMessageObject = JSON.parse(response.headers["sap-message"]);
 					var oModel = new JSONModel(hdrMessageObject.details);
@@ -1379,14 +1411,15 @@ sap.ui.define([
 					this.oDialog.open();
 				}.bind(this),
 				error: function (oError) {
+
 					sap.ui.core.BusyIndicator.hide();
 					var responseObject = JSON.parse(oError.responseText);
 					MessageBox.alert(responseObject.error.message.value);
 					this.PopulateError('Error', responseObject.error.message.value);
-				}
+				}.bind(this)
 			};
 			oModel.create("/WbsCreateSet", oSOData, mParameters);
-			this.byId("DialogAdd").close();
+
 			this.onFilterHeader();
 
 		},
@@ -1854,10 +1887,11 @@ sap.ui.define([
 					oBinding.filter().refresh();
 				}.bind(this),
 				error: function (err, oResponse) {
+
 					var responseObject = JSON.parse(err.responseText);
 					MessageBox.alert(responseObject.error.message.value);
 					this.PopulateError('Error', responseObject.error.message.value);
-				}
+				}.bind(this)
 			});
 		},
 		onListItems: function (oEvent) {
@@ -2049,10 +2083,11 @@ sap.ui.define([
 			myModel.create('/Project_variantSet', obj, {
 				success: function (oData, oResponse) { },
 				error: function (err, oResponse) {
+
 					var responseObject = JSON.parse(err.responseText);
 					MessageBox.alert(responseObject.error.message.value);
 					this.PopulateError('Error', responseObject.error.message.value);
-				}
+				}.bind(this)
 			});
 			this.useSortVariant(obj.Layout);
 			this.byId("DialogVariant").close();
@@ -2087,10 +2122,11 @@ sap.ui.define([
 			myModel.create('/SortItemSet', obj, {
 				success: function (oData, oResponse) { },
 				error: function (err, oResponse) {
+
 					var responseObject = JSON.parse(err.responseText);
 					MessageBox.alert(responseObject.error.message.value);
 					this.PopulateError('Error', responseObject.error.message.value);
-				}
+				}.bind(this)
 			});
 			this.byId("DialogSaveSort").close();
 		},
@@ -2109,10 +2145,11 @@ sap.ui.define([
 					oBinding.filter().refresh();
 				}.bind(this),
 				error: function (err, oResponse) {
+
 					var responseObject = JSON.parse(err.responseText);
 					MessageBox.alert(responseObject.error.message.value);
 					this.PopulateError('Error', responseObject.error.message.value);
-				}
+				}.bind(this)
 			});
 
 		},
@@ -2308,7 +2345,8 @@ sap.ui.define([
 			this.getView().setModel(oModel, "returnModel2");
 		},
 		onInfoError: function (oEvent) {
-			//this.PopulateError('Error', 'Errore Titolo', 'Errore Descrizione');
+			//this.PopulateError('Error', 'Errore Titolo');
+
 
 			this.MessageError.setModel(this.getView().getModel("returnModel2"));
 			this.MessageError.navigateBack();

@@ -2,5 +2,6 @@
 	<u:Menu itemSelect="handleMenuBillingPress" id="MenuBilling">
 		<u:MenuItem id="mnDisBill" text="{i18n>DisBill}" icon="sap-icon://request" />
 		<u:MenuItem id="mnCreateBill" text="{i18n>CreateBill}" icon="sap-icon://add" />
+			<u:MenuItem id="mnDisCopy3" text="{i18n>Copy}" icon="sap-icon://copy" />
 	</u:Menu>
 </core:FragmentDefinition>

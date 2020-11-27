@@ -4,5 +4,6 @@
 		<u:MenuItem id="mnItemRDA" text="{i18n>RDA}" icon="sap-icon://request" />
 		<u:MenuItem id="mnCreateODV" text="{i18n>CreateODV}" icon="sap-icon://save"/>
 		<u:MenuItem id="mnChangeWBS" text="{i18n>ChangeWBS}" icon="sap-icon://edit"/>
+		<u:MenuItem id="mnWBSCopy" text="{i18n>Copy}" icon="sap-icon://copy" />
 	</u:Menu>
 </core:FragmentDefinition>

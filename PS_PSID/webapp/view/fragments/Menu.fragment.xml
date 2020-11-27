@@ -1,7 +1,6 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified">
 	<u:Menu itemSelect="handleMenuPress" id="Menu">
 		<u:MenuItem id="mncj20n" text="{i18n>cj20n}" icon="sap-icon://edit" />
-		
 		<!--<u:MenuItem text="{i18n>SALES}" icon="sap-icon://sales-document">-->
 		<!--	<u:Menu>-->
 		<!--		<u:MenuItem id="mnBilling" text="{i18n>BILLING}" icon="sap-icon://travel-expense-report"/>-->

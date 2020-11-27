@@ -1,5 +1,6 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified">
 	<u:Menu itemSelect="handleMenuPurOrdPress" id="MenuPurOrd">
 		<u:MenuItem id="mnPurOrd" text="{i18n>PurOrd}" icon="sap-icon://display" />
+			<u:MenuItem id="mnPurCopy2" text="{i18n>Copy}" icon="sap-icon://copy" />
 	</u:Menu>
 </core:FragmentDefinition>
