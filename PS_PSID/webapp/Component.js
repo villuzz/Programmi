@@ -8,8 +8,8 @@ sap.ui.define([
 	return UIComponent.extend("Z001.ZPS_PSID.Component", {
 
 		metadata: {
-			manifest: "json"
-			// includes : [ "css/style.css" ]
+			manifest: "json",
+			includes : [ "css/style.css" ]
 		},
 
 		/**
