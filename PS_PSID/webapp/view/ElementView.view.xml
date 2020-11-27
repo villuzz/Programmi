@@ -991,7 +991,7 @@
 						<ToolbarSpacer/>
 						<Button type="Reject" icon="sap-icon://message-popup" press="onInfoError"/>
 						<Button type="Transparent" icon="sap-icon://download" text="{i18n>Export}" id="Export" press="onDataExport"/>
-						<Button type="Default" icon="sap-icon://refresh" text="{i18n>Refresh}" press="onFilterHeader"/>
+						<Button type="Default" icon="sap-icon://refresh" text="{i18n>Refresh}" press="onSearchRefresh"/>
 					</Toolbar>
 				</footer>
 			</Page>

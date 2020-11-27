@@ -919,7 +919,7 @@ sap.ui.define([
 					break;
 
 				case "mnLogAdvance":
-					this.callDisplayAdvance(oEvent);
+					this.callDisplayAdvance(true);
 					break;
 				case "mnDisCopy2":
 					navigator.clipboard.writeText(this.getView().getModel("LOCALPARAMS").getProperty("/Line").getText());
@@ -967,7 +967,7 @@ sap.ui.define([
 			}
 			switch (oItem.getId().split("-").pop()) {
 				case "mnAdvance":
-					this.callDisplayAdvance(oEvent);
+					this.callDisplayAdvance(false);
 					break;
 				case "mnAdvCopy":
 					navigator.clipboard.writeText(this.getView().getModel("LOCALPARAMS").getProperty("/Line").getText());
@@ -1013,15 +1013,26 @@ sap.ui.define([
 			this.callTransaction(url);
 
 		},
-		callDisplayAdvance: function (oEvent) {
+		callDisplayAdvance: function (Order) {
+			debugger;
 
+			var request = '',
+				order = '';
+				if (Order){
+					request = '',
+					order = this.getView().getModel("LOCALPARAMS").getProperty("/Line").getText();
+				}else{
+					request = this.getView().getModel("LOCALPARAMS").getProperty("/Line").getText(),
+					order = '';
+				}
 			var url = {
 				target: {
 					semanticObject: "ZICC2N_WBS",
 					action: "display"
 				},
 				params: {
-					"Order": this.getView().getModel("LOCALPARAMS").getProperty("/Line").getText()
+					"Request": request,
+					"Order": order
 				}
 			};
 			this.callTransaction(url);
@@ -1483,7 +1494,22 @@ sap.ui.define([
 			var oModel = new JSONModel([]);
 			this.getView().setModel(oModel, "returnModel2");
 			this.getView().byId("ProjectTop").setSelectedKey(this.getView().byId("Project").getSelectedKey());
+			this.onResetFilter();
 			this.onFilterHeader(oEvent);
+		},
+		onSearchRefresh: function (oEvent) {
+			this.onResetFilter();
+			this.onFilterHeader(oEvent);
+		},
+		onResetFilter: function(){
+			//Reset filter and sort 
+			var columns = this.byId("tableElement").getColumns();
+			for (var i = 0; i < columns.length; i++) {
+				columns[i].setSorted(false);
+				if (columns[i].getFiltered()) {
+					columns[i].filter("");
+				}
+			}
 		},
 		onFilterHeader: function (oEvent) {
 			// if (this.byId("fcl").getLayout() === "TwoColumnsMidExpanded") {
@@ -1769,14 +1795,6 @@ sap.ui.define([
 				}
 
 			}
-			//Reset filter and sort 
-			var columns = oTreeTable.getColumns();
-			for (var i = 0; i < columns.length; i++) {
-				columns[i].setSorted(false);
-				if (columns[i].getFiltered()) {
-					columns[i].filter("");
-				}
-			}
 
 			oTreeTable.bindRows({
 				path: "/WbsElementSet",
@@ -2019,6 +2037,10 @@ sap.ui.define([
 		onSaveVariant: function (oEvent) {
 			var obj = {};
 			obj.Name = this.getView().byId("VariantName").getValue();
+			debugger
+			if(obj.Name.includes(' ')){
+				MessageBox.alert('Space not permitted');
+			}else{
 			obj.Project = this.getView().byId("Project").getSelectedKey();
 			obj.Stproject = this.getView().byId("StProject").getSelectedKey();
 			obj.Stquotation = this.getView().byId("StQuotation").getSelectedKey();
@@ -2091,6 +2113,7 @@ sap.ui.define([
 			});
 			this.useSortVariant(obj.Layout);
 			this.byId("DialogVariant").close();
+		}
 		},
 		onListVariant: function (oEvent) {
 			var oBinding = this.byId("tableVariant").getBinding("items");
@@ -2137,6 +2160,7 @@ sap.ui.define([
 			this.byId("DialogVariantList").close();
 		},
 		onDeleteVariantList: function (oEvent) {
+			debugger
 			var delurl = "/Project_variantSet(Name='" + oEvent.getSource().getBindingContext().getObject().Name + "')";
 			var myModel = sap.ui.getCore().getModel("myModel");
 			myModel.remove(delurl, {
@@ -2145,11 +2169,9 @@ sap.ui.define([
 					oBinding.filter().refresh();
 				}.bind(this),
 				error: function (err, oResponse) {
-
 					var responseObject = JSON.parse(err.responseText);
-					MessageBox.alert(responseObject.error.message.value);
-					this.PopulateError('Error', responseObject.error.message.value);
-				}.bind(this)
+					MessageBox.alert(responseObject.error.message.value); 
+				} 
 			});
 
 		},
