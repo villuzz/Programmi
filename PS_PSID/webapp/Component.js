@@ -27,7 +27,7 @@ sap.ui.define([
 			// set the device model
 			this.setModel(models.createDeviceModel(), "device");
 			
-			jQuery.sap.includeStyleSheet(sap.ui.resource("Z001.ZPS_PSID", "css/style.css"));
+			//jQuery.sap.includeStyleSheet(sap.ui.resource("Z001.ZPS_PSID", "css/style.css"));
 		}
 	});
 });
