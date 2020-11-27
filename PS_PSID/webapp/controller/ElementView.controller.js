@@ -157,14 +157,14 @@ sap.ui.define([
 					that.PopoverError.close();
 				}
 			});
-			
-			var oVbox = new sap.m.VBox({height: "100%", justifyContent:"Center"}); 
+
+			var oVbox = new sap.m.VBox({ height: "100%", justifyContent: "Center" });
 			oVbox.addItem(new sap.m.Text({ text: "Error Log" }));
 
 			this.PopoverError = new Popover({
 				placement: sap.m.PlacementType.Left,
 				customHeader: new sap.m.Bar({
-					contentMiddle: [ oVbox ],
+					contentMiddle: [oVbox],
 					contentLeft: [BackButtonError]
 				}),
 				contentWidth: "440px",
@@ -722,63 +722,126 @@ sap.ui.define([
 		},
 		sofilter: function (oEvent) {
 
-			var filterValue = oEvent.getParameters().value;
-			var filterOperator = sap.ui.model.FilterOperator.Contains;
-			if (oEvent.getParameters().column.getProperty("filterType") !== null && filterValue != "") {
-				if (oEvent.getParameters().column.getProperty("filterType").getName() === "Integer") {
-					filterValue = parseFloat(filterValue);
-					filterOperator = 'EQ';
-				}
-			}
-			// if (filterValue !== "") {
-			// var filterOperator = oEvent.getParameters().column.getProperty("filterOperator"); 
+			var filterProperty = '',
+				filterValue = '',
+				filterOperator = '';
 
-			var filterProperty = oEvent.getParameters().column.getProperty("filterProperty");
 
+			var oTreeTable = this.byId("tableElement");
 			var rows = this.Filter.length;
-			var i = 0;
 			var trovato = "";
-
-			if (rows !== 0) {
-				for (i = 0; i < rows; i++) {
-					if (this.Filter[i].sPath === filterProperty) {
-						this.Filter[i].oValue1 = filterValue;
-						trovato = "X";
-						if (filterValue === "") {
-							this.Filter.splice(i, 1);
-							rows = rows - 1;
+			if (oEvent.getParameters().column.getProperty("filterProperty") !== 'Filter') {
+				if (rows !== 0) {
+					for (var i = 0; i < rows; i++) {
+						if (this.Filter[i].sPath === 'Filter') {
+							trovato = "X";
+							continue;
 						}
 					}
 				}
-				if (trovato === "" && filterValue !== "") {
-					this.Filter.push(new sap.ui.model.Filter({
-						path: filterProperty,
-						operator: filterOperator,
-						value1: filterValue
-					}));
-				}
 			}
 
-			var oTreeTable = this.byId("tableElement");
-			oTreeTable.bindRows({
-				path: "/WbsElementSet",
-				filters: this.Filter,
-				parameters: {
-					treeAnnotationProperties: {
-						hierarchyLevelFor: 'Stufe',
-						hierarchyNodeFor: 'NodeID',
-						hierarchyParentNodeFor: 'ParentID',
-						hierarchyDrillStateFor: 'DrillState'
-					},
-					operationMode: 'Client',
-					useServersideApplicationFilters: true
-				}
-			});
-			// }
+			if ((oEvent.getParameters().column.getProperty("filterProperty") === 'Filter' && oEvent.getParameters().value !== "") || trovato === 'X') {
 
-			if (filterValue !== "" && filterValue !== null && filterValue !== undefined) {
+				//Add other filter 
+				if (oEvent.getParameters().column.getProperty("filterProperty") === 'Filter') {
+					var columns = oTreeTable.getColumns();
+					for (var i = 0; i < columns.length; i++) {
+						if (columns[i].getFiltered()) {
+							debugger
+							filterValue = columns[i].getFilterValue();
+							filterOperator = sap.ui.model.FilterOperator.Contains;
+							if (columns[i].getFilterType() !== null && filterValue != "") {
+								if (columns[i].getFilterType().getName() === "Integer") {
+									filterValue = parseFloat(filterValue);
+									filterOperator = 'EQ';
+								}
+							}
+							filterProperty = columns[i].getFilterProperty();
+
+							this.Filter.push(new sap.ui.model.Filter({
+								path: filterProperty,
+								operator: filterOperator,
+								value1: filterValue
+							}));
+							//applicare i filtri in piu
+						}
+					}
+				}
+
+				filterValue = oEvent.getParameters().value;
+				filterOperator = sap.ui.model.FilterOperator.Contains;
+				if (oEvent.getParameters().column.getProperty("filterType") !== null && filterValue != "") {
+					if (oEvent.getParameters().column.getProperty("filterType").getName() === "Integer") {
+						filterValue = parseFloat(filterValue);
+						filterOperator = 'EQ';
+					}
+				}
+				filterProperty = oEvent.getParameters().column.getProperty("filterProperty");
+
+				var rows = this.Filter.length;
+				var i = 0;
+				var trovato = "";
+
+				if (rows !== 0) {
+					for (i = 0; i < rows; i++) {
+						if (this.Filter[i].sPath === filterProperty) {
+							this.Filter[i].oValue1 = filterValue;
+							trovato = "X";
+							if (filterValue === "") {
+								this.Filter.splice(i, 1);
+								rows = rows - 1;
+							}
+						}
+					}
+					if (trovato === "" && filterValue !== "") {
+						this.Filter.push(new sap.ui.model.Filter({
+							path: filterProperty,
+							operator: filterOperator,
+							value1: filterValue
+						}));
+					}
+				}
+
+
+
+				oTreeTable.bindRows({
+					path: "/WbsElementSet",
+					filters: this.Filter,
+					parameters: {
+						treeAnnotationProperties: {
+							hierarchyLevelFor: 'Stufe',
+							hierarchyNodeFor: 'NodeID',
+							hierarchyParentNodeFor: 'ParentID',
+							hierarchyDrillStateFor: 'DrillState'
+						},
+						operationMode: 'Server',
+						useServersideApplicationFilters: true
+					}
+				});
+
+
+
+			} else {
+				this.onFilterInit(this.getView().byId("StProject").getSelectedItem(), this.getView().byId("Project").getSelectedItem());
+				var oTreeTable = this.byId("tableElement");
+				oTreeTable.bindRows({
+					path: "/WbsElementSet",
+					filters: this.Filter,
+					parameters: {
+						treeAnnotationProperties: {
+							hierarchyLevelFor: 'Stufe',
+							hierarchyNodeFor: 'NodeID',
+							hierarchyParentNodeFor: 'ParentID',
+							hierarchyDrillStateFor: 'DrillState'
+						},
+						operationMode: 'Client',
+						useServersideApplicationFilters: true
+					}
+				});
 				this.loadToggleState();
 			}
+
 
 		},
 		handleMenuLayoutPress: function (oEvent) {
@@ -836,7 +899,7 @@ sap.ui.define([
 				return;
 			}
 			switch (oItem.getId().split("-").pop()) {
-				case "mnDisBill":
+				case "mnDisLog":
 					this.callDisplayBilling(oEvent);
 					break;
 
@@ -1255,7 +1318,7 @@ sap.ui.define([
 					var responseObject = JSON.parse(err.responseText);
 					MessageBox.alert(responseObject.error.message.value);
 					this.PopulateError('Error', responseObject.error.message.value);
-					
+
 				}
 			});
 		},
@@ -1516,11 +1579,9 @@ sap.ui.define([
 			this.onFilterItems(this.getView().byId("StProject").getSelectedItem(), this.getView().byId("Project").getSelectedItem());
 			this.byId("DialogStufe").close();
 		},
-		onFilterItems: function (stProject, Project) {
-			// var i18n = this.getView().getModel("i18n").getResourceBundle();
+		onFilterInit: function (stProject, Project) {
 			var aFilters = [];
 			var oFilter = '';
-
 			if (Project !== null) {
 				var SEL = Project.getKey(); //oEvent.getSource().getBindingContext().getObject().Pspid;
 				oFilter = new sap.ui.model.Filter({
@@ -1542,7 +1603,7 @@ sap.ui.define([
 				aFilters.push(oFilter);
 			}
 
-			if (Project !== null) {
+			if (stProject !== null) {
 				SEL = stProject.getKey(); //oEvent.getSource().getBindingContext().getObject().Stsma;
 				if (SEL !== '') {
 					oFilter = new sap.ui.model.Filter({
@@ -1648,10 +1709,13 @@ sap.ui.define([
 				});
 				aFilters.push(oFilter);
 			}
-			var oTreeTable = this.byId("tableElement");
-
-			// debugger
 			this.Filter = aFilters;
+		},
+		onFilterItems: function (stProject, Project) {
+
+			var oTreeTable = this.byId("tableElement");
+			this.onFilterInit(stProject, Project);
+
 			var aColumns = oTreeTable.getColumns();
 			for (var i = 0; i < aColumns.length; i++) {
 
@@ -1672,10 +1736,18 @@ sap.ui.define([
 				}
 
 			}
+			//Reset filter and sort 
+			var columns = oTreeTable.getColumns();
+			for (var i = 0; i < columns.length; i++) {
+				columns[i].setSorted(false);
+				if (columns[i].getFiltered()) {
+					columns[i].filter("");
+				}
+			}
 
 			oTreeTable.bindRows({
 				path: "/WbsElementSet",
-				filters: aFilters,
+				filters: this.Filter,
 				parameters: {
 					// countMode: "Inline",
 					treeAnnotationProperties: {
@@ -1688,34 +1760,6 @@ sap.ui.define([
 					useServersideApplicationFilters: true
 				}
 			});
-
-			// single Table 
-			// var oBinding = this.byId("SingleTable").getBinding("items");
-			// aFilters = [];
-			// oFilter = '';
-
-			// SEL = oEvent.getSource().getBindingContext().getObject().Pspid;
-			// oFilter = new sap.ui.model.Filter({
-			// 	path: 'Pspid',
-			// 	operator: 'EQ',
-			// 	value1: SEL
-			// });
-			// aFilters.push(oFilter);
-			// SEL = oEvent.getSource().getBindingContext().getObject().Stsma;
-			// oFilter = new sap.ui.model.Filter({
-			// 	path: 'Stsma',
-			// 	operator: 'EQ',
-			// 	value1: SEL
-			// });
-			// aFilters.push(oFilter);
-
-			// // apply filter settings
-			// oBinding.filter(aFilters);
-			// // resume
-			// if (oBinding.isSuspended()) {
-			// 	oBinding.resume();
-			// }
-			// this.getView().byId("navCon").to(this.getView().byId("Page2"));
 
 		},
 		onBeforeRebindTable: function (oEvent) {
@@ -2251,7 +2295,7 @@ sap.ui.define([
 			this.getView().byId("Project").setSelectedKey(this.getView().byId("ProjectTop").getSelectedKey());
 			this.onFilterHeader();
 		},
-		PopulateError: function(type, err, desc){
+		PopulateError: function (type, err, desc) {
 			var aMockMessages = this.getView().getModel("returnModel2").getData();
 			aMockMessages.push({
 				type: type,
@@ -2267,7 +2311,6 @@ sap.ui.define([
 			//this.PopulateError('Error', 'Errore Titolo', 'Errore Descrizione');
 
 			this.MessageError.setModel(this.getView().getModel("returnModel2"));
-			debugger
 			this.MessageError.navigateBack();
 			this.PopoverError.openBy(oEvent.getSource());
 		}

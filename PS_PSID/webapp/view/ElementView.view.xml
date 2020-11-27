@@ -438,7 +438,7 @@
 										<ui:template>
 											<!--<Button type="Transparent" enabled="{= ${Stufe} !== 0 ? false : true }" text="{ parts:['Stufe'], formatter: '.LocalFormatter.addOne'}"-->
 											<!--	press="handlePressOpenMenuElement" id="StufeID" />-->
-											<Label text="{ parts:['Stufe'], formatter: '.LocalFormatter.addOne'}" id="StufeID"/>
+											<Label text="{Filter}" id="StufeID"/>
 										</ui:template>
 									</ui:Column>
 									<!--<ui:Column id="S2" width="7em" hAlign="Center">-->
