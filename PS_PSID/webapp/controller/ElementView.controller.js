@@ -1177,17 +1177,20 @@ sap.ui.define([
 
 		callRequestCreate: function (oEvent) {
 
+			
 			var obj = {};
 			obj.Posid = this.getView().getModel("LOCALPARAMS").getProperty("/Line").getText();
-			obj.DocType = this.getView().byId("RqBsart")._getSelectedItemText();
-			obj.GLAcct = this.getView().byId("ReqGL").getValue();
+			obj.DocType = this.getView().byId("RqBsart").getSelectedKey();
+			//obj.GLAcct = this.getView().byId("ReqGL").getValue();
 			obj.ShortText = this.getView().byId("ReqText").getValue();
-			obj.MatGrp = this.getView().byId("RqMatGroup")._getSelectedItemText();
+			//obj.MatGrp = this.getView().byId("RqMatGroup").getSelectedKey();
 			obj.Quantity = this.getView().byId("rqQty").getValue();
-			obj.Unit = this.getView().byId("prMeins")._getSelectedItemText();
+			obj.Unit = this.getView().byId("prMeins").getSelectedKey();
 			obj.DelivDate = this._formatDate(this.getView().byId('dataReq').getDateValue());
-			obj.DesVendor = this.getView().byId("prVendor")._getSelectedItemText();
+			obj.DesVendor = this.getView().byId("prVendor").getSelectedKey();
 			obj.ItemText = this.getView().byId("ReqValue").getValue();
+			obj.Waers = this.getView().byId("prCurrency").getSelectedKey();
+			obj.Asnum = this.getView().byId("prService").getSelectedKey();
 
 			var myModel = sap.ui.getCore().getModel("myModel");
 			myModel.create('/PurchReqSet', obj, {
@@ -1227,7 +1230,11 @@ sap.ui.define([
 			if (oBinding.isSuspended()) {
 				oBinding.resume();
 			}
-			oBinding = this.byId("RqMatGroup").getBinding("items");
+			oBinding = this.byId("prService").getBinding("items");
+			if (oBinding.isSuspended()) {
+				oBinding.resume();
+			}
+			oBinding = this.byId("prCurrency").getBinding("items");
 			if (oBinding.isSuspended()) {
 				oBinding.resume();
 			}
@@ -1471,6 +1478,8 @@ sap.ui.define([
 
 		routeMatched: function (oEvent) {
 			this.getView().byId("prMeins").getModel().setSizeLimit(1000);
+			this.getView().byId("prCurrency").setSizeLimit(500);
+			this.getView().byId("prService").setSizeLimit(500);
 			this.getView().byId("Project").getModel().setSizeLimit(500);
 			this.getView().byId("StProject").getModel().setSizeLimit(500);
 			this.getView().byId("StQuotation").getModel().setSizeLimit(500);
@@ -1481,7 +1490,7 @@ sap.ui.define([
 			this.getView().byId("CostConditionType").getModel().setSizeLimit(500);
 			this.getView().byId("TargetMarginCondition").getModel().setSizeLimit(500);
 			this.getView().byId("ActualMarginCondition").getModel().setSizeLimit(500);
-			this.getView().byId("RqMatGroup").getModel().setSizeLimit(500);
+			//this.getView().byId("RqMatGroup").getModel().setSizeLimit(500);
 
 			// this.Project = oEvent.getParameter("arguments").Project;
 			// this.StProject = oEvent.getParameter("arguments").StProject;
