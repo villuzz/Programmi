@@ -2421,7 +2421,7 @@ sap.ui.define([
 			var obj = {};
 			obj.Operation = 'MODIDATE';
 			obj.Estrt = Estrt;
-			obj.ForeDuration = ForeDuration;
+			obj.ForeDuration = parseInt(ForeDuration);
 			obj.NodeID = line.NodeID;
 			obj.WBS_Element = line.WBS_Element;
 			//obj.VbelnB = this.getView().byId("AddBilling").getValue();
