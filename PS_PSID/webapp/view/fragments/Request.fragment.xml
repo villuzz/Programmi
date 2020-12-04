@@ -26,7 +26,7 @@
 						</VBox>
 						<VBox justifyContent="Center" class="sapUiTinyMarginBeginEnd" width="20%">
 							<Label text="{i18n>ReqMatSer}"/>
-							<ComboBox width="100%" id="prService" items="{ path: '/prVendorSet', suspended: true , sorter : { path : 'Asnum' } }">
+							<ComboBox width="100%" id="prService" items="{ path: '/prServiceMatSet', suspended: true , sorter : { path : 'Asnum' } }">
 								<core:ListItem key="{Asnum}" text="{Asnum} - {Asktx}"/>
 							</ComboBox>
 						</VBox>

@@ -1014,17 +1014,16 @@ sap.ui.define([
 
 		},
 		callDisplayAdvance: function (Order) {
-			debugger;
 
 			var request = '',
 				order = '';
-				if (Order){
-					request = '',
+			if (Order) {
+				request = '',
 					order = this.getView().getModel("LOCALPARAMS").getProperty("/Line").getText();
-				}else{
-					request = this.getView().getModel("LOCALPARAMS").getProperty("/Line").getText(),
+			} else {
+				request = this.getView().getModel("LOCALPARAMS").getProperty("/Line").getText(),
 					order = '';
-				}
+			}
 			var url = {
 				target: {
 					semanticObject: "ZICC2N_WBS",
@@ -1177,7 +1176,7 @@ sap.ui.define([
 
 		callRequestCreate: function (oEvent) {
 
-			
+
 			var obj = {};
 			obj.Posid = this.getView().getModel("LOCALPARAMS").getProperty("/Line").getText();
 			obj.DocType = this.getView().byId("RqBsart").getSelectedKey();
@@ -1191,6 +1190,8 @@ sap.ui.define([
 			obj.ItemText = this.getView().byId("ReqValue").getValue();
 			obj.Waers = this.getView().byId("prCurrency").getSelectedKey();
 			obj.Asnum = this.getView().byId("prService").getSelectedKey();
+			obj.KDKG1 = this.getView().getModel("LOCALPARAMS").getProperty("/Line").getBindingContext().getObject().KDKG1;
+
 
 			var myModel = sap.ui.getCore().getModel("myModel");
 			myModel.create('/PurchReqSet', obj, {
@@ -1222,7 +1223,20 @@ sap.ui.define([
 			if (oBinding.isSuspended()) {
 				oBinding.resume();
 			}
+
+			var aFilters = [];
+			var oFilter = '';
+
+			oFilter = new sap.ui.model.Filter({
+				path: 'Comp_code',
+				operator: 'EQ',
+				value1: this.getView().getModel("LOCALPARAMS").getProperty("/Line").getBindingContext().getObject().Comp_code
+			});
+			aFilters.push(oFilter);
+
 			oBinding = this.byId("prVendor").getBinding("items");
+			// apply filter settings
+			oBinding.filter(aFilters);
 			if (oBinding.isSuspended()) {
 				oBinding.resume();
 			}
@@ -1510,7 +1524,7 @@ sap.ui.define([
 			this.onResetFilter();
 			this.onFilterHeader(oEvent);
 		},
-		onResetFilter: function(){
+		onResetFilter: function () {
 			//Reset filter and sort 
 			var columns = this.byId("tableElement").getColumns();
 			for (var i = 0; i < columns.length; i++) {
@@ -1804,7 +1818,7 @@ sap.ui.define([
 				}
 
 			}
-
+			
 			oTreeTable.bindRows({
 				path: "/WbsElementSet",
 				filters: this.Filter,
@@ -2046,83 +2060,82 @@ sap.ui.define([
 		onSaveVariant: function (oEvent) {
 			var obj = {};
 			obj.Name = this.getView().byId("VariantName").getValue();
-			debugger
-			if(obj.Name.includes(' ')){
+			if (obj.Name.includes(' ')) {
 				MessageBox.alert('Space not permitted');
-			}else{
-			obj.Project = this.getView().byId("Project").getSelectedKey();
-			obj.Stproject = this.getView().byId("StProject").getSelectedKey();
-			obj.Stquotation = this.getView().byId("StQuotation").getSelectedKey();
-			var items = this.getView().byId("DcQuotation").getSelectedKeys();
-			if (items[0] !== undefined) {
-				obj.Dcquotation1 = items[0];
-			}
-			if (items[1] !== undefined) {
-				obj.Dcquotation2 = items[1];
-			}
-			if (items[2] !== undefined) {
-				obj.Dcquotation3 = items[2];
-			}
-			if (items[3] !== undefined) {
-				obj.Dcquotation4 = items[3];
-			}
-			if (items[4] !== undefined) {
-				obj.Dcquotation5 = items[4];
-			}
-			items = this.getView().byId("BillingType").getSelectedKeys();
-			if (items[0] !== undefined) {
-				obj.Billingtype1 = items[0];
-			}
-			if (items[1] !== undefined) {
-				obj.Billingtype2 = items[1];
-			}
-			if (items[2] !== undefined) {
-				obj.Billingtype3 = items[2];
-			}
-			if (items[3] !== undefined) {
-				obj.Billingtype4 = items[3];
-			}
-			if (items[4] !== undefined) {
-				obj.Billingtype5 = items[4];
-			}
-			items = this.getView().byId("Logistic").getSelectedKeys();
-			if (items[0] !== undefined) {
-				obj.Logistic1 = items[0];
-			}
-			if (items[1] !== undefined) {
-				obj.Logistic2 = items[1];
-			}
-			if (items[2] !== undefined) {
-				obj.Logistic3 = items[2];
-			}
-			if (items[3] !== undefined) {
-				obj.Logistic4 = items[3];
-			}
-			if (items[4] !== undefined) {
-				obj.Logistic5 = items[4];
-			}
+			} else {
+				obj.Project = this.getView().byId("Project").getSelectedKey();
+				obj.Stproject = this.getView().byId("StProject").getSelectedKey();
+				obj.Stquotation = this.getView().byId("StQuotation").getSelectedKey();
+				var items = this.getView().byId("DcQuotation").getSelectedKeys();
+				if (items[0] !== undefined) {
+					obj.Dcquotation1 = items[0];
+				}
+				if (items[1] !== undefined) {
+					obj.Dcquotation2 = items[1];
+				}
+				if (items[2] !== undefined) {
+					obj.Dcquotation3 = items[2];
+				}
+				if (items[3] !== undefined) {
+					obj.Dcquotation4 = items[3];
+				}
+				if (items[4] !== undefined) {
+					obj.Dcquotation5 = items[4];
+				}
+				items = this.getView().byId("BillingType").getSelectedKeys();
+				if (items[0] !== undefined) {
+					obj.Billingtype1 = items[0];
+				}
+				if (items[1] !== undefined) {
+					obj.Billingtype2 = items[1];
+				}
+				if (items[2] !== undefined) {
+					obj.Billingtype3 = items[2];
+				}
+				if (items[3] !== undefined) {
+					obj.Billingtype4 = items[3];
+				}
+				if (items[4] !== undefined) {
+					obj.Billingtype5 = items[4];
+				}
+				items = this.getView().byId("Logistic").getSelectedKeys();
+				if (items[0] !== undefined) {
+					obj.Logistic1 = items[0];
+				}
+				if (items[1] !== undefined) {
+					obj.Logistic2 = items[1];
+				}
+				if (items[2] !== undefined) {
+					obj.Logistic3 = items[2];
+				}
+				if (items[3] !== undefined) {
+					obj.Logistic4 = items[3];
+				}
+				if (items[4] !== undefined) {
+					obj.Logistic5 = items[4];
+				}
 
-			// obj.Orditemcat = this.getView().byId("OrdItemCat").getSelectedKey();
-			obj.Costconditiontype = this.getView().byId("CostConditionType").getSelectedKey();
-			obj.Targetmargincondition = this.getView().byId("TargetMarginCondition").getSelectedKey();
-			obj.Actualmargincondition = this.getView().byId("ActualMarginCondition").getSelectedKey();
+				// obj.Orditemcat = this.getView().byId("OrdItemCat").getSelectedKey();
+				obj.Costconditiontype = this.getView().byId("CostConditionType").getSelectedKey();
+				obj.Targetmargincondition = this.getView().byId("TargetMarginCondition").getSelectedKey();
+				obj.Actualmargincondition = this.getView().byId("ActualMarginCondition").getSelectedKey();
 
-			//Save corrisponding layout
-			obj.Layout = this.getView().byId("VariantLayout").getSelectedKey();
+				//Save corrisponding layout
+				obj.Layout = this.getView().byId("VariantLayout").getSelectedKey();
 
-			var myModel = sap.ui.getCore().getModel("myModel");
-			myModel.create('/Project_variantSet', obj, {
-				success: function (oData, oResponse) { },
-				error: function (err, oResponse) {
+				var myModel = sap.ui.getCore().getModel("myModel");
+				myModel.create('/Project_variantSet', obj, {
+					success: function (oData, oResponse) { },
+					error: function (err, oResponse) {
 
-					var responseObject = JSON.parse(err.responseText);
-					MessageBox.alert(responseObject.error.message.value);
-					this.PopulateError('Error', responseObject.error.message.value);
-				}.bind(this)
-			});
-			this.useSortVariant(obj.Layout);
-			this.byId("DialogVariant").close();
-		}
+						var responseObject = JSON.parse(err.responseText);
+						MessageBox.alert(responseObject.error.message.value);
+						this.PopulateError('Error', responseObject.error.message.value);
+					}.bind(this)
+				});
+				this.useSortVariant(obj.Layout);
+				this.byId("DialogVariant").close();
+			}
 		},
 		onListVariant: function (oEvent) {
 			var oBinding = this.byId("tableVariant").getBinding("items");
@@ -2169,7 +2182,6 @@ sap.ui.define([
 			this.byId("DialogVariantList").close();
 		},
 		onDeleteVariantList: function (oEvent) {
-			debugger
 			var delurl = "/Project_variantSet(Name='" + oEvent.getSource().getBindingContext().getObject().Name + "')";
 			var myModel = sap.ui.getCore().getModel("myModel");
 			myModel.remove(delurl, {
@@ -2179,8 +2191,8 @@ sap.ui.define([
 				}.bind(this),
 				error: function (err, oResponse) {
 					var responseObject = JSON.parse(err.responseText);
-					MessageBox.alert(responseObject.error.message.value); 
-				} 
+					MessageBox.alert(responseObject.error.message.value);
+				}
 			});
 
 		},
@@ -2335,20 +2347,13 @@ sap.ui.define([
 		},
 		onPressExpand: function (oEvent) {
 			if (oEvent.getSource().getExpanded() === false) {
-				this.getView().byId("Posizione").setHeight("83%");
-				this.getView().byId("Testata").setHeight("10%");
+				this.getView().byId("Posizione").setHeight("80%");
+				this.getView().byId("Testata").setHeight("13%");
 			} else {
-				this.getView().byId("Posizione").setHeight("23%");
-				this.getView().byId("Testata").setHeight("70%");
+				this.getView().byId("Posizione").setHeight("17%");
+				this.getView().byId("Testata").setHeight("74%");
 			}
 
-		},
-		onPressDown: function (oEvent) {
-			this.getView().byId("Down").setVisible(false);
-			this.getView().byId("Up").setVisible(true);
-			this.getView().byId("Posizione").setHeight("43%");
-			this.getView().byId("Testata").setHeight("43%");
-			// this.getView().byId("Testata").setVisible(true);
 		},
 
 		loadToggleState: function () {
