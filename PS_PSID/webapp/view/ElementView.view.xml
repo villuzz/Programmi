@@ -48,7 +48,6 @@
 		}
 				
 	 </html:style>
-	<!--<NavContainer id="navCon" width="100%" height="100%">-->
 	<f:FlexibleColumnLayout id="fcl" class="ContFlex">
 		<f:beginColumnPages>
 			<Page id="PageSel">
@@ -59,7 +58,6 @@
 							<Button type="Default" tooltip="Save" text="{i18n>Save}" icon="sap-icon://save" press="onPressVariant"/>
 						</contentLeft>
 						<contentMiddle>
-							<!--<Image src="./resource/img/epta_logo.png" densityAware="false" width="2.2rem"/>-->
 						</contentMiddle>
 						<contentRight ></contentRight>
 					</Bar>
@@ -110,10 +108,6 @@
 								<Label text="{i18n>P_C_KSCHL}"/>
 								<ComboBox id="CostConditionType" items="{/CostConditionTypeSet}" showSecondaryValues="true" placeholder="{i18n>P_C_KSCHL}"><core:ListItem key="{Kschl}" text="{Kschl}" additionalText="{Vtext}"/></ComboBox>
 							</VBox>
-							<!--<VBox justifyContent="Center" class="sapUiTinyMarginBegin">-->
-							<!--	<Label text="{i18n>P_PSTYV}"/>-->
-							<!--	<ComboBox id="OrdItemCat" items="{/OrdItemCatSet}" showSecondaryValues="true"><core:ListItem key="{Pstyv}" text="{Pstyv}" additionalText="{Vtext}"/></ComboBox>-->
-							<!--</VBox>-->
 						</HBox>
 						<HBox height="7em" width="100%">
 							<VBox justifyContent="Center" class="sapUiTinyMarginBegin">
@@ -144,7 +138,6 @@
 					<Bar class="custom-header header-background">
 						<contentLeft>
 							<Button id="openMenu" text="Menu" press="handlePressOpenMenu" icon="sap-icon://menu2"/>
-							<!--<Button type="Default" tooltip="Indietro" icon="sap-icon://nav-back" press="onPressBackBtn1"/>-->
 						</contentLeft>
 						<contentMiddle>
 							<Image src="./resource/img/epta_logo.png" densityAware="false" width="2.2rem"/>
@@ -225,7 +218,6 @@
 													<Panel expandable="false" expanded="true" headerText="{i18n>Soldto}" width="auto" class="NoMargin">
 														<content>
 															<HBox class="sapUiSmallMarginTop">
-																<!--<Label text="" design="Bold" width="11rem"/>-->
 																<Label text="{Soldto}" wrapping="true"></Label>
 															</HBox>
 															<HBox class="sapUiTinyMarginTop">
@@ -241,7 +233,6 @@
 													<Panel expandable="false" expanded="true" headerText="{i18n>Shipto}" width="auto" class="NoMargin">
 														<content>
 															<HBox class="sapUiSmallMarginTop">
-																<!--<Label text="" design="Bold" width="11rem"/>-->
 																<Label text="{Shipto}" wrapping="true"></Label>
 															</HBox>
 															<HBox class="sapUiTinyMarginTop">
@@ -276,46 +267,24 @@
 						<Button type="Transparent" id="openMenuElement" icon="sap-icon://grid" text="{i18n>MenuLayout}" press="handlePressOpenMenuLayout"/>
 						<Button type="Transparent" icon="sap-icon://expand-all" text="{i18n>ExpandAll}" press="onExpandFirstLevel"/>
 						<Button type="Transparent" icon="sap-icon://collapse-all" text="{i18n>CollapseAll}" press="onCollapseAll"/>
-						<!--<Button type="Transparent" class="sapUiTinyMarginBegin" tooltip="List" text="{i18n>List}" icon="sap-icon://activity-items"-->
-						<!--	press="onListItems"/>-->
-						<!--<Button type="Transparent" class="sapUiTinyMarginBegin" tooltip="Select" text="{i18n>Select}" icon="sap-icon://activity-items"-->
-						<!--	press="onUseSort"/>-->
-						<!--<Button type="Transparent" class="sapUiTinyMarginBegin" tooltip="Save" text="{i18n>Save}" icon="sap-icon://save" press="onPressSave"/>-->
 					</HBox>
 					<HBox id="Posizione" alignItems="Center" height="80%" width="100%" renderType="Bare">
 						<Page id="Element1" showHeader="false" class="sapUiNoContentPadding" enableScrolling="true">
-							<!--<smartTable:SmartTable id="smart" entitySet="WbsElementSet" tableBindingPath="/WbsElementSet" header="Hierarchy" tableType="TreeTable"-->
-							<!--	enableAutoBinding="true" useVariantManagement="false" showVariantManagement="false" useTablePersonalisation="true" useExportToExcel="false"-->
-							<!--	showRowCount="false" beforeRebindTable="onBeforeRebindTable" >-->
-							<!--<smartTable:layoutData>-->
-							<!--	<FlexItemData growFactor="1"/>-->
-							<!--</smartTable:layoutData>-->
 							<ui:TreeTable id="tableElement" toggleOpenState="saveToggleState" selectionMode="Single" columnMove="true" visibleRowCountMode="Interactive"
 								filter="sofilter" showNoData="false" >
-								<!--visibleRowCountMode="Auto"-->
 								<ui:columns >
 									<ui:Column id="S0" width="17em" showSortMenuEntry="true" sortProperty="WBS_Element" filterProperty="WBS_Element" tooltip="{i18n>WBS_Element}" >
 										<Label text="{i18n>WBS_Element}" />
 										<ui:template >
-											<!--<Text text="{WBS_Element}"/>-->
 											<Button type="Transparent" id="openMenuItems" text="{WBS_Element}" press="handlePressOpenMenuItems"/>
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="S1" width="3em" hAlign="Center" sortProperty="Filter" filterProperty="Filter"  tooltip="{i18n>Stufe}"  filterType="sap.ui.model.type.Integer">
 										<Label text="{i18n>Stufe_2}"/>
-										<!--<Button type="{= ${LOCALPARAMS>/Stufe} !== '' ? 'Emphasized' : 'Default' }" text="{i18n>Stufe}" class="sapUiTinyMarginBegin"-->
-										<!--	icon="sap-icon://filter" press="onStufePress" id="btStufe"/>-->
-										<ui:template>
-											<!--<Button type="Transparent" enabled="{= ${Stufe} !== 0 ? false : true }" text="{ parts:['Stufe'], formatter: '.LocalFormatter.addOne'}"-->
-											<!--	press="handlePressOpenMenuElement" id="StufeID" />-->
+											<ui:template>
 											<Label text="{Filter}" id="StufeID"/>
 										</ui:template>
 									</ui:Column>
-									<!--<ui:Column id="S2" width="7em" hAlign="Center">-->
-									<!--	<Label text="{i18n>Addrow}"/>-->
-									<!--	<ui:template>-->
-									<!--	</ui:template>-->
-									<!--</ui:Column>-->
 									<ui:Column id="S3" width="13em" sortProperty="Description" filterProperty="Description" tooltip="{i18n>Description}" >
 										<Label text="{i18n>Description}" />
 										<ui:template>
@@ -353,7 +322,6 @@
 										<Label text="{i18n>VbelnB}" />
 										<ui:template>
 											<HBox justifyContent="Center">
-												<!--<Text text="{ parts: [{path: 'VbelnB'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>-->
 												<Button type="Transparent" id="openMenuBilling" text="{ parts: [{path: 'VbelnB'}], formatter: '.LocalFormatter.alphaOutput' }"
 													press="handlePressOpenMenuBilling" visible="{ parts:['VbelnB'], formatter: '.LocalFormatter.Visible'}"/>
 												<Button type="Reject" text="{i18n>NoOrder}" class="redText" press="handlePressOpenMenuBilling" id="openMenuBillingNo"
@@ -412,11 +380,16 @@
 											<Text text="{BillingWaerk}" wrapping="true"/>
 										</ui:template>
 									</ui:Column>
-									<ui:Column id="D1" visible="{= ${LOCALPARAMS>/Dates} }" width="7em"  tooltip="{i18n>Estrt}"  hAlign="Center" sortProperty="Estrt" filterProperty="Estrt">
+									<ui:Column id="D1" visible="{= ${LOCALPARAMS>/Dates} }" width="11em"  tooltip="{i18n>Estrt}"  hAlign="Center" sortProperty="Estrt" filterProperty="Estrt">
 										<Label text="{i18n>Estrt_2}"/>
 										<ui:template>
-											<Label text="{ parts:['Estrt'], formatter: '.LocalFormatter.DateSet'}"/>
-											<!--<Text text="{Estrt}" wrapping="true"/>-->
+											<HBox justifyContent="Center" >
+												<Label text="{ parts:['Estrt'], formatter: '.LocalFormatter.DateSet'}" visible="{= ${NoLogistic} !== 'X' ? true : false }"  />
+												<DatePicker id="ForeDate" placeholder="Enter Date" change="onChangeDate"
+												value="{Estrt}" valueFormat="yyyyMMdd" displayFormat="medium"
+												visible="{= ${NoLogistic} === 'X' ? true : false }" />
+												 <Button type="Accept" class="sapUiTinyMarginBegin" icon="sap-icon://accept" press="btnInsertDate" visible="{= ${NoLogistic} === 'X' ? true : false }" />
+											</HBox>
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="D2" visible="{= ${LOCALPARAMS>/Dates} }" width="7em" tooltip="{i18n>Eende}"  hAlign="Center" sortProperty="Eende" filterProperty="Eende">
@@ -425,10 +398,14 @@
 											<Label text="{ parts:['Eende'], formatter: '.LocalFormatter.DateSet'}"/>
 										</ui:template>
 									</ui:Column>
-									<ui:Column id="D3" visible="{= ${LOCALPARAMS>/Dates} }" width="7em" tooltip="{i18n>ForeDuration}"  hAlign="Center" sortProperty="ForeDuration" filterProperty="ForeDuration">
+									<ui:Column id="D3" visible="{= ${LOCALPARAMS>/Dates} }" width="9em" tooltip="{i18n>ForeDuration}"  hAlign="Center" sortProperty="ForeDuration" filterProperty="ForeDuration">
 										<Label text="{i18n>ForeDuration}" />
 										<ui:template>
-											<Label text="{ForeDuration}"/>
+											<HBox justifyContent="Center" >
+												<Input id="ForeDuration" change="onChangeDuration" type="Number" value="{ForeDuration}" visible="{= ${NoLogistic} === 'X' ? true : false }" />
+												<Label text="{ForeDuration}" visible="{= ${NoLogistic} !== 'X' ? true : false }" />
+												<Button type="Accept" class="sapUiTinyMarginBegin" icon="sap-icon://accept" press="btnInsertDuration" visible="{= ${NoLogistic} === 'X' ? true : false }" />
+											</HBox>
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="D4" visible="{= ${LOCALPARAMS>/Dates} }" width="7em"  tooltip="{i18n>Pstrt}" hAlign="Center" sortProperty="Pstrt" filterProperty="Pstrt">
@@ -449,15 +426,17 @@
 											<Label text="{BasicDuration}"/>
 										</ui:template>
 									</ui:Column>
-									<ui:Column id="P1" visible="{= ${LOCALPARAMS>/Purchasing} }" width="7em" tooltip="{i18n>Banfn}" hAlign="Center" sortProperty="Banfn" filterProperty="Banfn">
-										<Label text="{i18n>Banfn_2}" />
+									<ui:Column id="P1" visible="{= ${LOCALPARAMS>/Purchasing} }" width="8em" tooltip="{i18n>Banfn}" hAlign="Center" sortProperty="Banfn" filterProperty="Banfn">
+											<Label text="{i18n>Banfn_2}" />
 										<ui:template>
-											<!--<Text text="{ parts: [{path: 'Banfn'}], formatter: '.LocalFormatter.alphaOutput' }" wrapping="true"/>-->
-											<Button type="Transparent" text="{ parts: [{path: 'Banfn'}], formatter: '.LocalFormatter.alphaOutput' }" press="handlePressOpenMenuPurReq"
+											<HBox justifyContent="Center" > 
+												<Button type="Transparent" text="{ parts: [{path: 'Banfn'}], formatter: '.LocalFormatter.alphaOutput' }" press="handlePressOpenMenuPurReq"
 												visible="{ parts:['Banfn'], formatter: '.LocalFormatter.Visible'}"/>
+												<Button type="Ghost" class="sapUiTinyMarginBegin" icon="sap-icon://expand-all" press="btnOtherRequest" visible="{= ${MultiPurchase } === 'X' ? true : false }" />
+											</HBox>
 										</ui:template>
 									</ui:Column>
-									<ui:Column id="P2" visible="{= ${LOCALPARAMS>/Purchasing} }" width="7em" tooltip="{i18n>Bnfpo}" hAlign="Center" sortProperty="Bnfpo" filterProperty="Bnfpo">
+									<ui:Column id="P2" visible="{= ${LOCALPARAMS>/Purchasing} }" width="8em" tooltip="{i18n>Bnfpo}" hAlign="Center" sortProperty="Bnfpo" filterProperty="Bnfpo">
 										<Label text="{i18n>Bnfpo}" />
 										<ui:template>
 											<Text text="{ parts: [{path: 'Bnfpo'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>
@@ -470,13 +449,15 @@
 											<Text text="{ parts: [{path: 'Eban_Txz01'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>
 										</ui:template>
 									</ui:Column>
-									<ui:Column id="P4" visible="{= ${LOCALPARAMS>/Purchasing} }" width="7em" tooltip="{i18n>Ekkn_Ebeln}" hAlign="Center" sortProperty="Ekkn_Ebeln"
+									<ui:Column id="P4" visible="{= ${LOCALPARAMS>/Purchasing} }" width="8em" tooltip="{i18n>Ekkn_Ebeln}" hAlign="Center" sortProperty="Ekkn_Ebeln"
 										filterProperty="Ekkn_Ebeln">
 										<Label text="{i18n>Ekkn_Ebeln_2}"  />
 										<ui:template>
-											<!--<Text text="{ parts: [{path: 'Ekkn_Ebeln'}], formatter: '.LocalFormatter.alphaOutput' }" wrapping="true"/>-->
+											<HBox justifyContent="Center" > 
 											<Button type="Transparent" text="{ parts: [{path: 'Ekkn_Ebeln'}], formatter: '.LocalFormatter.alphaOutput' }"
 												press="handlePressOpenMenuPurOrd" visible="{ parts:['Ekkn_Ebeln'], formatter: '.LocalFormatter.Visible'}"/>
+												<Button type="Ghost" class="sapUiTinyMarginBegin" icon="sap-icon://expand-all" press="btnOtherRequest" visible="{= ${MultiPurchase } === 'X' ? true : true }" />
+											</HBox>
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="P5" visible="{= ${LOCALPARAMS>/Purchasing} }" width="7em" tooltip="{i18n>Ekkn_Ebelp}" hAlign="Center" sortProperty="Ekkn_Ebelp"
@@ -496,14 +477,12 @@
 									<ui:Column id="P7" visible="{= ${LOCALPARAMS>/Purchasing} }" width="7em" tooltip="{i18n>Eindt}" hAlign="Center" sortProperty="Eindt" filterProperty="Eindt">
 										<Label text="{i18n>Eindt_2}"  />
 										<ui:template>
-											<!--<Text text="{Eindt}" wrapping="true"/>-->
 											<Label text="{ parts:['Eindt'], formatter: '.LocalFormatter.DateSet'}"/>
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="Q1" visible="{= ${LOCALPARAMS>/Quotation} }" width="7em" tooltip="{i18n>VbelnQ}" hAlign="Center" sortProperty="Vbeln" filterProperty="Vbeln">
 										<Label text="{i18n>VbelnQ}"  />
 										<ui:template>
-											<!--<Text text="{ parts: [{path: 'Vbeln'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>-->
 											<Button type="Transparent" id="openMenuQuotation" text="{ parts: [{path: 'Vbeln'}], formatter: '.LocalFormatter.alphaOutput' }"
 												press="handlePressOpenMenuQuotation" visible="{ parts:['Vbeln'], formatter: '.LocalFormatter.Visible'}"/>
 										</ui:template>
@@ -585,7 +564,6 @@
 									<ui:Column id="L1" visible="{= ${LOCALPARAMS>/Logistic} }" width="7em" tooltip="{i18n>VbelnL}" hAlign="Center" sortProperty="VbelnL" filterProperty="VbelnL">
 										<Label text="{i18n>VbelnL_2}"  />
 										<ui:template>
-											<!--<Text text="{ parts: [{path: 'VbelnL'}], formatter: '.LocalFormatter.alphaOutput' }" wrapping="true"/>-->
 											<Button type="Transparent" id="openMenuLogistic" text="{ parts: [{path: 'VbelnL'}], formatter: '.LocalFormatter.alphaOutput' }"
 												press="handlePressOpenMenuLogistic" visible="{ parts:['VbelnL'], formatter: '.LocalFormatter.Visible'}"/>
 										</ui:template>
@@ -633,35 +611,30 @@
 									<ui:Column id="L8" visible="{= ${LOCALPARAMS>/Logistic} }" width="7em" tooltip="{i18n>Creation_Dat}" hAlign="Center" sortProperty="" filterProperty="">
 										<Label text="{i18n>Creation_Dat}"  />
 										<ui:template>
-											<!--<Text text="{Creation_Dat}" wrapping="true"/>-->
 											<Label text="{ parts:['Creation_Dat'], formatter: '.LocalFormatter.DateSet'}"/>
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="L9" visible="{= ${LOCALPARAMS>/Logistic} }" width="7em" tooltip="{i18n>Zzlifdt}" hAlign="Center" sortProperty="Zzlifdt" filterProperty="Zzlifdt">
 										<Label text="{i18n>Zzlifdt}"  />
 										<ui:template>
-											<!--<Text text="{Zzlifdt}" wrapping="true"/>-->
 											<Label text="{ parts:['Zzlifdt'], formatter: '.LocalFormatter.DateSet'}"/>
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="L10" visible="{= ${LOCALPARAMS>/Logistic} }" width="7em" tooltip="{i18n>Zzliftime}" hAlign="Center" sortProperty="Zzliftime" filterProperty="Zzliftime">
 										<Label text="{i18n>Zzliftime}"  />
 										<ui:template>
-											<!--<Text text="{Zzliftime}" wrapping="true"/>-->
 											<Label text="{ parts:['Zzliftime'], formatter: '.LocalFormatter.TimeSetting'}"/>
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="L11" visible="{= ${LOCALPARAMS>/Logistic} }" width="7em" tooltip="{i18n>Zzinsdate}" hAlign="Center" sortProperty="Zzinsdate" filterProperty="Zzinsdate">
 										<Label text="{i18n>Zzinsdate}"  />
 										<ui:template>
-											<!--<Text text="{Zzinsdate}" wrapping="true"/>-->
 											<Label text="{ parts:['Zzinsdate'], formatter: '.LocalFormatter.DateSet'}"/>
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="L12" visible="{= ${LOCALPARAMS>/Logistic} }" width="7em" tooltip="{i18n>Zzinstime}" hAlign="Center" sortProperty="Zzinstime" filterProperty="Zzinstime">
 										<Label text="{i18n>Zzinstime}"  />
 										<ui:template>
-											<!--<Text text="{Zzinstime}" wrapping="true"/>-->
 											<Label text="{ parts:['Zzinstime'], formatter: '.LocalFormatter.TimeSetting'}"/>
 										</ui:template>
 									</ui:Column>
@@ -704,7 +677,6 @@
 									<ui:Column id="L19" visible="{= ${LOCALPARAMS>/Logistic} }" width="8em" tooltip="{i18n>Rcmid}" hAlign="Center" sortProperty="Rcmid" filterProperty="Rcmid">
 										<Label text="{i18n>Rcmid_2}"  />
 										<ui:template>
-											<!--<Text text="{ parts: [{path: 'Rcmid'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>-->
 											<Button type="Transparent" text="{ parts: [{path: 'Rcmid'}], formatter: '.LocalFormatter.alphaOutput' }" press="handlePressOpenMenuAdvance"
 												visible="{ parts:['Rcmid'], formatter: '.LocalFormatter.Visible'}"/>
 										</ui:template>
@@ -781,14 +753,11 @@
 									<ui:Column id="L31" visible="{= ${LOCALPARAMS>/Logistic} }" width="7em" tooltip="{i18n>Erdat}" hAlign="Center" sortProperty="Erdat" filterProperty="Erdat">
 										<Label text="{i18n>Erdat}"  />
 										<ui:template>
-											<!--<Text text="{Erdat}" wrapping="true"/>-->
 											<Label text="{ parts:['Erdat'], formatter: '.LocalFormatter.DateSet'}"/>
 										</ui:template>
 									</ui:Column>
 								</ui:columns>
 							</ui:TreeTable>
-							<!--</smartTable:SmartTable>-->
-							<!--</smarttable:SmartTable>-->
 						</Page>
 					</HBox>
 				</content>
@@ -813,9 +782,7 @@
 					<core:Fragment fragmentName="Z001.ZPS_PSID.view.fragments.SaveSort" type="XML"></core:Fragment>
 					<core:Fragment fragmentName="Z001.ZPS_PSID.view.fragments.UseSort" type="XML"></core:Fragment>
 					<core:Fragment fragmentName="Z001.ZPS_PSID.view.fragments.AddBilling" type="XML"></core:Fragment>
-					<!--<core:Fragment fragmentName="Z001.PS_PSID.view.fragments.Logistic" type="XML"></core:Fragment>-->
-					<!--<core:Fragment fragmentName="Z001.PS_PSID.view.fragments.Purchasing" type="XML"></core:Fragment>-->
-					<!--<core:Fragment fragmentName="Z001.PS_PSID.view.fragments.Quotation" type="XML"></core:Fragment>-->
+					<core:Fragment fragmentName="Z001.ZPS_PSID.view.fragments.AllPurchasing" type="XML"></core:Fragment>
 				</dependents>
 				<footer>
 					<Toolbar>

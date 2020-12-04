@@ -1111,6 +1111,7 @@ sap.ui.define([
 			this.Posid = line.WBS_Element;
 
 			var obj = {};
+			obj.Operation = 'CREABILL';
 			obj.NodeID = line.NodeID;
 			obj.WBS_Element = line.WBS_Element;
 			obj.VbelnB = this.getView().byId("AddBilling").getValue();
@@ -1118,6 +1119,7 @@ sap.ui.define([
 			obj.Quantity = this.getView().byId("AddBillingQty").getValue();
 			obj.KDKG1 = line.KDKG1;
 			obj.KDKG2 = line.KDKG2;
+			obj.Comp_code = line.Comp_code;
 			obj.WBS_Padre = line.WBS_Padre;
 
 			var myModel = sap.ui.getCore().getModel("myModel");
@@ -2387,7 +2389,93 @@ sap.ui.define([
 			this.MessageError.setModel(this.getView().getModel("returnModel2"));
 			this.MessageError.navigateBack();
 			this.PopoverError.openBy(oEvent.getSource());
-		}
+		},
+
+		// 2 campi duration, campo 4 livello logistic order control 
+		// campo altri Purchasing order or not 
+		// campo altri Purchasing request or not 
+		onChangeDate: function (oEvent) {
+			this.date = oEvent.getParameter("newValue");
+		},
+
+		onChangeDuration: function (oEvent) {
+			this.duration = oEvent.getParameter("newValue");
+		},
+		btnInsertDate: function (oEvent) {
+			//inserisci date forecast 
+			debugger
+			var line = oEvent.getSource().getBindingContext().getObject();
+			this.onSaveForecast(this.date,'', line)
+		},
+		btnInsertDuration: function (oEvent) {
+			//inserisci Duration forecast 
+			debugger
+			var line = oEvent.getSource().getBindingContext().getObject();
+			this.onSaveForecast('',this.duration, line)
+		},
+		onSaveForecast: function (Estrt, ForeDuration, line) {
+
+			//var line = this.getView().getModel("LOCALPARAMS").getProperty("/Line").getBindingContext().getObject();
+			this.Posid = line.WBS_Element;
+
+			var obj = {};
+			obj.Operation = 'MODIDATE';
+			obj.Estrt = Estrt;
+			obj.ForeDuration = ForeDuration;
+			obj.NodeID = line.NodeID;
+			obj.WBS_Element = line.WBS_Element;
+			//obj.VbelnB = this.getView().byId("AddBilling").getValue();
+			//obj.Material = this.getView().byId("AddBillingMatnr").getValue();
+			//obj.Quantity = this.getView().byId("AddBillingQty").getValue();
+			obj.KDKG1 = line.KDKG1;
+			obj.KDKG2 = line.KDKG2;
+			obj.Comp_code = line.Comp_code;
+			obj.WBS_Padre = line.WBS_Padre;
+
+			var myModel = sap.ui.getCore().getModel("myModel");
+
+			myModel.create('/WbsElementSet', obj, {
+				success: function (oData, oResponse) {
+					this.onFilterHeader();
+					// MessageBox.alert("Purchase Requisition " + oData.Number + " Created");
+				}.bind(this),
+				error: function (err, oResponse) {
+					var responseObject = JSON.parse(err.responseText);
+					MessageBox.alert(responseObject.error.message.value);
+					this.PopulateError('Error', responseObject.error.message.value);
+				}.bind(this)
+			});
+		},
+		btnOtherRequest: function (oEvent) {
+			//Open DialogPurchasing
+			var line = oEvent.getSource().getBindingContext().getObject();
+			var aFilters = [];
+			var oFilter = '';
+
+			oFilter = new sap.ui.model.Filter({
+				path: 'WBS_Element',
+				operator: 'EQ',
+				value1: line.WBS_Element
+			});
+			aFilters.push(oFilter);
+			debugger
+			var oBinding = this.byId("tablePurchasing").getBinding("rows");
+			// apply filter settings
+			oBinding.filter(aFilters);
+			if (oBinding.isSuspended()) {
+				oBinding.resume();
+			}
+
+			this.byId("lblTitlePurchasing").setText(line.WBS_Element);
+			this.byId("DialogPurchasing").open();
+		},
+		onExportPurchasing: function (oEvent) {
+			//export DialogPurchasing
+		},
+		onClosePurchasing: function (oEvent) {
+			//close DialogPurchasing
+			this.byId("DialogPurchasing").close();
+		},
 	});
 
 });
