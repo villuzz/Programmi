@@ -198,13 +198,73 @@ sap.ui.define([
 				worker: true // should be false if mock server or CSP enabled
 			});
 		},
+		onDataExportPurch: function () {
+			var listBinding = this.byId("tablePurchasing").getBinding("rows");
+			return listBinding.getLength() < 1 ? null : this.exportSpreadsheet({
+				workbook: {
+					columns: this.createColumnConfigPurch(),
+				},
+				dataSource: {
+					type: "OData",
+					useBatch: true,
+					serviceUrl: listBinding.getModel().sServiceUrl,
+					headers: listBinding.getModel().getHeaders(),
+					dataUrl: listBinding.getDownloadUrl(), // includes the $expand param.
+					/*E.g.*/
+					count: listBinding.getLength(),
+					/*E.g.*/
+					sizeLimit: 5,
+				},
+				worker: true // should be false if mock server or CSP enabled
+			});
+		},
 		exportSpreadsheet: function (settings, fnSuccess, fnFail) {
 			return new Spreadsheet(settings)
 				.build()
 				.catch(fnFail ? fnFail.bind(this) : null)
 				.then(fnSuccess ? fnSuccess.bind(this) : null);
 		},
+		createColumnConfigPurch: function () {
+			var i18n = this.getView().getModel("i18n").getResourceBundle();
 
+			var aCols = [];
+			aCols.push({
+				label: i18n.getText("Banfn"),
+				property: 'Banfn',
+				type: EdmType.String
+			});
+			aCols.push({
+				label: i18n.getText("Bnfpo"),
+				property: 'Bnfpo',
+				type: EdmType.String
+			});
+			aCols.push({
+				label: i18n.getText("Eban_Txz01"),
+				property: 'Eban_Txz01',
+				type: EdmType.String
+			});
+			aCols.push({
+				label: i18n.getText("Ekkn_Ebeln"),
+				property: 'Ekkn_Ebeln',
+				type: EdmType.String
+			});
+			aCols.push({
+				label: i18n.getText("Ekkn_Ebelp"),
+				property: 'Ekkn_Ebelp',
+				type: EdmType.String
+			});
+			aCols.push({
+				label: i18n.getText("Ekpo_Txz01"),
+				property: 'Ekpo_Txz01',
+				type: EdmType.String
+			});
+			aCols.push({
+				label: i18n.getText("Eindt"),
+				property: 'Eindt',
+				type: EdmType.String
+			});
+			return aCols;
+		},
 		createColumnConfig: function () {
 			var i18n = this.getView().getModel("i18n").getResourceBundle();
 

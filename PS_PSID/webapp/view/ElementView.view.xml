@@ -330,7 +330,7 @@
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="B2" visible="{= ${LOCALPARAMS>/Billing} }" width="7em" hAlign="Center" sortProperty="PosnrB" filterProperty="PosnrB" tooltip="{i18n>PosnrB}">
-										<Label text="{i18n>PosnrB}"  />
+										<Label text="{i18n>PosnrB_2}"  />
 										<ui:template>
 											<HBox width="100%" height="100%" justifyContent="Center">
 												<Text text="{ parts: [{path: 'PosnrB'}], formatter: '.LocalFormatter.alphaOutput' }" wrapping="true"/>
@@ -350,14 +350,14 @@
 											<Text text="{BillingTypeB}" wrapping="true"/>
 										</ui:template>
 									</ui:Column>
-									<ui:Column id="B5" visible="{= ${LOCALPARAMS>/Billing} }" width="8em" tooltip="{i18n>Material}"  hAlign="Center" sortProperty="Material" filterProperty="Material">
-										<Label text="{i18n>Material}"  />
+									<ui:Column id="B5" visible="{= ${LOCALPARAMS>/Billing} }" width="8em" tooltip="{i18n>BMaterial}"  hAlign="Center" sortProperty="Material" filterProperty="Material">
+										<Label text="{i18n>BMaterial_2}"  />
 										<ui:template>
 											<Text text="{Material}" wrapping="true"/>
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="B6" visible="{= ${LOCALPARAMS>/Billing} }" width="10em" tooltip="{i18n>RejReason}" hAlign="Center" sortProperty="RejReason" filterProperty="RejReason">
-										<Label text="{i18n>RejReason}"   />
+										<Label text="{i18n>RejReason_2}"   />
 										<ui:template>
 											<HBox justifyContent="Center">
 											<Text text="{RejReason}" visible="{= !${ parts:[{ path: 'RejReason'}], formatter: '.LocalFormatter.ReasonVisibleVal'} }" wrapping="true"/>
@@ -369,7 +369,7 @@
 									</ui:Column>
 									<ui:Column id="B7" visible="{= ${LOCALPARAMS>/Billing} }" width="6em" tooltip="{i18n>BillingNetwr}"  hAlign="Center" sortProperty="BillingNetwr" filterProperty="BillingNetwr"
 										filterType="sap.ui.model.type.Integer">
-										<Label text="{i18n>BillingNetwr}"  />
+										<Label text="{i18n>BillingNetwr_2}"  />
 										<ui:template>
 											<Text text="{ parts: [{path: 'BillingNetwr'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>
 										</ui:template>
@@ -456,7 +456,7 @@
 											<HBox justifyContent="Center" > 
 											<Button type="Transparent" text="{ parts: [{path: 'Ekkn_Ebeln'}], formatter: '.LocalFormatter.alphaOutput' }"
 												press="handlePressOpenMenuPurOrd" visible="{ parts:['Ekkn_Ebeln'], formatter: '.LocalFormatter.Visible'}"/>
-												<Button type="Ghost" class="sapUiTinyMarginBegin" icon="sap-icon://expand-all" press="btnOtherRequest" visible="{= ${MultiPurchase } === 'X' ? true : true }" />
+												<Button type="Ghost" class="sapUiTinyMarginBegin" icon="sap-icon://expand-all" press="btnOtherRequest" visible="{= ${MultiPurchase } === 'X' ? true : false }" />
 											</HBox>
 										</ui:template>
 									</ui:Column>
@@ -500,7 +500,7 @@
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="Q4" visible="{= ${LOCALPARAMS>/Quotation} }" width="8em" tooltip="{i18n>Matnr}" hAlign="Center" sortProperty="Matnr" filterProperty="Matnr">
-										<Label text="{i18n>Matnr}"  />
+										<Label text="{i18n>Matnr_2}"  />
 										<ui:template>
 											<Text text="{ parts: [{path: 'Matnr'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>
 										</ui:template>
@@ -535,7 +535,7 @@
 									</ui:Column>
 									<ui:Column id="Q9" visible="{= ${LOCALPARAMS>/Quotation} }" width="7em" tooltip="{i18n>Netwr}" hAlign="Center" sortProperty="Netwr" filterProperty="Netwr"
 										filterType="sap.ui.model.type.Integer">
-										<Label text="{i18n>Netwr}"  />
+										<Label text="{i18n>Netwr_2}"  />
 										<ui:template>
 											<Text text="{ parts: [{path: 'Netwr'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>
 										</ui:template>
@@ -580,8 +580,8 @@
 											<Label text="{ parts: [{path: 'AuartL'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true" design="Bold"/>
 										</ui:template>
 									</ui:Column>
-									<ui:Column id="L4" visible="{= ${LOCALPARAMS>/Logistic} }" width="8em" tooltip="{i18n>Matnr}"  hAlign="Center" sortProperty="MatnrL" filterProperty="MatnrL">
-										<Label text="{i18n>Matnr}" />
+									<ui:Column id="L4" visible="{= ${LOCALPARAMS>/Logistic} }" width="8em" tooltip="{i18n>MatnrL}"  hAlign="Center" sortProperty="MatnrL" filterProperty="MatnrL">
+										<Label text="{i18n>MatnrL_2}" />
 										<ui:template>
 											<Text text="{ parts: [{path: 'MatnrL'}], formatter: '.LocalFormatter.alphaOutput' }" wrapping="true"/>
 										</ui:template>
@@ -600,7 +600,7 @@
 									</ui:Column>
 									<ui:Column id="L7" visible="{= ${LOCALPARAMS>/Logistic} }" width="10em" tooltip="{i18n>Abgru}"  hAlign="Center" sortProperty="Creation_Dat"
 										filterProperty="Creation_Dat">
-										<Label text="{i18n>Abgru}" />
+										<Label text="{i18n>Abgru_2}" />
 										<ui:template>
 											<HBox justifyContent="Center">
 												<Text text="{ parts: [{path: 'Abgru'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>

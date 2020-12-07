@@ -70,7 +70,7 @@
             <footer>
                 <Toolbar>
                     <ToolbarSpacer/>
-                    <!--<Button type="Transparent" icon="sap-icon://download" text="{i18n>Export}" press="onExportPurchasing"/>-->
+                    <Button type="Transparent" icon="sap-icon://download" text="{i18n>Export}" press="onDataExportPurch"/>
                     <Button icon="sap-icon://decline" text="{i18n>btAccept}" press="onClosePurchasing"/>
                 </Toolbar>
             </footer>
