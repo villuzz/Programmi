@@ -1,0 +1,79 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:ui="sap.ui.table"
+    xmlns:u="sap.ui.unified">
+    <Dialog id="DialogPurchasing" afterClose="onAfterClose" contentWidth="75%" contentHeight="75%" class="sapUiSizeCozy" showHeader="false">
+        <Page>
+            <customHeader>
+                <Bar class="custom-header header-background">
+                    <contentLeft></contentLeft>
+                    <contentMiddle>
+                        <Title text="{i18n>TitlePurchasing}"/>
+                        <Title id="lblTitlePurchasing"/>
+                    </contentMiddle>
+                    <contentRight></contentRight>
+                </Bar>
+            </customHeader>
+            <content>
+                <ui:Table id="tablePurchasing" visibleRowCountMode="Auto" rows="{ path: '/WbsPurchasingSet', suspended: true , sorter : { path : 'Banfn' } }"
+						 sticky="ColumnHeaders" selectionMode="Single" columnMove="true" showNoData="false" >
+                    <ui:columns>
+                        <ui:Column width="auto" tooltip="{i18n>Banfn}" hAlign="Center">
+                            <Label text="{i18n>Banfn_2}" />
+                            <ui:template>
+                                <Button type="Transparent" text="{ parts: [{path: 'Banfn'}], formatter: '.LocalFormatter.alphaOutput' }" press="handlePressOpenMenuPurReq"
+												visible="{ parts:['Banfn'], formatter: '.LocalFormatter.Visible'}"/>
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column width="auto" tooltip="{i18n>Bnfpo}" hAlign="Center">
+                            <Label text="{i18n>Bnfpo}" />
+                            <ui:template>
+                                <Text text="{ parts: [{path: 'Bnfpo'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column width="auto" tooltip="{i18n>Eban_Txz01}" hAlign="Center">
+                            <Label text="{i18n>Eban_Txz01}"  />
+                            <ui:template>
+                                <Text text="{ parts: [{path: 'Eban_Txz01'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column width="auto" tooltip="{i18n>Ekkn_Ebeln}" hAlign="Center">
+                            <Label text="{i18n>Ekkn_Ebeln_2}"  />
+                            <ui:template>
+                                <Button type="Transparent" text="{ parts: [{path: 'Ekkn_Ebeln'}], formatter: '.LocalFormatter.alphaOutput' }"
+												press="handlePressOpenMenuPurOrd" visible="{ parts:['Ekkn_Ebeln'], formatter: '.LocalFormatter.Visible'}"/>
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column width="auto" tooltip="{i18n>Ekkn_Ebelp}" hAlign="Center" >
+                            <Label text="{i18n>Ekkn_Ebelp}" />
+                            <ui:template>
+                                <Text text="{ parts: [{path: 'Ekkn_Ebelp'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column width="auto" tooltip="{i18n>Ekpo_Txz01}" >
+                            <Label text="{i18n>Ekpo_Txz01}"  />
+                            <ui:template>
+                                <Text text="{ parts: [{path: 'Ekpo_Txz01'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column width="auto" tooltip="{i18n>Eindt}" hAlign="Center">
+                            <Label text="{i18n>Eindt_2}"  />
+                            <ui:template>
+                                <Label text="{ parts:['Eindt'], formatter: '.LocalFormatter.DateSet'}"/>
+                            </ui:template>
+                        </ui:Column>
+                    </ui:columns>
+                </ui:Table>
+            </content>
+            <footer>
+                <Toolbar>
+                    <ToolbarSpacer/>
+                    <!--<Button type="Transparent" icon="sap-icon://download" text="{i18n>Export}" press="onExportPurchasing"/>-->
+                    <Button icon="sap-icon://decline" text="{i18n>btAccept}" press="onClosePurchasing"/>
+                </Toolbar>
+            </footer>
+        </Page>
+    </Dialog>
+</core:FragmentDefinition>

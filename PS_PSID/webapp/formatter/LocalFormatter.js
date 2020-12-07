@@ -67,6 +67,13 @@ sap.ui.define([
 				return false;
 			}
 		},
+		DateVis: function (lvl) {
+			if (lvl === 3) {
+				return true;
+			} else {
+				return false;
+			}
+		},
 		BillingVisibleVal: function (order, cGroupTab, stufe) {
 			var level = stufe + 1;
 			if (order === "") {
