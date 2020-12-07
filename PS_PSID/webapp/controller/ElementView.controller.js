@@ -2481,6 +2481,7 @@ sap.ui.define([
 			var obj = {};
 			obj.Operation = 'MODIDATE';
 			obj.Estrt = Estrt;
+			obj.Eende = line.Eende;
 			obj.ForeDuration = parseInt(ForeDuration);
 			obj.NodeID = line.NodeID;
 			obj.WBS_Element = line.WBS_Element;
