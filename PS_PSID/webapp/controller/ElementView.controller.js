@@ -2474,7 +2474,7 @@ sap.ui.define([
 			this.onSaveForecast('',this.duration, line)
 		},
 		onSaveForecast: function (Estrt, ForeDuration, line) {
-
+			sap.ui.core.BusyIndicator.show(0);
 			//var line = this.getView().getModel("LOCALPARAMS").getProperty("/Line").getBindingContext().getObject();
 			this.Posid = line.WBS_Element;
 
@@ -2497,13 +2497,18 @@ sap.ui.define([
 
 			myModel.create('/WbsElementSet', obj, {
 				success: function (oData, oResponse) {
-					this.onFilterHeader();
+					//this.onFilterHeader();
+					this.byId("tableElement").getModel().refresh(true);
+
+					//this.byId("tableElement").refreshRows();
+					sap.ui.core.BusyIndicator.hide();
 					// MessageBox.alert("Purchase Requisition " + oData.Number + " Created");
 				}.bind(this),
 				error: function (err, oResponse) {
 					var responseObject = JSON.parse(err.responseText);
 					MessageBox.alert(responseObject.error.message.value);
 					this.PopulateError('Error', responseObject.error.message.value);
+					sap.ui.core.BusyIndicator.hide();
 				}.bind(this)
 			});
 		},
@@ -2519,7 +2524,6 @@ sap.ui.define([
 				value1: line.WBS_Element
 			});
 			aFilters.push(oFilter);
-			debugger
 			var oBinding = this.byId("tablePurchasing").getBinding("rows");
 			// apply filter settings
 			oBinding.filter(aFilters);
