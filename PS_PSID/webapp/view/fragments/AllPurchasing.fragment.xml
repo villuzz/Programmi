@@ -17,7 +17,7 @@
                 </Bar>
             </customHeader>
             <content>
-                <ui:Table id="tablePurchasing" visibleRowCountMode="Auto" rows="{ path: '/WbsPurchasingSet', suspended: true , sorter : { path : 'Banfn' } }"
+                <ui:Table id="tablePurchasing" visibleRowCountMode="Auto" rows="{ path: '/WbsPurchasingSet', sorter : { path : 'Banfn' } }"
 						 sticky="ColumnHeaders" selectionMode="Single" columnMove="true" showNoData="false" >
                     <ui:columns>
                         <ui:Column width="auto" tooltip="{i18n>Banfn}" hAlign="Center">

@@ -279,10 +279,10 @@
 											<Button type="Transparent" id="openMenuItems" text="{WBS_Element}" press="handlePressOpenMenuItems"/>
 										</ui:template>
 									</ui:Column>
-									<ui:Column id="S1" width="3em" hAlign="Center" sortProperty="Filter" filterProperty="Filter"  tooltip="{i18n>Stufe}"  filterType="sap.ui.model.type.Integer">
+									<ui:Column id="S1" width="3em" hAlign="Center" sortProperty="Livello" filterProperty="Livello"  tooltip="{i18n>Stufe}"  filterType="sap.ui.model.type.Integer">
 										<Label text="{i18n>Stufe_2}"/>
 											<ui:template>
-											<Label text="{Filter}" id="StufeID"/>
+											<Label text="{Livello}" id="StufeID"/>
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="S3" width="13em" sortProperty="Description" filterProperty="Description" tooltip="{i18n>Description}" >
@@ -432,7 +432,7 @@
 											<HBox justifyContent="Center" > 
 												<Button type="Transparent" text="{ parts: [{path: 'Banfn'}], formatter: '.LocalFormatter.alphaOutput' }" press="handlePressOpenMenuPurReq"
 												visible="{ parts:['Banfn'], formatter: '.LocalFormatter.Visible'}"/>
-												<Button type="Ghost" class="sapUiTinyMarginBegin" icon="sap-icon://expand-all" press="btnOtherRequest" visible="{= ${MultiPurchase } === 'X' ? true : false }" />
+												<Button type="Ghost" class="sapUiTinyMarginBegin" icon="sap-icon://expand-all" press="btnOtherRequest" visible="{= ${MultiPurchase} === 'X' ? true : false }" />
 											</HBox>
 										</ui:template>
 									</ui:Column>
@@ -456,7 +456,7 @@
 											<HBox justifyContent="Center" > 
 											<Button type="Transparent" text="{ parts: [{path: 'Ekkn_Ebeln'}], formatter: '.LocalFormatter.alphaOutput' }"
 												press="handlePressOpenMenuPurOrd" visible="{ parts:['Ekkn_Ebeln'], formatter: '.LocalFormatter.Visible'}"/>
-												<Button type="Ghost" class="sapUiTinyMarginBegin" icon="sap-icon://expand-all" press="btnOtherRequest" visible="{= ${MultiPurchase } === 'X' ? true : false }" />
+												<Button type="Ghost" class="sapUiTinyMarginBegin" icon="sap-icon://expand-all" press="btnOtherRequest" visible="{= ${MultiPurchase} === 'X' ? true : false }" />
 											</HBox>
 										</ui:template>
 									</ui:Column>

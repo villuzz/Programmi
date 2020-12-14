@@ -800,10 +800,10 @@ sap.ui.define([
 			var oTreeTable = this.byId("tableElement");
 			var rows = this.Filter.length;
 			var trovato = "";
-			if (oEvent.getParameters().column.getProperty("filterProperty") !== 'Filter') {
+			if (oEvent.getParameters().column.getProperty("filterProperty") !== 'Livello') {
 				if (rows !== 0) {
 					for (var i = 0; i < rows; i++) {
-						if (this.Filter[i].sPath === 'Filter') {
+						if (this.Filter[i].sPath === 'Livello') {
 							trovato = "X";
 							continue;
 						}
@@ -811,10 +811,10 @@ sap.ui.define([
 				}
 			}
 
-			if ((oEvent.getParameters().column.getProperty("filterProperty") === 'Filter' && oEvent.getParameters().value !== "") || trovato === 'X') {
+			if ((oEvent.getParameters().column.getProperty("filterProperty") === 'Livello' && oEvent.getParameters().value !== "") || trovato === 'X') {
 
 				//Add other filter 
-				if (oEvent.getParameters().column.getProperty("filterProperty") === 'Filter') {
+				if (oEvent.getParameters().column.getProperty("filterProperty") === 'Livello') {
 					var columns = oTreeTable.getColumns();
 					for (var i = 0; i < columns.length; i++) {
 						if (columns[i].getFiltered()) {
@@ -1740,7 +1740,7 @@ sap.ui.define([
 			if (SEL !== null) {
 				SEL = parseInt(SEL.getKey());
 				oFilter = new sap.ui.model.Filter({
-					path: 'Filter',
+					path: 'Livello',
 					operator: 'EQ',
 					value1: SEL
 				});
@@ -2527,10 +2527,9 @@ sap.ui.define([
 			var oBinding = this.byId("tablePurchasing").getBinding("rows");
 			// apply filter settings
 			oBinding.filter(aFilters);
-			if (oBinding.isSuspended()) {
+			/*if (oBinding.isSuspended()) {
 				oBinding.resume();
-			}
-
+			}*/
 			this.byId("lblTitlePurchasing").setText(line.WBS_Element);
 			this.byId("DialogPurchasing").open();
 		},
