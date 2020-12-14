@@ -74,10 +74,9 @@ sap.ui.define([
 				return false;
 			}
 		},
-		BillingVisibleVal: function (order, cGroupTab, stufe) {
-			var level = stufe + 1;
+		BillingVisibleVal: function (order, cGroupTab, livello, Padre) {
 			if (order === "") {
-				if (level === 3 || level === 4 || (level === 2 && cGroupTab == "X")) {
+				if ( ( livello === 3 || livello === 4 || (livello === 2 && cGroupTab == "X") ) && Padre !== "" ) {
 					return true;
 				} else {
 					return false;

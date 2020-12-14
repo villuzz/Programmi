@@ -325,7 +325,7 @@
 												<Button type="Transparent" id="openMenuBilling" text="{ parts: [{path: 'VbelnB'}], formatter: '.LocalFormatter.alphaOutput' }"
 													press="handlePressOpenMenuBilling" visible="{ parts:['VbelnB'], formatter: '.LocalFormatter.Visible'}"/>
 												<Button type="Reject" text="{i18n>NoOrder}" class="redText" press="handlePressOpenMenuBilling" id="openMenuBillingNo"
-													visible="{ parts:[{ path: 'VbelnB'},{ path: 'ServGroup'},{ path: 'Stufe'}], formatter: '.LocalFormatter.BillingVisibleVal'}"></Button>
+													visible="{ parts:[{ path: 'VbelnB'},{ path: 'ServGroup'},{ path: 'Livello'},{ path: 'Padre'}], formatter: '.LocalFormatter.BillingVisibleVal'}"></Button>
 											</HBox>
 										</ui:template>
 									</ui:Column>
