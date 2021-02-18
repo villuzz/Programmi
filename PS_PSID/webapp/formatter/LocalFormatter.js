@@ -10,6 +10,14 @@ sap.ui.define([
 		alphaOutput: function (sNumber) {
 			return this.LocalFormatter.stripInitialChars(sNumber, "0");
 		},
+		alphaOutput2: function (sNumber) {
+			var value = this.LocalFormatter.stripInitialChars(sNumber, "0");
+			if (value === '0.000' || value === undefined || value === null || value === "") {
+				return '';
+			} else {
+				return value;
+			}
+		},
 		ReasonVisibleVal: function (value) {
 			if (value === '11' ) {
 				return true;

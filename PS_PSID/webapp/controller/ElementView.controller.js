@@ -2540,6 +2540,34 @@ sap.ui.define([
 			//close DialogPurchasing
 			this.byId("DialogPurchasing").close();
 		},
+		btnOtherLogistic: function (oEvent) {
+			//Open DialogLogistic
+			var line = oEvent.getSource().getBindingContext().getObject();
+			var aFilters = [];
+			var oFilter = '';
+
+			oFilter = new sap.ui.model.Filter({
+				path: 'WBS_Element',
+				operator: 'EQ',
+				value1: line.WBS_Element
+			});
+			aFilters.push(oFilter);
+			var oBinding = this.byId("tableLogistic").getBinding("rows");
+			// apply filter settings
+			oBinding.filter(aFilters);
+			/*if (oBinding.isSuspended()) {
+				oBinding.resume();
+			}*/
+			this.byId("lblTitleLogistic").setText(line.WBS_Element);
+			this.byId("DialogLogistic").open();
+		},
+		onExportPurchasing: function (oEvent) {
+			//export DialogLogistic
+		},
+		onCloseLogistic: function (oEvent) {
+			//close DialogLogistic
+			this.byId("DialogLogistic").close();
+		},
 	});
 
 });
