@@ -2552,6 +2552,22 @@ sap.ui.define([
 				value1: line.WBS_Element
 			});
 			aFilters.push(oFilter);
+
+			var items = this.getView().byId("Logistic").getSelectedItems();
+			var rows = items.length;
+			if (rows !== 0) {
+				for (var i = 0; i < rows; i++) {
+
+					var SEL = items[i].getKey();
+					oFilter = new sap.ui.model.Filter({
+						path: 'Logistic',
+						operator: 'EQ',
+						value1: SEL
+					});
+					aFilters.push(oFilter);
+				}
+			}
+			
 			var oBinding = this.byId("tableLogistic").getBinding("rows");
 			// apply filter settings
 			oBinding.filter(aFilters);

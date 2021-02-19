@@ -567,38 +567,38 @@
 											<HBox justifyContent="Center" > 
 												<Button type="Transparent" id="openMenuLogistic" text="{ parts: [{path: 'VbelnL'}], formatter: '.LocalFormatter.alphaOutput' }"
 												press="handlePressOpenMenuLogistic" visible="{ parts:['VbelnL'], formatter: '.LocalFormatter.Visible'}" />
-												<Button type="Ghost" class="sapUiTinyMarginBegin" icon="sap-icon://expand-all" press="btnOtherLogistic" visible="{= ${MultiLogistic} === 'X' ? true : false }" />
+												<Button type="Ghost" class="sapUiTinyMarginBegin" icon="sap-icon://expand-all" press="btnOtherLogistic" visible="{= !${ parts: [{path: 'MultiLogistic'}], formatter: '.LocalFormatter.MultiLogistic' } }" />
 											</HBox>
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="L2" visible="{= ${LOCALPARAMS>/Logistic} }" width="7em" tooltip="{i18n>PosnrL}" hAlign="Center" sortProperty="PosnrL" filterProperty="PosnrL">
 										<Label text="{i18n>PosnrL_2}" />
-										<ui:template>
-											<Text text="{ parts: [{path: 'PosnrL'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true" visible="{= !${MultiLogistic} === 'X' ? true : false }" />
+										<ui:template>																							
+											<Text text="{ parts: [{path: 'PosnrL'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true" visible="{ parts: [{path: 'MultiLogistic'}], formatter: '.LocalFormatter.MultiLogistic' }"  />
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="L3" visible="{= ${LOCALPARAMS>/Logistic} }" width="4em" tooltip="{i18n>AuartL}" hAlign="Center" sortProperty="AuartL" filterProperty="AuartL">
 										<Label text="{i18n>AuartL_2}"  />
 										<ui:template>
-											<Label text="{ parts: [{path: 'AuartL'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true" design="Bold"  visible="{= !${MultiLogistic} === 'X' ? true : false }"/>
+											<Label text="{ parts: [{path: 'AuartL'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true" design="Bold"  visible="{ parts: [{path: 'MultiLogistic'}], formatter: '.LocalFormatter.MultiLogistic' }"/>
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="L4" visible="{= ${LOCALPARAMS>/Logistic} }" width="8em" tooltip="{i18n>MatnrL}"  hAlign="Center" sortProperty="MatnrL" filterProperty="MatnrL">
 										<Label text="{i18n>MatnrL_2}" />
 										<ui:template>
-											<Text text="{ parts: [{path: 'MatnrL'}], formatter: '.LocalFormatter.alphaOutput' }" wrapping="true"  visible="{= !${MultiLogistic} === 'X' ? true : false }" />
+											<Text text="{ parts: [{path: 'MatnrL'}], formatter: '.LocalFormatter.alphaOutput' }" wrapping="true"  visible="{ parts: [{path: 'MultiLogistic'}], formatter: '.LocalFormatter.MultiLogistic' }" />
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="L5" visible="{= ${LOCALPARAMS>/Logistic} }" width="8em" tooltip="{i18n>ArktxL}" sortProperty="ArktxL" filterProperty="ArktxL">
 										<Label text="{i18n>ArktxL_2}" />
 										<ui:template>
-											<Text text="{ArktxL}" wrapping="true"  visible="{= !${MultiLogistic} === 'X' ? true : false }" />
+											<Text text="{ArktxL}" wrapping="true"  visible="{ parts: [{path: 'MultiLogistic'}], formatter: '.LocalFormatter.MultiLogistic' }" />
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="L6" visible="{= ${LOCALPARAMS>/Logistic} }" width="5em" tooltip="{i18n>Pstyv}" hAlign="Center" sortProperty="Pstyv" filterProperty="Pstyv">
 										<Label text="{i18n>Pstyv_2}"  />
-										<ui:template>
-											<Text text="{ parts: [{path: 'Pstyv'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true" visible="{= !${MultiLogistic} === 'X' ? true : false }" />
+										<ui:template>																							
+											<Text text="{ parts: [{path: 'Pstyv'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true" visible="{ parts: [{path: 'MultiLogistic'}], formatter: '.LocalFormatter.MultiLogistic' }" />
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="L7" visible="{= ${LOCALPARAMS>/Logistic} }" width="10em" tooltip="{i18n>Abgru}"  hAlign="Center" sortProperty="Creation_Dat"
@@ -606,157 +606,157 @@
 										<Label text="{i18n>Abgru_2}" />
 										<ui:template>
 											<HBox justifyContent="Center">
-												<Text text="{ parts: [{path: 'Abgru'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"  visible="{= !${MultiLogistic} === 'X' ? true : false }"/>
-												<Text text="{AbgruTxt}" wrapping="true" class="sapUiTinyMarginBegin"  visible="{= !${MultiLogistic} === 'X' ? true : false }" />
+												<Text text="{ parts: [{path: 'Abgru'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"  visible="{ parts: [{path: 'MultiLogistic'}], formatter: '.LocalFormatter.MultiLogistic' }"/>
+												<Text text="{AbgruTxt}" wrapping="true" class="sapUiTinyMarginBegin"  visible="{ parts: [{path: 'MultiLogistic'}], formatter: '.LocalFormatter.MultiLogistic' }" />
 											</HBox>
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="L8" visible="{= ${LOCALPARAMS>/Logistic} }" width="7em" tooltip="{i18n>Creation_Dat}" hAlign="Center" sortProperty="" filterProperty="">
 										<Label text="{i18n>Creation_Dat}"  />
 										<ui:template>
-											<Label text="{ parts:['Creation_Dat'], formatter: '.LocalFormatter.DateSet'}"  visible="{= !${MultiLogistic} === 'X' ? true : false }" />
+											<Label text="{ parts:['Creation_Dat'], formatter: '.LocalFormatter.DateSet'}"  visible="{ parts: [{path: 'MultiLogistic'}], formatter: '.LocalFormatter.MultiLogistic' }" />
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="L9" visible="{= ${LOCALPARAMS>/Logistic} }" width="7em" tooltip="{i18n>Zzlifdt}" hAlign="Center" sortProperty="Zzlifdt" filterProperty="Zzlifdt">
 										<Label text="{i18n>Zzlifdt}"  />
 										<ui:template>
-											<Label text="{ parts:['Zzlifdt'], formatter: '.LocalFormatter.DateSet'}"  visible="{= !${MultiLogistic} === 'X' ? true : false }" />
+											<Label text="{ parts:['Zzlifdt'], formatter: '.LocalFormatter.DateSet'}"  visible="{ parts: [{path: 'MultiLogistic'}], formatter: '.LocalFormatter.MultiLogistic' }" />
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="L10" visible="{= ${LOCALPARAMS>/Logistic} }" width="7em" tooltip="{i18n>Zzliftime}" hAlign="Center" sortProperty="Zzliftime" filterProperty="Zzliftime">
 										<Label text="{i18n>Zzliftime}"  />
 										<ui:template>
-											<Label text="{ parts:['Zzliftime'], formatter: '.LocalFormatter.TimeSetting'}"  visible="{= !${MultiLogistic} === 'X' ? true : false }" />
+											<Label text="{ parts:['Zzliftime'], formatter: '.LocalFormatter.TimeSetting'}"  visible="{ parts: [{path: 'MultiLogistic'}], formatter: '.LocalFormatter.MultiLogistic' }" />
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="L11" visible="{= ${LOCALPARAMS>/Logistic} }" width="7em" tooltip="{i18n>Zzinsdate}" hAlign="Center" sortProperty="Zzinsdate" filterProperty="Zzinsdate">
 										<Label text="{i18n>Zzinsdate}"  />
 										<ui:template>
-											<Label text="{ parts:['Zzinsdate'], formatter: '.LocalFormatter.DateSet'}"  visible="{= !${MultiLogistic} === 'X' ? true : false }" />
+											<Label text="{ parts:['Zzinsdate'], formatter: '.LocalFormatter.DateSet'}"  visible="{ parts: [{path: 'MultiLogistic'}], formatter: '.LocalFormatter.MultiLogistic' }" />
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="L12" visible="{= ${LOCALPARAMS>/Logistic} }" width="7em" tooltip="{i18n>Zzinstime}" hAlign="Center" sortProperty="Zzinstime" filterProperty="Zzinstime">
 										<Label text="{i18n>Zzinstime}"  />
 										<ui:template>
-											<Label text="{ parts:['Zzinstime'], formatter: '.LocalFormatter.TimeSetting'}" visible="{= !${MultiLogistic} === 'X' ? true : false }" />
+											<Label text="{ parts:['Zzinstime'], formatter: '.LocalFormatter.TimeSetting'}" visible="{ parts: [{path: 'MultiLogistic'}], formatter: '.LocalFormatter.MultiLogistic' }" />
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="L13" visible="{= ${LOCALPARAMS>/Logistic} }" width="8em" tooltip="{i18n>Bstkd}" hAlign="Center" sortProperty="Bstkd" filterProperty="Bstkd">
 										<Label text="{i18n>Bstkd}"  />
 										<ui:template>
-											<Text text="{ parts: [{path: 'Bstkd'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true" visible="{= !${MultiLogistic} === 'X' ? true : false }" />
+											<Text text="{ parts: [{path: 'Bstkd'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true" visible="{ parts: [{path: 'MultiLogistic'}], formatter: '.LocalFormatter.MultiLogistic' }" />
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="L14" visible="{= ${LOCALPARAMS>/Logistic} }" width="7em" tooltip="{i18n>Bstdk}" hAlign="Center" sortProperty="Bstdk" filterProperty="Bstdk">
 										<Label text="{i18n>Bstdk}"  />
 										<ui:template>
-											<Text text="{ parts:['Bstdk'], formatter: '.LocalFormatter.DateSet'}" wrapping="true" visible="{= !${MultiLogistic} === 'X' ? true : false }" />
+											<Text text="{ parts:['Bstdk'], formatter: '.LocalFormatter.DateSet'}" wrapping="true" visible="{ parts: [{path: 'MultiLogistic'}], formatter: '.LocalFormatter.MultiLogistic' }" />
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="L15" visible="{= ${LOCALPARAMS>/Logistic} }" width="8em" tooltip="{i18n>Lifsk}" hAlign="Center" sortProperty="Lifsk" filterProperty="Lifsk">
 										<Label text="{i18n>Lifsk}"  />
 										<ui:template>
-											<Text text="{ parts: [{path: 'Lifsk'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true" visible="{= !${MultiLogistic} === 'X' ? true : false }" />
+											<Text text="{ parts: [{path: 'Lifsk'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true" visible="{ parts: [{path: 'MultiLogistic'}], formatter: '.LocalFormatter.MultiLogistic' }" />
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="L16" visible="{= ${LOCALPARAMS>/Logistic} }" width="7em" tooltip="{i18n>Udate}" hAlign="Center" sortProperty="Udate" filterProperty="Udate">
 										<Label text="{i18n>Udate_2}"  />
 										<ui:template>
-											<Text text="{ parts:['Udate'], formatter: '.LocalFormatter.DateSet'}" wrapping="true" visible="{= !${MultiLogistic} === 'X' ? true : false }" />
+											<Text text="{ parts:['Udate'], formatter: '.LocalFormatter.DateSet'}" wrapping="true" visible="{ parts: [{path: 'MultiLogistic'}], formatter: '.LocalFormatter.MultiLogistic' }" />
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="L17" visible="{= ${LOCALPARAMS>/Logistic} }" width="4em" tooltip="{i18n>Zzpwerks}" hAlign="Center" sortProperty="Zzpwerks" filterProperty="Zzpwerks">
 										<Label text="{i18n>Zzpwerks_2}"  />
 										<ui:template>
-											<Text text="{Zzpwerks}" wrapping="true" visible="{= !${MultiLogistic} === 'X' ? true : false }" />
+											<Text text="{Zzpwerks}" wrapping="true" visible="{ parts: [{path: 'MultiLogistic'}], formatter: '.LocalFormatter.MultiLogistic' }" />
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="L18" visible="{= ${LOCALPARAMS>/Logistic} }" width="8em" tooltip="{i18n>Vstel}" hAlign="Center" sortProperty="Vstel" filterProperty="Vstel">
 										<Label text="{i18n>Vstel}"  />
 										<ui:template>
-											<Text text="{ parts: [{path: 'Vstel'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true" visible="{= !${MultiLogistic} === 'X' ? true : false }" />
+											<Text text="{ parts: [{path: 'Vstel'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true" visible="{ parts: [{path: 'MultiLogistic'}], formatter: '.LocalFormatter.MultiLogistic' }" />
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="L19" visible="{= ${LOCALPARAMS>/Logistic} }" width="8em" tooltip="{i18n>Rcmid}" hAlign="Center" sortProperty="Rcmid" filterProperty="Rcmid">
 										<Label text="{i18n>Rcmid_2}"  />
 										<ui:template>
 											<Button type="Transparent" text="{ parts: [{path: 'Rcmid'}], formatter: '.LocalFormatter.alphaOutput2' }" press="handlePressOpenMenuAdvance"
-												 visible="{= !${MultiLogistic} === 'X' ? true : false }" />
+												 visible="{ parts: [{path: 'MultiLogistic'}], formatter: '.LocalFormatter.MultiLogistic' }" />
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="L20" visible="{= ${LOCALPARAMS>/Logistic} }" width="8em" tooltip="{i18n>Ernam}" hAlign="Center" sortProperty="Ernam" filterProperty="Ernam">
 										<Label text="{i18n>Ernam}"  />
 										<ui:template>
-											<Text text="{Ernam}" wrapping="true"  visible="{= !${MultiLogistic} === 'X' ? true : false }" />
+											<Text text="{Ernam}" wrapping="true"  visible="{ parts: [{path: 'MultiLogistic'}], formatter: '.LocalFormatter.MultiLogistic' }" />
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="L21" visible="{= ${LOCALPARAMS>/Logistic} }" width="8em" tooltip="{i18n>Status}" hAlign="Center" sortProperty="Status" filterProperty="Status">
 										<Label text="{i18n>Status}"  />
 										<ui:template>
-											<Text text="{Status}" wrapping="true" visible="{= !${MultiLogistic} === 'X' ? true : false }" />
+											<Text text="{Status}" wrapping="true" visible="{ parts: [{path: 'MultiLogistic'}], formatter: '.LocalFormatter.MultiLogistic' }" />
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="L22" visible="{= ${LOCALPARAMS>/Logistic} }" width="7em"  tooltip="{i18n>Reqmad}" hAlign="Center" sortProperty="Reqmad" filterProperty="Reqmad">
 										<Label text="{i18n>Reqmad_2}" />
 										<ui:template>
-											<Text text="{ parts: [{path: 'Reqmad'}], formatter: '.LocalFormatter.DateSet' }" wrapping="true" visible="{= !${MultiLogistic} === 'X' ? true : false }" />
+											<Text text="{ parts: [{path: 'Reqmad'}], formatter: '.LocalFormatter.DateSet' }" wrapping="true" visible="{ parts: [{path: 'MultiLogistic'}], formatter: '.LocalFormatter.MultiLogistic' }" />
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="L23" visible="{= ${LOCALPARAMS>/Logistic} }" width="7em" tooltip="{i18n>Apprmad}" hAlign="Center" sortProperty="Apprmad" filterProperty="Apprmad">
 										<Label text="{i18n>Apprmad_2}"  />
 										<ui:template>
-											<Text text="{ parts: [{path: 'Apprmad'}], formatter: '.LocalFormatter.DateSet' }" wrapping="true" visible="{= !${MultiLogistic} === 'X' ? true : false }" />
+											<Text text="{ parts: [{path: 'Apprmad'}], formatter: '.LocalFormatter.DateSet' }" wrapping="true" visible="{ parts: [{path: 'MultiLogistic'}], formatter: '.LocalFormatter.MultiLogistic' }" />
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="L24" visible="{= ${LOCALPARAMS>/Logistic} }" width="5em" tooltip="{i18n>Ava_Status}" hAlign="Center" sortProperty="Ava_Status"
 										filterProperty="Ava_Status" filterType="sap.ui.model.type.Integer">
 										<Label text="{i18n>Ava_Status_2}"  />
 										<ui:template>
-											<Text text="{ parts: [{path: 'Ava_Status'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true" visible="{= !${MultiLogistic} === 'X' ? true : false }" />
+											<Text text="{ parts: [{path: 'Ava_Status'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true" visible="{ parts: [{path: 'MultiLogistic'}], formatter: '.LocalFormatter.MultiLogistic' }" />
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="L25" visible="{= ${LOCALPARAMS>/Logistic} }" width="5em" tooltip="{i18n>Lfsta}" hAlign="Center" sortProperty="Lfsta" filterProperty="Lfsta">
 										<Label text="{i18n>Lfsta_2}"  />
 										<ui:template>
-											<Text text="{ parts: [{path: 'Lfsta'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true" visible="{= !${MultiLogistic} === 'X' ? true : false }" />
+											<Text text="{ parts: [{path: 'Lfsta'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true" visible="{ parts: [{path: 'MultiLogistic'}], formatter: '.LocalFormatter.MultiLogistic' }" />
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="L26" visible="{= ${LOCALPARAMS>/Logistic} }" width="5em" tooltip="{i18n>Gs_Status}" hAlign="Center" sortProperty="Gs_Status" filterProperty="Gs_Status">
 										<Label text="{i18n>Gs_Status_2}"  />
 										<ui:template>
-											<Text text="{Gs_Status}" wrapping="true" visible="{= !${MultiLogistic} === 'X' ? true : false }" />
+											<Text text="{Gs_Status}" wrapping="true" visible="{ parts: [{path: 'MultiLogistic'}], formatter: '.LocalFormatter.MultiLogistic' }" />
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="L27" visible="{= ${LOCALPARAMS>/Logistic} }" width="7em" tooltip="{i18n>Vbfa_Vbeln}" hAlign="Center" sortProperty="Vbfa_Vbeln"
 										filterProperty="Vbfa_Vbeln">
 										<Label text="{i18n>Vbfa_Vbeln_2}"  />
 										<ui:template>
-											<Text text="{ parts: [{path: 'Vbfa_Vbeln'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true" visible="{= !${MultiLogistic} === 'X' ? true : false }" />
+											<Text text="{ parts: [{path: 'Vbfa_Vbeln'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true" visible="{ parts: [{path: 'MultiLogistic'}], formatter: '.LocalFormatter.MultiLogistic' }" />
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="L28" visible="{= ${LOCALPARAMS>/Logistic} }" width="7em" tooltip="{i18n>Vbfa_Posnn}" hAlign="Center" sortProperty="Vbfa_Posnn"
 										filterProperty="Vbfa_Posnn">
 										<Label text="{i18n>Vbfa_Posnn_2}"  />
 										<ui:template>
-											<Text text="{ parts: [{path: 'Vbfa_Posnn'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true" visible="{= !${MultiLogistic} === 'X' ? true : false }" />
+											<Text text="{ parts: [{path: 'Vbfa_Posnn'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true" visible="{ parts: [{path: 'MultiLogistic'}], formatter: '.LocalFormatter.MultiLogistic' }" />
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="L29" visible="{= ${LOCALPARAMS>/Logistic} }" width="7em" tooltip="{i18n>Xabln}" hAlign="Center" sortProperty="Xabln" filterProperty="Xabln">
 										<Label text="{i18n>Xabln}"  />
 										<ui:template>
-											<Text text="{ parts: [{path: 'Xabln'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true" visible="{= !${MultiLogistic} === 'X' ? true : false }" />
+											<Text text="{ parts: [{path: 'Xabln'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true" visible="{ parts: [{path: 'MultiLogistic'}], formatter: '.LocalFormatter.MultiLogistic' }" />
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="L30" visible="{= ${LOCALPARAMS>/Logistic} }" width="7em" tooltip="{i18n>Sernr}" hAlign="Center" sortProperty="Sernr" filterProperty="Sernr">
 										<Label text="{i18n>Sernr}"  />
 										<ui:template>
-											<Text text="{ parts: [{path: 'Sernr'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true" visible="{= !${MultiLogistic} === 'X' ? true : false }" />
+											<Text text="{ parts: [{path: 'Sernr'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true" visible="{ parts: [{path: 'MultiLogistic'}], formatter: '.LocalFormatter.MultiLogistic' }" />
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="L31" visible="{= ${LOCALPARAMS>/Logistic} }" width="7em" tooltip="{i18n>Erdat}" hAlign="Center" sortProperty="Erdat" filterProperty="Erdat">
 										<Label text="{i18n>Erdat}"  />
 										<ui:template>
-											<Label text="{ parts:['Erdat'], formatter: '.LocalFormatter.DateSet'}" visible="{= !${MultiLogistic} === 'X' ? true : false }" />
+											<Label text="{ parts:['Erdat'], formatter: '.LocalFormatter.DateSet'}" visible="{ parts: [{path: 'MultiLogistic'}], formatter: '.LocalFormatter.MultiLogistic' }" />
 										</ui:template>
 									</ui:Column>
 								</ui:columns>

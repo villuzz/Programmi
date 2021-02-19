@@ -18,6 +18,13 @@ sap.ui.define([
 				return value;
 			}
 		},
+		MultiLogistic: function (value) {
+			if (value === 'X' ) {
+				return false;
+			} else {
+				return true;
+			}
+		},
 		ReasonVisibleVal: function (value) {
 			if (value === '11' ) {
 				return true;

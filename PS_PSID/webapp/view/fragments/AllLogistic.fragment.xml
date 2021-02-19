@@ -17,7 +17,7 @@
                 </Bar>
             </customHeader>
             <content>
-                <ui:Table id="tableLogistic" visibleRowCountMode="Auto" rows="{ path: '/LogisticsSet', sorter : { path : 'VbelnL' } }"
+                <ui:Table id="tableLogistic" visibleRowCountMode="Auto" rows="{ path: '/WbsLogisticSet', sorter : { path : 'VbelnL' } }"
 						 sticky="ColumnHeaders" selectionMode="Single" columnMove="true" showNoData="false" >
                     <ui:columns>
                         <ui:Column visible="{= ${LOCALPARAMS>/Logistic} }" width="7em" tooltip="{i18n>VbelnL}" hAlign="Center" sortProperty="VbelnL" filterProperty="VbelnL">
