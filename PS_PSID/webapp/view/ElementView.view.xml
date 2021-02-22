@@ -432,21 +432,21 @@
 											<HBox justifyContent="Center" > 
 												<Button type="Transparent" text="{ parts: [{path: 'Banfn'}], formatter: '.LocalFormatter.alphaOutput' }" press="handlePressOpenMenuPurReq"
 												visible="{ parts:['Banfn'], formatter: '.LocalFormatter.Visible'}"/>
-												<Button type="Ghost" class="sapUiTinyMarginBegin" icon="sap-icon://expand-all" press="btnOtherRequest" visible="{= ${MultiPurchase} === 'X' ? true : false }" />
+												<Button type="Ghost" class="sapUiTinyMarginBegin" icon="sap-icon://expand-all" press="btnOtherRequest" visible="{= !${ parts: [{path: 'MultiPurchase'}], formatter: '.LocalFormatter.MultiLogistic' } }" />
 											</HBox>
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="P2" visible="{= ${LOCALPARAMS>/Purchasing} }" width="8em" tooltip="{i18n>Bnfpo}" hAlign="Center" sortProperty="Bnfpo" filterProperty="Bnfpo">
 										<Label text="{i18n>Bnfpo}" />
 										<ui:template>
-											<Text text="{ parts: [{path: 'Bnfpo'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true" visible="{= !${MultiPurchase} === 'X' ? true : false }" />
+											<Text text="{ parts: [{path: 'Bnfpo'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true" visible="{ parts: [{path: 'MultiPurchase'}], formatter: '.LocalFormatter.MultiLogistic' }" />
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="P3" visible="{= ${LOCALPARAMS>/Purchasing} }" width="8em" tooltip="{i18n>Eban_Txz01}" hAlign="Center" sortProperty="Eban_Txz01"
 										filterProperty="Eban_Txz01">
 										<Label text="{i18n>Eban_Txz01}"  />
 										<ui:template>
-											<Text text="{ parts: [{path: 'Eban_Txz01'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true" visible="{= !${MultiPurchase} === 'X' ? true : false }" />
+											<Text text="{ parts: [{path: 'Eban_Txz01'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true" visible="{ parts: [{path: 'MultiPurchase'}], formatter: '.LocalFormatter.MultiLogistic' }" />
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="P4" visible="{= ${LOCALPARAMS>/Purchasing} }" width="8em" tooltip="{i18n>Ekkn_Ebeln}" hAlign="Center" sortProperty="Ekkn_Ebeln"
@@ -464,20 +464,20 @@
 										filterProperty="Ekkn_Ebelp">
 										<Label text="{i18n>Ekkn_Ebelp}" />
 										<ui:template>
-											<Text text="{ parts: [{path: 'Ekkn_Ebelp'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true" visible="{= !${MultiPurchase} === 'X' ? true : false }" />
+											<Text text="{ parts: [{path: 'Ekkn_Ebelp'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true" visible="{ parts: [{path: 'MultiPurchase'}], formatter: '.LocalFormatter.MultiLogistic' }" />
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="P6" visible="{= ${LOCALPARAMS>/Purchasing} }" width="8em" tooltip="{i18n>Ekpo_Txz01}" hAlign="Center" sortProperty="Ekpo_Txz01"
 										filterProperty="Ekpo_Txz01">
 										<Label text="{i18n>Ekpo_Txz01}"  />
 										<ui:template>
-											<Text text="{ parts: [{path: 'Ekpo_Txz01'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true" visible="{= !${MultiPurchase} === 'X' ? true : false }" />
+											<Text text="{ parts: [{path: 'Ekpo_Txz01'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true" visible="{ parts: [{path: 'MultiPurchase'}], formatter: '.LocalFormatter.MultiLogistic' }" />
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="P7" visible="{= ${LOCALPARAMS>/Purchasing} }" width="7em" tooltip="{i18n>Eindt}" hAlign="Center" sortProperty="Eindt" filterProperty="Eindt">
 										<Label text="{i18n>Eindt_2}"  />
 										<ui:template>
-											<Label text="{ parts:['Eindt'], formatter: '.LocalFormatter.DateSet'}" visible="{= !${MultiPurchase} === 'X' ? true : false }" />
+											<Label text="{ parts:['Eindt'], formatter: '.LocalFormatter.DateSet'}" visible="{ parts: [{path: 'MultiPurchase'}], formatter: '.LocalFormatter.MultiLogistic' }" />
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="Q1" visible="{= ${LOCALPARAMS>/Quotation} }" width="7em" tooltip="{i18n>VbelnQ}" hAlign="Center" sortProperty="Vbeln" filterProperty="Vbeln">

@@ -25,6 +25,13 @@ sap.ui.define([
 				return true;
 			}
 		},
+		MultiPurchase: function (value) {
+			if (value === 'X' ) {
+				return false;
+			} else {
+				return true;
+			}
+		},
 		ReasonVisibleVal: function (value) {
 			if (value === '11' ) {
 				return true;
