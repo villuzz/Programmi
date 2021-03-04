@@ -19,6 +19,13 @@ sap.ui.define([
 			}
 		},
 		MultiLogistic: function (value) {
+		//	if (value === 'X' ) {
+		//		return false;
+		//	} else {
+				return true;
+		//	}
+		},
+		MultiLogistic2: function (value) {
 			if (value === 'X' ) {
 				return false;
 			} else {
@@ -47,13 +54,14 @@ sap.ui.define([
 			}
 		},
 		DeleteZero: function (value) {
-			if (value === '0.000' || value === undefined || value === null) {
+			if (value === '0.000' || value === undefined || value === null || value === 0 || value === '0') {
 				return '';
 			} else {
 				return value;
 			}
 
 		},
+	
 		TimeSetting: function (value) {
 			if (value === 0 || value === "" || value === "000000" || value === null || value === undefined) {
 				return "";

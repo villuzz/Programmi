@@ -1,7 +1,7 @@
 <mvc:View controllerName="Z001.ZPS_PSID.controller.BaseView" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
 	xmlns:core="sap.ui.core">
 	<!--<Shell id="shell">-->
-	<App id="app">
+	<App id="app" >
 	
 	</App>
 	<!--</Shell>-->

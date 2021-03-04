@@ -48,8 +48,8 @@
 		}
 				
 	 </html:style>
-	<f:FlexibleColumnLayout id="fcl" class="ContFlex">
-		<f:beginColumnPages>
+	<f:FlexibleColumnLayout id="fcl" class="ContFlex" >
+		<f:beginColumnPages >
 			<Page id="PageSel">
 				<customHeader>
 					<Bar class="custom-header header-background">
@@ -403,7 +403,7 @@
 										<ui:template>
 											<HBox justifyContent="Center" >
 												<Input id="ForeDuration" change="onChangeDuration" type="Number" value="{ForeDuration}" visible="{= ${NoLogistic} === 'X' ? true : false }" />
-												<Label text="{ForeDuration}" visible="{= ${NoLogistic} !== 'X' ? true : false }" />
+												<Label text="{ parts: [{path: 'ForeDuration'}], formatter: '.LocalFormatter.DeleteZero' }" visible="{= ${NoLogistic} !== 'X' ? true : false }" />
 												<Button type="Accept" class="sapUiTinyMarginBegin" icon="sap-icon://accept" press="btnInsertDuration" visible="{= ${NoLogistic} === 'X' ? true : false }" />
 											</HBox>
 										</ui:template>
@@ -423,7 +423,7 @@
 									<ui:Column id="D6" visible="{= ${LOCALPARAMS>/Dates} }" width="7em" tooltip="{i18n>BasicDuration}"  hAlign="Center" sortProperty="BasicDuration" filterProperty="BasicDuration">
 										<Label text="{i18n>BasicDuration}" />
 										<ui:template>
-											<Label text="{BasicDuration}"/>
+											<Label text="{ parts: [{path: 'BasicDuration'}], formatter: '.LocalFormatter.DeleteZero' }"/>
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="P1" visible="{= ${LOCALPARAMS>/Purchasing} }" width="8em" tooltip="{i18n>Banfn}" hAlign="Center" sortProperty="Banfn" filterProperty="Banfn">
@@ -567,7 +567,7 @@
 											<HBox justifyContent="Center" > 
 												<Button type="Transparent" id="openMenuLogistic" text="{ parts: [{path: 'VbelnL'}], formatter: '.LocalFormatter.alphaOutput' }"
 												press="handlePressOpenMenuLogistic" visible="{ parts:['VbelnL'], formatter: '.LocalFormatter.Visible'}" />
-												<Button type="Ghost" class="sapUiTinyMarginBegin" icon="sap-icon://expand-all" press="btnOtherLogistic" visible="{= !${ parts: [{path: 'MultiLogistic'}], formatter: '.LocalFormatter.MultiLogistic' } }" />
+												<Button type="Ghost" class="sapUiTinyMarginBegin" icon="sap-icon://expand-all" press="btnOtherLogistic" visible="{= !${ parts: [{path: 'MultiLogistic'}], formatter: '.LocalFormatter.MultiLogistic2' } }" />
 											</HBox>
 										</ui:template>
 									</ui:Column>

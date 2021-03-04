@@ -646,7 +646,9 @@ sap.ui.define([
 			// 	this.byId("mnCreateODV").setEnabled(false);
 			// 	this.byId("mnAddWBS").setEnabled(false);
 			// }
-			if (this.getView().getModel("LOCALPARAMS").getProperty("/Line").getParent().getCells()[1].getText() === "2") {
+			if (!oEvent.getSource().getText().includes('Z')){
+				this.byId("mnItemRDA").setEnabled(false);
+			}else if (this.getView().getModel("LOCALPARAMS").getProperty("/Line").getParent().getCells()[1].getText() === "2") {
 				this.byId("mnItemRDA").setEnabled(true);
 			} else {
 				this.byId("mnItemRDA").setEnabled(false);
@@ -1567,6 +1569,8 @@ sap.ui.define([
 			this.getView().byId("TargetMarginCondition").getModel().setSizeLimit(500);
 			this.getView().byId("ActualMarginCondition").getModel().setSizeLimit(500);
 			//this.getView().byId("RqMatGroup").getModel().setSizeLimit(500);
+			this.getView().byId("prVendor").getModel().setSizeLimit(600);
+			
 
 			// this.Project = oEvent.getParameter("arguments").Project;
 			// this.StProject = oEvent.getParameter("arguments").StProject;
