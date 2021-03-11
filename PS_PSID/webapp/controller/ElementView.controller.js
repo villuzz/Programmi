@@ -16,8 +16,10 @@ sap.ui.define([
 	'sap/m/Button',
 	'sap/m/Bar',
 	'sap/m/Text',
-	'sap/m/Popover'
-], function (Controller, LocalFormatter, MessageBox, JSONModel, Log, Popup, MessagePopover, MessageItem, exportLibrary, Spreadsheet, ODataModel, MessageView, Button, Bar, Text, Popover
+	'sap/m/Popover',
+	"sap/ui/model/Filter",
+	"sap/ui/model/FilterOperator"
+], function (Controller, LocalFormatter, MessageBox, JSONModel, Log, Popup, MessagePopover, MessageItem, exportLibrary, Spreadsheet, ODataModel, MessageView, Button, Bar, Text, Popover, Filter, FilterOperator
 ) {
 	"use strict";
 	// TablePersoController, DemoPersoService,
@@ -646,9 +648,9 @@ sap.ui.define([
 			// 	this.byId("mnCreateODV").setEnabled(false);
 			// 	this.byId("mnAddWBS").setEnabled(false);
 			// }
-			if (!oEvent.getSource().getText().includes('Z')){
+			if (!oEvent.getSource().getText().includes('Z')) {
 				this.byId("mnItemRDA").setEnabled(false);
-			}else if (this.getView().getModel("LOCALPARAMS").getProperty("/Line").getParent().getCells()[1].getText() === "2") {
+			} else if (this.getView().getModel("LOCALPARAMS").getProperty("/Line").getParent().getCells()[1].getText() === "2") {
 				this.byId("mnItemRDA").setEnabled(true);
 			} else {
 				this.byId("mnItemRDA").setEnabled(false);
@@ -1250,7 +1252,7 @@ sap.ui.define([
 			obj.Quantity = this.getView().byId("rqQty").getValue();
 			obj.Unit = this.getView().byId("prMeins").getSelectedKey();
 			obj.DelivDate = this._formatDate(this.getView().byId('dataReq').getDateValue());
-			obj.DesVendor = this.getView().byId("prVendor").getSelectedKey();
+			//obj.DesVendor = this.getView().byId("prVendor").getSelectedKey();
 			obj.ItemText = this.getView().byId("ReqValue").getValue();
 			obj.Waers = this.getView().byId("prCurrency").getSelectedKey();
 			obj.Asnum = this.getView().byId("prService").getSelectedKey();
@@ -1272,6 +1274,19 @@ sap.ui.define([
 			});
 
 		},
+		onSuggest: function (oEvent) {
+			var sTerm = oEvent.getParameter("suggestValue");
+			var sComp_code = this.getView().getModel("LOCALPARAMS").getProperty("/Line").getBindingContext().getObject().Comp_code;
+			var aFilters = [];
+			if (sTerm) {
+				aFilters.push(new Filter("Vendor", FilterOperator.Contains, sTerm));
+			}
+			aFilters.push(new Filter("Comp_code", 'EQ', sComp_code));
+
+			oEvent.getSource().getBinding("suggestionItems").filter(aFilters);
+		},
+
+
 		callTransaction: function (url) {
 			var oCrossAppNavigator = sap.ushell.Container.getService("CrossApplicationNavigation");
 			var hashUrl = (oCrossAppNavigator && oCrossAppNavigator.hrefForExternal(url));
@@ -1298,12 +1313,12 @@ sap.ui.define([
 			});
 			aFilters.push(oFilter);
 
-			oBinding = this.byId("prVendor").getBinding("items");
+		/*	oBinding = this.byId("prVendor").getBinding("items");
 			// apply filter settings
 			oBinding.filter(aFilters);
 			if (oBinding.isSuspended()) {
 				oBinding.resume();
-			}
+			} */
 			oBinding = this.byId("prMeins").getBinding("items");
 			if (oBinding.isSuspended()) {
 				oBinding.resume();
@@ -1556,8 +1571,8 @@ sap.ui.define([
 
 		routeMatched: function (oEvent) {
 			this.getView().byId("prMeins").getModel().setSizeLimit(1000);
-			this.getView().byId("prCurrency").setSizeLimit(500);
-			this.getView().byId("prService").setSizeLimit(500);
+			this.getView().byId("prCurrency").getModel().setSizeLimit(500);
+			this.getView().byId("prService").getModel().setSizeLimit(500);
 			this.getView().byId("Project").getModel().setSizeLimit(500);
 			this.getView().byId("StProject").getModel().setSizeLimit(500);
 			this.getView().byId("StQuotation").getModel().setSizeLimit(500);
@@ -1570,7 +1585,7 @@ sap.ui.define([
 			this.getView().byId("ActualMarginCondition").getModel().setSizeLimit(500);
 			//this.getView().byId("RqMatGroup").getModel().setSizeLimit(500);
 			this.getView().byId("prVendor").getModel().setSizeLimit(600);
-			
+
 
 			// this.Project = oEvent.getParameter("arguments").Project;
 			// this.StProject = oEvent.getParameter("arguments").StProject;
@@ -1884,7 +1899,7 @@ sap.ui.define([
 				}
 
 			}
-			
+
 			oTreeTable.bindRows({
 				path: "/WbsElementSet",
 				filters: this.Filter,
@@ -2469,13 +2484,13 @@ sap.ui.define([
 			//inserisci date forecast 
 			debugger
 			var line = oEvent.getSource().getBindingContext().getObject();
-			this.onSaveForecast(this.date,'', line)
+			this.onSaveForecast(this.date, '', line)
 		},
 		btnInsertDuration: function (oEvent) {
 			//inserisci Duration forecast 
 			debugger
 			var line = oEvent.getSource().getBindingContext().getObject();
-			this.onSaveForecast('',this.duration, line)
+			this.onSaveForecast('', this.duration, line)
 		},
 		onSaveForecast: function (Estrt, ForeDuration, line) {
 			sap.ui.core.BusyIndicator.show(0);
@@ -2571,7 +2586,7 @@ sap.ui.define([
 					aFilters.push(oFilter);
 				}
 			}
-			
+
 			var oBinding = this.byId("tableLogistic").getBinding("rows");
 			// apply filter settings
 			oBinding.filter(aFilters);

@@ -1,68 +1,71 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml">
-	<Dialog id="DialogRequest" afterClose="onAfterClose" contentWidth="70%" contentHeight="30%" class="sapUiSizeCozy" showHeader="false">
-		<Page title="{i18n>TitleRequest}">
-			<content>
-				<VBox height="100%" width="100%" justifyContent="Center" class="paddingAll">
-					<HBox height="50%" width="100%">
-						<VBox justifyContent="Center" class="sapUiTinyMarginBeginEnd" width="20%">
-							<Label text="{i18n>ReqBsart}"/>
-							<ComboBox width="100%" id="RqBsart" items="{ path: '/prDocTypeSet', suspended: true , sorter : { path : 'DocType' } }">
-								<core:ListItem key="{DocType}" text="{DocType} - {Text}"/>
-							</ComboBox>
-						</VBox>
-						<VBox justifyContent="Center" class="sapUiTinyMarginBeginEnd" width="20%">
-							<Label text="{i18n>ReqDate}"/>
-							<DatePicker width="100%" id="dataReq"/>
-						</VBox>
-						<VBox justifyContent="Center" class="sapUiTinyMarginBeginEnd" width="20%">
-							<Label text="{i18n>ReqVendor}"/>
-							<ComboBox width="100%" id="prVendor" items="{ path: '/prVendorSet', suspended: true , sorter : { path : 'Vendor' } }">
-								<core:ListItem key="{Vendor}" text="{Vendor} - {Text}"/>
-							</ComboBox>
-						</VBox>
-						<VBox justifyContent="Center" class="sapUiTinyMarginBeginEnd" width="20%">
-							<Label text="{i18n>ReqText}"/>
-							<Input width="100%" id="ReqText" value=""/>
-						</VBox>
-						<VBox justifyContent="Center" class="sapUiTinyMarginBeginEnd" width="20%">
-							<Label text="{i18n>ReqMatSer}"/>
-							<ComboBox width="100%" id="prService" items="{ path: '/prServiceMatSet', suspended: true , sorter : { path : 'Asnum' } }">
-								<core:ListItem key="{Asnum}" text="{Asnum} - {Asktx}"/>
-							</ComboBox>
-						</VBox>
-					</HBox>
-					<HBox height="50%" width="100%">
-						<VBox justifyContent="Center" class="sapUiTinyMarginBeginEnd" width="20%">
-							<Label text="{i18n>ReqQuantity}"/>
-							<Input width="100%" id="rqQty" type="Number" value=""/>
-						</VBox>
-						<VBox justifyContent="Center" class="sapUiTinyMarginBeginEnd" width="20%">
-							<Label text="{i18n>ReqUnite}"/>
-							<ComboBox width="100%" id="prMeins" items="{ path: '/prMeinsSet', suspended: true , sorter : { path : 'Meins' } }">
-								<core:ListItem key="{Meins}" text="{Meins} - {Text}"/>
-							</ComboBox>
-						</VBox>
-						<VBox justifyContent="Center" class="sapUiTinyMarginBeginEnd" width="20%">
-							<Label text="{i18n>ReqValue}"/>
-							<Input width="100%" id="ReqValue" value=""/>
-						</VBox>
-						<VBox justifyContent="Center" class="sapUiTinyMarginBeginEnd" width="20%">
-							<Label text="{i18n>ReqCurrency}"/>
-							<ComboBox width="100%" id="prCurrency" items="{ path: '/prCurrencySet', suspended: true , sorter : { path : 'Waers' } }">
-								<core:ListItem key="{Waers}" text="{Waers} - {Text}"/>
-							</ComboBox>
-						</VBox>
-						<VBox justifyContent="Center" class="sapUiTinyMarginBeginEnd" width="20%"></VBox>
-					</HBox>
-				</VBox>
-			</content>
-			<footer>
-				<Toolbar>
-					<ToolbarSpacer/>
-					<Button icon="sap-icon://write-new" text="{i18n>btCreate}" press="callRequestCreate"/>
-					<Button icon="sap-icon://decline" text="{i18n>btAccept}" press="onCloseBsart"/>
-				</Toolbar>
-			</footer>
-		</Page>
-	</Dialog>
+    <Dialog id="DialogRequest" afterClose="onAfterClose" contentWidth="70%" contentHeight="30%" class="sapUiSizeCozy" showHeader="false">
+        <Page title="{i18n>TitleRequest}">
+            <content>
+                <VBox height="100%" width="100%" justifyContent="Center" class="paddingAll">
+                    <HBox height="50%" width="100%">
+                        <VBox justifyContent="Center" class="sapUiTinyMarginBeginEnd" width="20%">
+                            <Label text="{i18n>ReqBsart}"/>
+                            <ComboBox width="100%" id="RqBsart" items="{ path: '/prDocTypeSet', suspended: true , sorter : { path : 'DocType' } }">
+                                <core:ListItem key="{DocType}" text="{DocType} - {Text}"/>
+                            </ComboBox>
+                        </VBox>
+                        <VBox justifyContent="Center" class="sapUiTinyMarginBeginEnd" width="20%">
+                            <Label text="{i18n>ReqDate}"/>
+                            <DatePicker width="100%" id="dataReq"/>
+                        </VBox>
+                        <VBox justifyContent="Center" class="sapUiTinyMarginBeginEnd" width="20%">
+                            <Label text="{i18n>ReqVendor}"/>
+                            <Input id="prVendor" placeholder="Enter Vendor" showSuggestion="true"
+									suggest=".onSuggest" suggestionItems="{/prVendorSet}" >
+                                <suggestionItems>
+                                    <core:Item text="{Vendor} - {Text}" />
+                                </suggestionItems>
+                            </Input>
+                        </VBox>
+                        <VBox justifyContent="Center" class="sapUiTinyMarginBeginEnd" width="20%">
+                            <Label text="{i18n>ReqText}"/>
+                            <Input width="100%" id="ReqText" value=""/>
+                        </VBox>
+                        <VBox justifyContent="Center" class="sapUiTinyMarginBeginEnd" width="20%">
+                            <Label text="{i18n>ReqMatSer}"/>
+                            <ComboBox width="100%" id="prService" items="{ path: '/prServiceMatSet', suspended: true , sorter : { path : 'Asnum' } }">
+                                <core:ListItem key="{Asnum}" text="{Asnum} - {Asktx}"/>
+                            </ComboBox>
+                        </VBox>
+                    </HBox>
+                    <HBox height="50%" width="100%">
+                        <VBox justifyContent="Center" class="sapUiTinyMarginBeginEnd" width="20%">
+                            <Label text="{i18n>ReqQuantity}"/>
+                            <Input width="100%" id="rqQty" type="Number" value=""/>
+                        </VBox>
+                        <VBox justifyContent="Center" class="sapUiTinyMarginBeginEnd" width="20%">
+                            <Label text="{i18n>ReqUnite}"/>
+                            <ComboBox width="100%" id="prMeins" items="{ path: '/prMeinsSet', suspended: true , sorter : { path : 'Meins' } }">
+                                <core:ListItem key="{Meins}" text="{Meins} - {Text}"/>
+                            </ComboBox>
+                        </VBox>
+                        <VBox justifyContent="Center" class="sapUiTinyMarginBeginEnd" width="20%">
+                            <Label text="{i18n>ReqValue}"/>
+                            <Input width="100%" id="ReqValue" value=""/>
+                        </VBox>
+                        <VBox justifyContent="Center" class="sapUiTinyMarginBeginEnd" width="20%">
+                            <Label text="{i18n>ReqCurrency}"/>
+                            <ComboBox width="100%" id="prCurrency" items="{ path: '/prCurrencySet', suspended: true , sorter : { path : 'Waers' } }">
+                                <core:ListItem key="{Waers}" text="{Waers} - {Text}"/>
+                            </ComboBox>
+                        </VBox>
+                        <VBox justifyContent="Center" class="sapUiTinyMarginBeginEnd" width="20%"></VBox>
+                    </HBox>
+                </VBox>
+            </content>
+            <footer>
+                <Toolbar>
+                    <ToolbarSpacer/>
+                    <Button icon="sap-icon://write-new" text="{i18n>btCreate}" press="callRequestCreate"/>
+                    <Button icon="sap-icon://decline" text="{i18n>btAccept}" press="onCloseBsart"/>
+                </Toolbar>
+            </footer>
+        </Page>
+    </Dialog>
 </core:FragmentDefinition>
