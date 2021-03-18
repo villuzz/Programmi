@@ -1252,7 +1252,7 @@ sap.ui.define([
 			obj.Quantity = this.getView().byId("rqQty").getValue();
 			obj.Unit = this.getView().byId("prMeins").getSelectedKey();
 			obj.DelivDate = this._formatDate(this.getView().byId('dataReq').getDateValue());
-			//obj.DesVendor = this.getView().byId("prVendor").getSelectedKey();
+			obj.DesVendor = this.getView().byId("prVendor").getValue().substr(0, 10);
 			obj.ItemText = this.getView().byId("ReqValue").getValue();
 			obj.Waers = this.getView().byId("prCurrency").getSelectedKey();
 			obj.Asnum = this.getView().byId("prService").getSelectedKey();
