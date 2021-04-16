@@ -1078,16 +1078,20 @@ sap.ui.define([
 
 		},
 		callDisplayAdvance: function (Order) {
-
+				
 			var request = '',
-				order = '';
+				order = '',
+				MRP = this.getView().getModel("LOCALPARAMS").getProperty("/Line").getBindingContext().getObject().MRPType;
 			if (Order) {
 				request = '',
 					order = this.getView().getModel("LOCALPARAMS").getProperty("/Line").getText();
+
 			} else {
 				request = this.getView().getModel("LOCALPARAMS").getProperty("/Line").getText(),
 					order = '';
+
 			}
+			
 			var url = {
 				target: {
 					semanticObject: "ZICC2N_WBS",
@@ -1095,7 +1099,8 @@ sap.ui.define([
 				},
 				params: {
 					"Request": request,
-					"Order": order
+					"Order": order,
+					"MRP": MRP
 				}
 			};
 			this.callTransaction(url);
@@ -1899,7 +1904,10 @@ sap.ui.define([
 				}
 
 			}
-
+			oTreeTable.getModel().attachRequestFailed(function(oEvent){
+				sap.m.MessageBox.alert(oEvent.getSource().getMessagesByEntity("WbsElementSet")[0].message);
+			}.bind(this));
+			
 			oTreeTable.bindRows({
 				path: "/WbsElementSet",
 				filters: this.Filter,
