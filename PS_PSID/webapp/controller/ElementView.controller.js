@@ -1578,8 +1578,8 @@ sap.ui.define([
 			this.getView().byId("prMeins").getModel().setSizeLimit(1000);
 			this.getView().byId("prCurrency").getModel().setSizeLimit(500);
 			this.getView().byId("prService").getModel().setSizeLimit(500);
-			this.getView().byId("Project").getModel().setSizeLimit(500);
-			this.getView().byId("StProject").getModel().setSizeLimit(500);
+			this.getView().byId("Project").getModel().setSizeLimit(1500);
+			this.getView().byId("StProject").getModel().setSizeLimit(1500);
 			this.getView().byId("StQuotation").getModel().setSizeLimit(500);
 			this.getView().byId("DcQuotation").getModel().setSizeLimit(500);
 			this.getView().byId("BillingType").getModel().setSizeLimit(500);
