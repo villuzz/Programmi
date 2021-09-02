@@ -1,5 +1,5 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:ui="sap.ui.table" xmlns:u="sap.ui.unified">
-	<Dialog id="DialogAdd" afterClose="onAfterClose" contentWidth="75%" contentHeight="60%" class="sapUiSizeCozy" showHeader="false">
+	<Dialog id="DialogAdd" afterClose="onAfterClose" contentWidth="90%" contentHeight="60%" class="sapUiSizeCozy" showHeader="false">
 		<Page>
 			<customHeader>
 				<Bar class="custom-header header-background">
@@ -69,10 +69,11 @@
 							<columns>
 								<Column mergeDuplicates="true"><Label text="{i18n>Posid}" wrapping="true"/></Column>
 								<Column mergeDuplicates="true"><Label text="{i18n>Kdkg1}" wrapping="true"/></Column>
-								<!--<Column mergeDuplicates="true"><Label text="{i18n>Kdkg1Desc}" wrapping="true"/></Column>-->
+								<Column mergeDuplicates="true"><Label text="{i18n>Kdkg1Desc}" wrapping="true"/></Column>
 								<Column mergeDuplicates="true"><Label text="{i18n>Kdkg2}" wrapping="true"/></Column>
-								<!--<Column mergeDuplicates="true"><Label text="{i18n>Kdkg2Desc}" wrapping="true"/></Column>-->
+								<Column mergeDuplicates="true"><Label text="{i18n>Kdkg2Desc}" wrapping="true"/></Column>
 								<Column><Label text="{i18n>Material}" wrapping="true"/></Column>
+								<Column><Label text="{i18n>MaterialDesc}" wrapping="true"/></Column>
 								<Column><Label text="{i18n>Quantity}" wrapping="true"/></Column>
 							</columns>
 							<items>
@@ -83,15 +84,14 @@
 											selectedKey="{WbsCreate>Kdkg1}" enabled="{WbsCreate>Kdkg1Vis}">
 											<core:ListItem key="{Kdkgr}" text="{Kdkgr}" additionalText="{Vtext}"/>
 										</ComboBox>
+										<Input id="Kdkg1Desc" value="{WbsCreate>Kdkg1Desc}" visible="{= ${WbsCreate>IsNotFirst} !== true}"/>
 										<ComboBox id="Group2" items="{/StKdkgr2Set}" showSecondaryValues="true" visible="{= ${WbsCreate>IsNotFirst} !== true}"
 											selectedKey="{WbsCreate>Kdkg2}" enabled="{WbsCreate>Kdkg2Vis}">
 											<core:ListItem key="{Kdkgr}" text="{Kdkgr}" additionalText="{Vtext}"/>
 										</ComboBox>
-										<!--<Input value="{WbsCreate>Kdkg1}" visible="{= ${WbsCreate>IsNotFirst} !== true}"/>-->
-										<!--<Input value="{WbsCreate>Kdkg1Desc}" visible="{= ${WbsCreate>IsNotFirst} !== true}"/>-->
-										<!--<Input value="{WbsCreate>Kdkg2}" visible="{= ${WbsCreate>IsNotFirst} !== true}"/>-->
-										<!--<Input value="{WbsCreate>Kdkg2Desc}" visible="{= ${WbsCreate>IsNotFirst} !== true}"/>-->
+										<Input id="Kdkg2Desc" value="{WbsCreate>Kdkg2Desc}" visible="{= ${WbsCreate>IsNotFirst} !== true}"/>
 										<Input value="{WbsCreate>Material}"/>
+										<Input value="{WbsCreate>MaterialDesc}" />
 										<Input value="{WbsCreate>Quantity}" type="Number"/>
 									</cells>
 								</ColumnListItem>

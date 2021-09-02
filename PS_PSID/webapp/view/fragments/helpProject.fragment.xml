@@ -1,0 +1,12 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" >
+		<SelectDialog
+		contentHeight="70%"
+		id="selectProject"
+		title="{i18n>P_PS_PSID}"
+		items="{ProjectSearch>/}"
+		search=".onValueHelpSearchProject"
+		confirm=".onValueHelpCloseProject"
+		cancel=".onValueHelpCloseProject">
+		<StandardListItem title="{ProjectSearch>PsPspid}" description="{ProjectSearch>PsPost1}" />
+	</SelectDialog>
+</core:FragmentDefinition>

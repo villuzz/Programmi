@@ -30,6 +30,14 @@ sap.ui.define([
 
 		LocalFormatter: LocalFormatter, //<-- Local project formatter
 		Log: Log, //<-- Logger inherited by all child controllers
+		
+		_documentsReadSuccess: function (oResponse) {
+			var oModel = this.getView().getModel('ProjectSearch');
+			oModel.setData(oResponse.results);
+		  },
+	
+		  __documentsReadError: function (oResponse) {
+		  },
 
 		onInit: function () {
 
@@ -179,6 +187,19 @@ sap.ui.define([
 			});
 			var oModel = new JSONModel([]);
 			this.getView().setModel(oModel, "returnModel2");
+
+			//API endpoint for API sandbox   
+			debugger
+			var myModel = sap.ui.getCore().getModel("myModel");
+
+			var oModel = new JSONModel();
+			this.getView().setModel(oModel, 'ProjectSearch');
+
+			myModel.read("/PspidSetSet", {
+				success: jQuery.proxy(this._documentsReadSuccess, this),
+				error: jQuery.proxy(this._documentsReadError, this),
+			});
+
 		},
 		onDataExport: function () {
 			var listBinding = this.byId("tableElement").getBinding("rows");
@@ -191,13 +212,11 @@ sap.ui.define([
 					useBatch: true,
 					serviceUrl: listBinding.getModel().sServiceUrl,
 					headers: listBinding.getModel().getHeaders(),
-					dataUrl: listBinding.getDownloadUrl(), // includes the $expand param.
-					/*E.g.*/
+					dataUrl: listBinding.getDownloadUrl(), 
 					count: listBinding.getLength(),
-					/*E.g.*/
 					sizeLimit: 5,
 				},
-				worker: true // should be false if mock server or CSP enabled
+				worker: true 
 			});
 		},
 		onDataExportPurch: function () {
@@ -264,6 +283,8 @@ sap.ui.define([
 				label: i18n.getText("Eindt"),
 				property: 'Eindt',
 				type: EdmType.String
+				//type: EdmType.Date,
+				//inputFormat: 'yyyymmdd'
 			});
 			return aCols;
 		},
@@ -279,8 +300,8 @@ sap.ui.define([
 			});
 			aCols.push({
 				label: i18n.getText("Stufe"),
-				property: 'Stufe',
-				type: EdmType.String
+				property: 'Livello',
+				type: EdmType.Number
 			});
 			aCols.push({
 				label: i18n.getText("Description"),
@@ -303,8 +324,8 @@ sap.ui.define([
 				type: EdmType.String
 			});
 			aCols.push({
-				label: i18n.getText("Responsible_No"),
-				property: 'Responsible_No',
+				label: i18n.getText("ResponsibleDesc"),
+				property: 'ResponsibleDesc',
 				type: EdmType.String
 			});
 			aCols.push({
@@ -315,6 +336,16 @@ sap.ui.define([
 			aCols.push({
 				label: i18n.getText("PosnrB"),
 				property: 'PosnrB',
+				type: EdmType.String
+			});
+			aCols.push({
+				label: i18n.getText("VbelnV"),
+				property: 'VbelnV',
+				type: EdmType.String
+			});
+			aCols.push({
+				label: i18n.getText("PosnrV"),
+				property: 'PosnrV',
 				type: EdmType.String
 			});
 			aCols.push({
@@ -351,21 +382,39 @@ sap.ui.define([
 				label: i18n.getText("Estrt"),
 				property: 'Estrt',
 				type: EdmType.String
+				//type: EdmType.Date,
+				//inputFormat: 'yyyymmdd'
 			});
 			aCols.push({
 				label: i18n.getText("Eende"),
 				property: 'Eende',
 				type: EdmType.String
+				//type: EdmType.Date,
+				//inputFormat: 'yyyymmdd'
+			});
+			aCols.push({
+				label: i18n.getText("ForeDuration"),
+				property: 'ForeDuration',
+				type: EdmType.Number
 			});
 			aCols.push({
 				label: i18n.getText("Pstrt"),
 				property: 'Pstrt',
 				type: EdmType.String
+				//type: EdmType.Date,
+				//inputFormat: 'yyyymmdd'
 			});
 			aCols.push({
 				label: i18n.getText("Pende"),
 				property: 'Pende',
 				type: EdmType.String
+				//type: EdmType.Date,
+				//inputFormat: 'yyyymmdd'
+			});
+			aCols.push({
+				label: i18n.getText("BasicDuration"),
+				property: 'BasicDuration',
+				type: EdmType.Number
 			});
 			aCols.push({
 				label: i18n.getText("Banfn"),
@@ -401,6 +450,8 @@ sap.ui.define([
 				label: i18n.getText("Eindt"),
 				property: 'Eindt',
 				type: EdmType.String
+				//type: EdmType.Date,
+				//inputFormat: 'yyyymmdd'
 			});
 			aCols.push({
 				label: i18n.getText("Auart"),
@@ -409,12 +460,12 @@ sap.ui.define([
 			});
 			aCols.push({
 				label: i18n.getText("VbelnQ"),
-				property: 'VbelnQ',
+				property: 'Vbeln',
 				type: EdmType.String
 			});
 			aCols.push({
 				label: i18n.getText("PosnrQ"),
-				property: 'VbelnQ',
+				property: 'Posnr',
 				type: EdmType.String
 			});
 			aCols.push({
@@ -434,18 +485,18 @@ sap.ui.define([
 			});
 			aCols.push({
 				label: i18n.getText("Stsma"),
-				property: 'Usr00',
+				property: 'Stsma',
 				type: EdmType.String
 			});
 			aCols.push({
 				label: i18n.getText("Kbetr"),
 				property: 'Kbetr',
-				type: EdmType.String
+				type: EdmType.Number
 			});
 			aCols.push({
 				label: i18n.getText("Netwr"),
-				property: 'Kbetr',
-				type: EdmType.String
+				property: 'Netwr',
+				type: EdmType.Number
 			});
 			aCols.push({
 				label: i18n.getText("Waerk"),
@@ -453,19 +504,18 @@ sap.ui.define([
 				type: EdmType.String
 			});
 			aCols.push({
-				label: i18n.getText("Target_Margin"),
+				label: 'Target_Margin',
+				type: EdmType.Number,
 				property: 'Target_Margin',
-				type: EdmType.String
+				unit: "%",
+                scale: 2
 			});
 			aCols.push({
-				label: i18n.getText("Total_Margin"),
+				label: 'Total_Margin',
+				type: EdmType.Number,
 				property: 'Total_Margin',
-				type: EdmType.String
-			});
-			aCols.push({
-				label: i18n.getText("Auart"),
-				property: 'Auart',
-				type: EdmType.String
+				unit: "%",
+                scale: 2
 			});
 			aCols.push({
 				label: i18n.getText("VbelnL"),
@@ -478,8 +528,8 @@ sap.ui.define([
 				type: EdmType.String
 			});
 			aCols.push({
-				label: i18n.getText("Matnr"),
-				property: 'Matnr',
+				label: i18n.getText("MatnrL"),
+				property: 'MatnrL',
 				type: EdmType.String
 			});
 			aCols.push({
@@ -489,7 +539,7 @@ sap.ui.define([
 			});
 			aCols.push({
 				label: i18n.getText("Pstyv"),
-				property: 'Arktx',
+				property: 'Pstyv',
 				type: EdmType.String
 			});
 			aCols.push({
@@ -501,25 +551,31 @@ sap.ui.define([
 				label: i18n.getText("Creation_Dat"),
 				property: 'Creation_Dat',
 				type: EdmType.String
+				//type: EdmType.Date,
+				//inputFormat: 'yyyymmdd'
 			});
 			aCols.push({
 				label: i18n.getText("Zzlifdt"),
-				property: 'Zzlifdt',
+				property: 'Zzlifdt', 
 				type: EdmType.String
+				//type: EdmType.Date,
+				//inputFormat: 'yyyymmdd'
 			});
 			aCols.push({
 				label: i18n.getText("Zzliftime"),
-				property: 'Zzlifdt',
+				property: 'Zzliftime',
+				//type: EdmType.Time
 				type: EdmType.String
 			});
 			aCols.push({
 				label: i18n.getText("Zzinsdate"),
-				property: 'Zzlifdt',
-				type: EdmType.String
+				property: 'Zzinsdate',
+				type: EdmType.Zzinsdate
 			});
 			aCols.push({
 				label: i18n.getText("Zzinstime"),
 				property: 'Zzinstime',
+				//type: EdmType.Time
 				type: EdmType.String
 			});
 			aCols.push({
@@ -531,6 +587,8 @@ sap.ui.define([
 				label: i18n.getText("Bstdk"),
 				property: 'Bstdk',
 				type: EdmType.String
+				//type: EdmType.Date,
+				//inputFormat: 'yyyymmdd'
 			});
 			aCols.push({
 				label: i18n.getText("Lifsk"),
@@ -541,6 +599,8 @@ sap.ui.define([
 				label: i18n.getText("Udate"),
 				property: 'Udate',
 				type: EdmType.String
+				//type: EdmType.Date,
+				//inputFormat: 'yyyymmdd'
 			});
 			aCols.push({
 				label: i18n.getText("Zzpwerks"),
@@ -616,6 +676,8 @@ sap.ui.define([
 				label: i18n.getText("Erdat"),
 				property: 'Erdat',
 				type: EdmType.String
+				//type: EdmType.Date,
+				//inputFormat: 'yyyymmdd'
 			});
 			return aCols;
 		},
@@ -690,6 +752,21 @@ sap.ui.define([
 			LocalParams.setProperty("/Line", oEvent.getSource());
 			var oButton = oEvent.getSource();
 			this.byId("MenuBilling").open(this._bKeyboard, oButton, Popup.Dock.BeginTop, Popup.Dock.BeginBottom, oButton);
+		},
+		handlePressOpenFattura: function (oEvent) {
+			var line = oEvent.getSource().getBindingContext().getObject();
+			//call VF03 con Fattura TODO
+			var url = {
+				target: {
+					semanticObject: "ZICVF03",
+					action: "display"
+				},
+				params: {
+					"VbelnV": line.VbelnV,
+					"posnrV": line.posnrV,
+				}
+			};
+			this.callTransaction(url);
 		},
 		handlePressOpenMenuLogistic: function (oEvent) {
 			var LocalParams = this.getView().getModel("LOCALPARAMS");
@@ -896,7 +973,7 @@ sap.ui.define([
 
 
 			} else {
-				this.onFilterInit(this.getView().byId("StProject").getSelectedItem(), this.getView().byId("Project").getSelectedItem());
+				this.onFilterInit(this.getView().byId("StProject").getSelectedItem(), this.Project);
 				var oTreeTable = this.byId("tableElement");
 				oTreeTable.bindRows({
 					path: "/WbsElementSet",
@@ -1259,6 +1336,7 @@ sap.ui.define([
 			obj.DelivDate = this._formatDate(this.getView().byId('dataReq').getDateValue());
 			obj.DesVendor = this.getView().byId("prVendor").getValue().substr(0, 10);
 			obj.ItemText = this.getView().byId("ReqValue").getValue();
+			obj.ItemText = obj.ItemText.replaceAll(",",".");
 			obj.Waers = this.getView().byId("prCurrency").getSelectedKey();
 			obj.Asnum = this.getView().byId("prService").getSelectedKey();
 			obj.KDKG1 = this.getView().getModel("LOCALPARAMS").getProperty("/Line").getBindingContext().getObject().KDKG1;
@@ -1268,7 +1346,7 @@ sap.ui.define([
 			myModel.create('/PurchReqSet', obj, {
 				success: function (oData, oResponse) {
 					this.byId("DialogRequest").close();
-					MessageBox.alert("Purchase Requisition " + oData.Number + " Created");
+					MessageBox.alert("Purchase Requisition " + oData.Number + " item " + oData.Bnfpo + " Created" );
 				}.bind(this),
 				error: function (err, oResponse) {
 
@@ -1434,6 +1512,8 @@ sap.ui.define([
 					obj.Posid = oData.Posid;
 					obj.Kdkg1 = oEvent.getBindingContext().getObject().KDKG1;
 					obj.Kdkg1Desc = oData.Kdkg1Desc;
+					obj.Kdkg2Desc = oData.Kdkg2Desc;
+
 					obj.Kdkg2 = oEvent.getBindingContext().getObject().KDKG2;
 
 					if (parseInt(obj.Kdkg2).toString() !== "NaN") {
@@ -1441,16 +1521,18 @@ sap.ui.define([
 					}
 					if (obj.Kdkg1 !== "" && obj.Kdkg1 !== "NaN") {
 						obj.Kdkg1Vis = false;
+						obj.Kdkg1Desc = oEvent.getBindingContext().getObject().Kdkg1Desc;
 					} else {
 						obj.Kdkg1Vis = true;
 					}
 					if (obj.Kdkg2 !== "" && obj.Kdkg2 !== "NaN") {
 						obj.Kdkg2Vis = false;
+						obj.Kdkg2Desc = oEvent.getBindingContext().getObject().Kdkg2Desc;
 					} else {
 						obj.Kdkg2Vis = true;
 					}
 
-					obj.Kdkg2Desc = oData.Kdkg2Desc;
+					
 					obj.Material = '';
 					obj.Quantity = '';
 					obj.IsNotFirst = false;
@@ -1481,19 +1563,27 @@ sap.ui.define([
 					oline = {
 						"Posid": items[i].getCells()[0].getText(),
 						"Kdkg1": items[0].getCells()[1].getValue(),
-						"Kdkg2": items[0].getCells()[2].getValue(),
-						"Material": items[i].getCells()[3].getValue(),
-						"Quantity": items[i].getCells()[4].getValue()
+						//"Kdkg1Desc": items[0].getCells()[2].getValue(),
+						"Kdkg2": items[0].getCells()[3].getValue(),
+						//"Kdkg2Desc": items[0].getCells()[4].getValue(),
+						"Material": items[i].getCells()[5].getValue(),
+						"MaterialDesc": items[i].getCells()[6].getValue(),
+						"Quantity": items[i].getCells()[7].getValue()
 					};
 					line.push(oline);
 				}
 			}
+			/*if(items[0].getCells()[2].getSelectedItem()){
+				var Kdkg2Desc = items[0].getCells()[2].getSelectedItem().getAdditionalText();
+			} else {
+				var Kdkg2Desc = "";
+			}*/
 			var json = {
 				"Posid": this.Posid,
 				"Kdkg1": items[0].getCells()[1].getValue(),
-				"Kdkg1Desc": items[0].getCells()[1].getSelectedItem().getAdditionalText(),
-				"Kdkg2": items[0].getCells()[2].getValue(),
-				"Kdkg2Desc": items[0].getCells()[2].getSelectedItem().getAdditionalText(),
+				"Kdkg1Desc": items[0].getCells()[2].getValue(), //items[0].getCells()[1].getSelectedItem().getAdditionalText(),
+				"Kdkg2": items[0].getCells()[3].getValue(),
+				"Kdkg2Desc": items[0].getCells()[4].getValue(), //Kdkg2Desc,
 				"Stufe": this.Stufe,
 				"toWBSItems": line
 			};
@@ -1506,28 +1596,33 @@ sap.ui.define([
 				success: function (oData, response) {
 					this.byId("DialogAdd").close();
 					sap.ui.core.BusyIndicator.hide();
-					var hdrMessageObject = JSON.parse(response.headers["sap-message"]);
-					var oModel = new JSONModel(hdrMessageObject.details);
-					this.getView().setModel(oModel, "returnModel");
+					// var hdrMessageObject = JSON.parse(response.headers["sap-message"]);
+					// var oModel = new JSONModel(hdrMessageObject.details);
+					// this.getView().setModel(oModel, "returnModel");
 
-					var items = this.getView().getModel("returnModel").getData();
-					var rows = items.length;
+					// var items = this.getView().getModel("returnModel").getData();
+					// var rows = line.length;
 					this.oDialog.setState("Success");
-					for (var i = 0; i < rows; i++) {
-						if (items[i].severity === 'success') {
-							items[i].severity = 'Success';
-						} else {
-							items[i].severity = 'Error';
-							this.oDialog.setState("Error");
-						}
+					var items = [];
+					for (var i = 0; i < line.length; i++) {
+						var lineRet = {
+							severity: 'Success',
+							code: line[i].Posid + ' Created',
+							description: line[i].Posid + ' Created ' + line[i].Material + ' ' + line[i].Quantity,
+							subtitle: line[i].Posid + ' Created ' + line[i].Material + ' ' + line[i].Quantity
+						};
+						items.push(lineRet);
 					}
+
+					var oModel = new JSONModel(items);
+					this.getView().setModel(oModel, "returnModel");
 
 					this.oMessageView.setModel(this.getView().getModel("returnModel"));
 					this.oMessageView.navigateBack();
 					this.oDialog.open();
+					
 				}.bind(this),
 				error: function (oError) {
-
 					sap.ui.core.BusyIndicator.hide();
 					var responseObject = JSON.parse(oError.responseText);
 					MessageBox.alert(responseObject.error.message.value);
@@ -1556,6 +1651,7 @@ sap.ui.define([
 			}
 
 		},
+		
 		onPressDecline: function (oEvent) {
 			// this.getView().byId("BtFullMat").setPressed(false);
 			this.getView().byId("BtFullBanc").setPressed(false);
@@ -1578,7 +1674,8 @@ sap.ui.define([
 			this.getView().byId("prMeins").getModel().setSizeLimit(1000);
 			this.getView().byId("prCurrency").getModel().setSizeLimit(500);
 			this.getView().byId("prService").getModel().setSizeLimit(500);
-			this.getView().byId("Project").getModel().setSizeLimit(1500);
+			// this.getView().byId("Project").getModel().setSizeLimit(9999);
+			this.getView().byId("selectProject").getModel().setSizeLimit(9999);
 			this.getView().byId("StProject").getModel().setSizeLimit(1500);
 			this.getView().byId("StQuotation").getModel().setSizeLimit(500);
 			this.getView().byId("DcQuotation").getModel().setSizeLimit(500);
@@ -1602,7 +1699,7 @@ sap.ui.define([
 		onSearch: function (oEvent) {
 			var oModel = new JSONModel([]);
 			this.getView().setModel(oModel, "returnModel2");
-			this.getView().byId("ProjectTop").setSelectedKey(this.getView().byId("Project").getSelectedKey());
+			this.getView().byId("ProjectTop").setSelectedKey(this.Project);
 			this.onResetFilter();
 			this.onFilterHeader(oEvent);
 		},
@@ -1631,7 +1728,7 @@ sap.ui.define([
 			this.byId("ProjectTopText").setVisible(true);
 
 			var i18n = this.getView().getModel("i18n").getResourceBundle();
-			var SEL = this.getView().byId("Project").getSelectedItem();
+			var SEL = this.Project;
 			if (SEL === '') {
 				MessageBox.error(i18n.getText("MsgError"));
 				return;
@@ -1691,9 +1788,9 @@ sap.ui.define([
 				aFilters = [];
 			var oFilter = '';
 
-			var SEL = this.getView().byId("Project").getSelectedItem();
+			var SEL = this.Project;
 			if (SEL !== null) {
-				SEL = SEL.getKey();
+				//SEL = SEL.getKey();
 				oFilter = new sap.ui.model.Filter({
 					path: 'Pspid',
 					operator: 'EQ',
@@ -1719,7 +1816,7 @@ sap.ui.define([
 				oBinding.resume();
 			}
 			// this.byId("mnCreateODV").setEnabled(true);
-			this.onFilterItems(this.getView().byId("StProject").getSelectedItem(), this.getView().byId("Project").getSelectedItem());
+			this.onFilterItems(this.getView().byId("StProject").getSelectedItem(), this.Project);
 			this.byId("fcl").setLayout("MidColumnFullScreen");
 			// this.getView().byId("navCon").to(this.getView().byId("Page1"));
 		},
@@ -1744,14 +1841,14 @@ sap.ui.define([
 		onSelStufe: function (oEvent) {
 			// this.getView().byId("btStufe").setType('Emphasized');
 
-			this.onFilterItems(this.getView().byId("StProject").getSelectedItem(), this.getView().byId("Project").getSelectedItem());
+			this.onFilterItems(this.getView().byId("StProject").getSelectedItem(), this.Project);
 			this.byId("DialogStufe").close();
 		},
 		onFilterInit: function (stProject, Project) {
 			var aFilters = [];
 			var oFilter = '';
 			if (Project !== null) {
-				var SEL = Project.getKey(); //oEvent.getSource().getBindingContext().getObject().Pspid;
+				var SEL = Project; //oEvent.getSource().getBindingContext().getObject().Pspid;
 				oFilter = new sap.ui.model.Filter({
 					path: 'Project_Definition',
 					operator: 'EQ',
@@ -2152,7 +2249,7 @@ sap.ui.define([
 			if (obj.Name.includes(' ')) {
 				MessageBox.alert('Space not permitted');
 			} else {
-				obj.Project = this.getView().byId("Project").getSelectedKey();
+				obj.Project = this.Project;
 				obj.Stproject = this.getView().byId("StProject").getSelectedKey();
 				obj.Stquotation = this.getView().byId("StQuotation").getSelectedKey();
 				var items = this.getView().byId("DcQuotation").getSelectedKeys();
@@ -2287,8 +2384,9 @@ sap.ui.define([
 		},
 		onVariantPress: function (oEvent) {
 
-			this.getView().byId("ProjectTop").setSelectedKey(oEvent.getSource().getBindingContext().getObject().Project);
-			this.getView().byId("Project").setSelectedKey(oEvent.getSource().getBindingContext().getObject().Project);
+			this.getView().byId("ProjectTop").setValue(oEvent.getSource().getBindingContext().getObject().Project);
+			this.getView().byId("Project").setValue(oEvent.getSource().getBindingContext().getObject().Project);
+			this.Project = oEvent.getSource().getBindingContext().getObject().Project;
 			this.getView().byId("StProject").setSelectedKey(oEvent.getSource().getBindingContext().getObject().Stproject);
 			this.getView().byId("StQuotation").setSelectedKey(oEvent.getSource().getBindingContext().getObject().Stquotation);
 			// this.getView().byId("OrdItemCat").setSelectedKey(oEvent.getSource().getBindingContext().getObject().Orditemcat);
@@ -2454,10 +2552,19 @@ sap.ui.define([
 		setProjectySO: function (oEvent) {
 			var oModel = new JSONModel([]);
 			this.getView().setModel(oModel, "returnModel2");
-			this.getView().byId("Project").setSelectedKey(this.getView().byId("ProjectTop").getSelectedKey());
+			// this.getView().byId("Project").setSelectedKey(this.getView().byId("ProjectTop").getSelectedKey());
+
+			this.getView().byId("Project").setValue(this.Project);
+			// this.Project = this.getView().byId("ProjectTop").getSelectedKey();
+
 			this.onFilterHeader();
 		},
 		PopulateError: function (type, err, desc) {
+
+			if(!desc){ desc = ""; }
+			if(!err){ err = ""; }
+			if(!type){ type = "Error"; }
+
 			var aMockMessages = this.getView().getModel("returnModel2").getData();
 			aMockMessages.push({
 				type: type,
@@ -2485,18 +2592,67 @@ sap.ui.define([
 			this.date = oEvent.getParameter("newValue");
 		},
 
+		onValueHelpSearchProject: function (oEvent) {
+			var sValue = oEvent.getParameter("value"),
+			aFilters = [];
+
+			aFilters = [];
+			if (sValue) {
+				aFilters = [
+					new Filter([
+						new Filter("PsPspid", function (sText) {
+							return (sText || "").toUpperCase().indexOf(sValue.toUpperCase()) > -1;
+						}),
+						new Filter("PsPost1", function (sDes) {
+							return (sDes || "").toUpperCase().indexOf(sValue.toUpperCase()) > -1;
+						})
+					], false)
+				];
+			}
+
+			oEvent.getSource().getBinding("items").filter(aFilters);
+
+		},
+
+		onValueHelpProject: function (oEvent) {
+			if(oEvent.getSource().getId().split('-').pop() === "ProjectTop"){
+				this.changeProject = true;
+			}else{
+				this.changeProject = false;
+			}
+		this.byId("selectProject").open();
+		},
+		onValueHelpCloseProject: function (oEvent) {
+			
+			var oSelectedItem = oEvent.getParameter("selectedItem");
+			oEvent.getSource().getBinding("items").filter([]);
+
+			if (!oSelectedItem) {
+				return;
+			}
+			
+			
+			var Label = oSelectedItem.getTitle() + ' - ' + oSelectedItem.getDescription();
+			this.byId("Project").setValue(Label);
+			this.byId("ProjectTop").setValue(Label);
+
+			if(this.changeProject && this.Project !== oSelectedItem.getTitle()){
+				this.Project = oSelectedItem.getTitle();
+				this.setProjectySO();
+			}
+			this.Project = oSelectedItem.getTitle();
+		},
+
 		onChangeDuration: function (oEvent) {
 			this.duration = oEvent.getParameter("newValue");
 		},
 		btnInsertDate: function (oEvent) {
 			//inserisci date forecast 
-			debugger
 			var line = oEvent.getSource().getBindingContext().getObject();
 			this.onSaveForecast(this.date, '', line)
 		},
 		btnInsertDuration: function (oEvent) {
 			//inserisci Duration forecast 
-			debugger
 			var line = oEvent.getSource().getBindingContext().getObject();
 			this.onSaveForecast('', this.duration, line)
 		},

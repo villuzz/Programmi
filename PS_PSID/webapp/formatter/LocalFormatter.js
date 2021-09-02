@@ -61,6 +61,14 @@ sap.ui.define([
 			}
 
 		},
+		DeleteZeroPerc: function (value) {
+			if (value === '0.000' || value === undefined || value === null || value === 0 || value === '0') {
+				return '';
+			} else {
+				return value + ' %';
+			}
+
+		},
 	
 		TimeSetting: function (value) {
 			if (value === 0 || value === "" || value === "000000" || value === null || value === undefined) {
@@ -79,9 +87,12 @@ sap.ui.define([
 				return "";
 			} else {
 				var d = new Date();
-				d.setMonth(value.substring(4, 6) - 1);
-				d.setDate(value.substring(6, 8));
-				d.setFullYear(value.substring(0, 4));
+				//d.setMonth(value.substring(4, 6) - 1);
+				//d.setDate(value.substring(6, 8));
+				//d.setFullYear(value.substring(0, 4));
+				d.setMonth(value.substring(2, 4) - 1);
+				d.setDate(value.substring(0, 2));
+				d.setFullYear(value.substring(4, 8));
 				var options = {
 					style: 'medium'
 				};

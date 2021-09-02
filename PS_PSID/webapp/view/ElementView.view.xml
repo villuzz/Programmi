@@ -70,8 +70,19 @@
 								<HBox height="6em" width="100%">
 									<VBox justifyContent="Center" class="sapUiTinyMarginBegin">
 										<Label text="{i18n>P_PS_PSID}"/>
-										<ComboBox id="Project" items="{/PspidSetSet}" placeholder="{i18n>P_PS_PSID}" width="15em">
-											<core:ListItem key="{PsPspid}" text="{PsPspid} - {PsPost1}" /></ComboBox>
+
+										<Input
+										id="Project"
+										placeholder="{i18n>P_PS_PSID}"
+										showValueHelp="true"
+										autocomplete="false"
+										enableSuggestionsHighlighting="false"
+										showSuggestion="false"
+										valueHelpRequest=".onValueHelpProject"
+										width="16em"
+										enabled="true">
+									</Input>
+
 									</VBox>
 								</HBox>
 							</Toolbar>
@@ -271,7 +282,7 @@
 					<HBox id="Posizione" alignItems="Center" height="80%" width="100%" renderType="Bare">
 						<Page id="Element1" showHeader="false" class="sapUiNoContentPadding" enableScrolling="true">
 							<ui:TreeTable id="tableElement" toggleOpenState="saveToggleState" selectionMode="Single" columnMove="true" visibleRowCountMode="Interactive"
-								filter="sofilter" showNoData="false" >
+								filter="sofilter" showNoData="false"  >
 								<ui:columns >
 									<ui:Column id="S0" width="17em" showSortMenuEntry="true" sortProperty="WBS_Element" filterProperty="WBS_Element" tooltip="{i18n>WBS_Element}" >
 										<Label text="{i18n>WBS_Element}" />
@@ -337,26 +348,44 @@
 											</HBox>
 										</ui:template>
 									</ui:Column>
-									<ui:Column id="B3" visible="{= ${LOCALPARAMS>/Billing} }" width="4em" tooltip="{i18n>FKSAA}" hAlign="Center" sortProperty="FKSAA" filterProperty="FKSAA">
+									<ui:Column id="B3" visible="{= ${LOCALPARAMS>/Billing} }" width="7em" hAlign="Center" sortProperty="VbelnV" filterProperty="VbelnV"  tooltip="{i18n>VbelnV}">
+										<Label text="{i18n>VbelnV}" />
+										<ui:template>
+											<HBox justifyContent="Center">
+												<Button type="Transparent" id="openFattura" text="{ parts: [{path: 'VbelnV'}], formatter: '.LocalFormatter.alphaOutput' }"
+													press="handlePressOpenFattura" />
+											</HBox>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="B4" visible="{= ${LOCALPARAMS>/Billing} }" width="7em" hAlign="Center" sortProperty="PosnrV" filterProperty="PosnrV" tooltip="{i18n>PosnrV}">
+										<Label text="{i18n>PosnrV}"  />
+										<ui:template>
+											<HBox width="100%" height="100%" justifyContent="Center">
+												<Text text="{ parts: [{path: 'PosnrV'}], formatter: '.LocalFormatter.alphaOutput' }" wrapping="true"/>
+											</HBox>
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column id="B5" visible="{= ${LOCALPARAMS>/Billing} }" width="4em" tooltip="{i18n>FKSAA}" hAlign="Center" sortProperty="FKSAA" filterProperty="FKSAA">
 										<Label text="{i18n>FKSAA_2}"   />
 										<ui:template>
 											<Text text="{FKSAA}" wrapping="true"/>
 										</ui:template>
 									</ui:Column>
-									<ui:Column id="B4" visible="{= ${LOCALPARAMS>/Billing} }" width="4em" tooltip="{i18n>BillingType}" hAlign="Center" sortProperty="BillingTypeB"
+									<ui:Column id="B6" visible="{= ${LOCALPARAMS>/Billing} }" width="4em" tooltip="{i18n>BillingType}" hAlign="Center" sortProperty="BillingTypeB"
 										filterProperty="BillingTypeB">
 										<Label text="{i18n>BillingType_2}"   />
 										<ui:template>
 											<Text text="{BillingTypeB}" wrapping="true"/>
 										</ui:template>
 									</ui:Column>
-									<ui:Column id="B5" visible="{= ${LOCALPARAMS>/Billing} }" width="8em" tooltip="{i18n>BMaterial}"  hAlign="Center" sortProperty="Material" filterProperty="Material">
+									<ui:Column id="B7" visible="{= ${LOCALPARAMS>/Billing} }" width="8em" tooltip="{i18n>BMaterial}"  hAlign="Center" sortProperty="Material" filterProperty="Material">
 										<Label text="{i18n>BMaterial_2}"  />
 										<ui:template>
 											<Text text="{Material}" wrapping="true"/>
 										</ui:template>
 									</ui:Column>
-									<ui:Column id="B6" visible="{= ${LOCALPARAMS>/Billing} }" width="10em" tooltip="{i18n>RejReason}" hAlign="Center" sortProperty="RejReason" filterProperty="RejReason">
+									<ui:Column id="B8" visible="{= ${LOCALPARAMS>/Billing} }" width="10em" tooltip="{i18n>RejReason}" hAlign="Center" sortProperty="RejReason" filterProperty="RejReason">
 										<Label text="{i18n>RejReason_2}"   />
 										<ui:template>
 											<HBox justifyContent="Center">
@@ -367,14 +396,14 @@
 											</HBox>
 										</ui:template>
 									</ui:Column>
-									<ui:Column id="B7" visible="{= ${LOCALPARAMS>/Billing} }" width="6em" tooltip="{i18n>BillingNetwr}"  hAlign="Center" sortProperty="BillingNetwr" filterProperty="BillingNetwr"
+									<ui:Column id="B9" visible="{= ${LOCALPARAMS>/Billing} }" width="6em" tooltip="{i18n>BillingNetwr}"  hAlign="Center" sortProperty="BillingNetwr" filterProperty="BillingNetwr"
 										filterType="sap.ui.model.type.Integer">
 										<Label text="{i18n>BillingNetwr_2}"  />
 										<ui:template>
 											<Text text="{ parts: [{path: 'BillingNetwr'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>
 										</ui:template>
 									</ui:Column>
-									<ui:Column id="B8" visible="{= ${LOCALPARAMS>/Billing} }" width="5em"  tooltip="{i18n>BillingWaerk}"  hAlign="Center" sortProperty="BillingWaerk" filterProperty="BillingWaerk" >
+									<ui:Column id="B10" visible="{= ${LOCALPARAMS>/Billing} }" width="5em"  tooltip="{i18n>BillingWaerk}"  hAlign="Center" sortProperty="BillingWaerk" filterProperty="BillingWaerk" >
 										<Label text="{i18n>BillingWaerk}" />
 										<ui:template>
 											<Text text="{BillingWaerk}" wrapping="true"/>
@@ -386,7 +415,7 @@
 											<HBox justifyContent="Center" >
 												<Label text="{ parts:['Estrt'], formatter: '.LocalFormatter.DateSet'}" visible="{= ${NoLogistic} !== 'X' ? true : false }"  />
 												<DatePicker id="ForeDate" placeholder="Enter Date" change="onChangeDate"
-												value="{Estrt}" valueFormat="yyyyMMdd" displayFormat="medium"
+												value="{Estrt}" valueFormat="ddMMyyyy" displayFormat="medium"
 												visible="{= ${NoLogistic} === 'X' ? true : false }" />
 												 <Button type="Accept" class="sapUiTinyMarginBegin" icon="sap-icon://accept" press="btnInsertDate" visible="{= ${NoLogistic} === 'X' ? true : false }" />
 											</HBox>
@@ -550,14 +579,14 @@
 										filterProperty="Target_Margin" filterType="sap.ui.model.type.Integer">
 										<Label text="{i18n>Target_Margin}"  />
 										<ui:template>
-											<Text text="{ parts: [{path: 'Target_Margin'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>
+											<Text text="{ parts: [{path: 'Target_Margin'}], formatter: '.LocalFormatter.DeleteZeroPerc' }" wrapping="true"/>
 										</ui:template>
 									</ui:Column>
 									<ui:Column id="Q12" visible="{= ${LOCALPARAMS>/Quotation} }" width="7em" tooltip="{i18n>Total_Margin}" hAlign="Center" sortProperty="Total_Margin"
 										filterProperty="Total_Margin" filterType="sap.ui.model.type.Integer">
 										<Label text="{i18n>Total_Margin}"  />
 										<ui:template>
-											<Text text="{ parts: [{path: 'Total_Margin'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>
+											<Text text="{ parts: [{path: 'Total_Margin'}], formatter: '.LocalFormatter.DeleteZeroPerc' }" wrapping="true"/>
 										</ui:template>
 									</ui:Column>
 									
@@ -787,13 +816,23 @@
 					<core:Fragment fragmentName="Z001.ZPS_PSID.view.fragments.AddBilling" type="XML"></core:Fragment>
 					<core:Fragment fragmentName="Z001.ZPS_PSID.view.fragments.AllPurchasing" type="XML"></core:Fragment>
 					<core:Fragment fragmentName="Z001.ZPS_PSID.view.fragments.AllLogistic" type="XML"></core:Fragment>
+					<core:Fragment fragmentName="Z001.ZPS_PSID.view.fragments.helpProject" type="XML"></core:Fragment>
 				</dependents>
 				<footer>
 					<Toolbar>
 						<Label text="{i18n>P_PS_PSID}" id="ProjectTopText" visible="false"/>
-						<ComboBox id="ProjectTop" items="{/PspidSetSet}" placeholder="{i18n>P_PS_PSID}" change="setProjectySO" visible="false" width="15em">
-							<core:ListItem key="{PsPspid}" text="{PsPspid} - {PsPost1}"/></ComboBox>
+						<!--<ComboBox id="ProjectTop" items="{/PspidSetSet}" placeholder="{i18n>P_PS_PSID}" change="setProjectySO" visible="false" width="15em">
+							<core:ListItem key="{PsPspid}" text="{PsPspid} - {PsPost1}"/></ComboBox>-->
 							
+							<Input
+							id="ProjectTop"
+							visible="false" width="15em"
+							placeholder="{i18n>P_PS_PSID}"
+							showValueHelp="true"
+							valueHelpRequest=".onValueHelpProject"
+							enabled="true" />
+							
+
 						<ToolbarSpacer/>
 						<Button type="Reject" icon="sap-icon://message-popup" press="onInfoError"/>
 						<Button type="Transparent" icon="sap-icon://download" text="{i18n>Export}" id="Export" press="onDataExport"/>
