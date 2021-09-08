@@ -1,0 +1,129 @@
+{
+	"_version": "1.9.0",
+	"sap.app": {
+		"id": "epta.ps.ZPS_WEBAPP",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"applicationVersion": {
+			"version": "2.0.0"
+		},
+		"dataSources": {
+			"ZPS_WEBAPP_SRV": {
+				"uri": "/sap/opu/odata/sap/ZPS_WEBAPP_SRV/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/ZPS_WEBAPP_SRV/metadata.xml"
+				}
+			}
+		},
+		"sourceTemplate": {
+			"id": "servicecatalog.connectivityComponent",
+			"version": "0.0.0"
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "sap-icon://task",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "epta.ps.views.app.App",
+			"type": "XML",
+			"async": true,
+			"id": "app",
+			"clearTarget": "true"
+		},
+		"dependencies": {
+			"minUI5Version": "1.60.0",
+			"libs": {
+				"sap.f": {},
+				"sap.m": {},
+				"sap.ui.core": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "epta.ps.i18n.i18n"
+				}
+			},
+			"": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneTime",
+					"defaultCountMode": "Request"
+				},
+				"dataSource": "ZPS_WEBAPP_SRV",
+				"preload": false
+			}
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "epta.ps.views",
+				"controlId": "app",
+				"controlAggregation": "pages",
+				"bypassed": {
+					"target": [
+						"notFound"
+					]
+				},
+				"async": true
+			},
+			"routes": [
+				{
+					"pattern": "",
+					"name": "search",
+					"target": [
+						"search"
+					]
+				},
+				{
+					"pattern": "project/{projectId}",
+					"name": "project",
+					"target": [
+						"project"
+					]
+				}
+			],
+			"targets": {
+				"search": {
+					"viewName": "search.Search",
+					"viewId": "search",
+					"viewLevel": 1
+				},
+				"project": {
+					"viewName": "project.Project",
+					"viewId": "project",
+					"viewLevel": 2
+				}
+			}
+		}
+	},
+	"sap.platform.abap": {
+		"uri": "/sap/bc/ui5_ui5/sap/zps_webapp/webapp",
+		"_version": "1.1.0"
+	}
+}

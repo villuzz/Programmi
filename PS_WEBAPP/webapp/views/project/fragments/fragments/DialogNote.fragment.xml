@@ -1,0 +1,19 @@
+<core:FragmentDefinition
+  xmlns="sap.m"
+  xmlns:e="epta.ps.ui5.m"
+  xmlns:core="sap.ui.core">
+	
+	<e:Dialog
+		title="{i18n>i18n>prjNote}"
+		showPropagateButton="false"
+		save="onNoteDialogSave">
+		
+		<e:content>
+			
+			<TextArea value="{ProjectHeader>/Longtext}" rows="20" cols="70"/>
+			
+		</e:content>
+		
+	</e:Dialog>
+  
+</core:FragmentDefinition>

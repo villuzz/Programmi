@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Web App Installation</title>
+
+
+	<script src="resources/sap/ushell_abap/bootstrap/abap.js"></script>
+
+	<!-- Bootstrapping UI5 -->
+	<!-- src="resources/sap-ui-core.js" -->
+	<!-- src="https://sapui5.hana.ondemand.com/1.60.13/resources/sap-ui-core.js" -->
+	<script id="sap-ui-bootstrap"
+			src="https://sapui5.hana.ondemand.com/1.60.13/resources/sap-ui-core.js"
+			data-sap-ui-libs="sap.m, sap.f, sap.ui.layout, sap.gantt, sap.ushell"
+			data-sap-ui-theme="sap_belize"
+			data-sap-ui-compatVersion="edge"
+			data-sap-ui-preload="async"
+			data-sap-ui-xx-bindingSyntax="complex"
+			data-sap-ui-resourceroots='{"epta.ps": "."}'
+			data-sap-ui-frameOptions="trusted"
+			data-sap-ui-appCachebuster="./">
+	</script>
+	
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+	<script>
+		sap.ui.getCore().attachInit(function () {
+			sap.ui.require([
+				"sap/m/Shell",
+				"sap/ui/core/ComponentContainer"
+			], function (Shell, ComponentContainer) {
+				// initialize the UI component
+				new Shell({
+					app: new ComponentContainer({
+						height: "100%",
+						name: "epta.ps",
+						settings: {
+							id: "ZPS_WEBAPP"
+						}
+					})
+				}).placeAt("content");
+			});
+		});
+	</script>
+
+</head>
+
+<!-- UI Content -->
+<body class="sapUiBody" id="content">
+</body>
+</html>

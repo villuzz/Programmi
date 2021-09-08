@@ -1,0 +1,158 @@
+<mvc:View
+	controllerName="epta.ps.views.project.fragments.purchaseRequisition.PurchaseRequisition"
+	xmlns:l="sap.ui.layout"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:e="epta.ps.ui5.m"
+	height="100%">
+
+	<e:Table
+		id="prqTable"
+		mode="None"
+		fixedLayout="true"
+		growing="true"
+		growingThreshold="1000"
+		growingScrollToLoad="true"
+		sticky="ColumnHeaders"
+		items="{ path: 'PurReq>/' }">
+        
+		<e:columns>
+			
+            <!-- col1 -->
+			<Column width="1rem">
+				<Text text="" />
+			</Column>
+			
+            <!-- col2 -->
+			<Column width="7rem">
+				<Text text="{i18n>tblWBE}" />
+			</Column>
+			
+			<!-- col3 -->
+			<Column width="12rem">
+				<Text text="{i18n>tblWBEDescription}" />
+			</Column>
+			
+            <!-- col4 -->
+			<Column width="7rem">
+				<Text text="{i18n>tblCreationDate}" />
+			</Column>
+			
+            <!-- col5 -->
+			<Column width="6rem">
+				<Text text="{i18n>tblCreatedBy}" />
+			</Column>
+			
+			<!-- col6 -->
+			<Column width="7rem">
+				<Text text="{i18n>tblPurchaseRequisition}" />
+			</Column>
+			
+            <!-- col7 -->
+			<Column width="5rem" hAlign="End">
+				<Text text="{i18n>tblPurchaseRequisitionItem}" />
+			</Column>
+			
+			<!-- col8 -->
+			<Column width="4rem" hAlign="End">
+				<Text text="{i18n>tblQuantity}" />
+			</Column>
+			
+			<!-- col9 -->
+			<Column width="3rem">
+				<Text text="{i18n>tblUnitOfMeasure}" />
+			</Column>
+			
+            <!-- col10 -->
+			<Column width="5rem" hAlign="End">
+				<Text text="{i18n>tblValue}" />
+			</Column>
+			
+            <!-- col11 -->
+			<Column width="4rem">
+				<Text text="{i18n>tblCurrency}" />
+			</Column>
+			
+			<!-- col12 -->
+			<Column width="10rem">
+				<Text text="{i18n>tblVendorName}" />
+			</Column>
+			
+			<!-- col12 -->
+			<Column width="8rem">
+				<Text text="{i18n>tblStatus}" />
+			</Column>
+			
+			<!-- col13 -->
+			<Column width="3rem">
+				<Text text="" />
+			</Column>
+			
+		</e:columns>
+		
+		<e:items>
+			<ColumnListItem>
+				<cells>
+                    
+                    <!-- col1 -->
+					<Text text="{PurReq>Wbselementhierarchylevel}"/>
+					
+					<!-- col2 -->
+					<Text text="{PurReq>Wbselement}"/>
+					
+					<!-- col3 -->
+					<Text text="{PurReq>Wbsdescription}"/>
+					
+					<!-- col4 -->
+					<Text text="{
+						path: 'PurReq>Creationdate',
+						type: 'sap.ui.model.type.Date',
+						formatOptions: {
+							pattern: 'dd/MM/yyyy'
+						}
+					}" />
+					
+					<!-- col5 -->
+					<Text text="{PurReq>Createdby}"/>
+					
+					<!-- col6 -->
+					<Text text="{PurReq>Purchaserequisition}"/>
+					
+					<!-- col7 -->
+					<Text text="{PurReq>Purchaserequisitionitem}"/>
+					
+					<!-- col8 -->
+					<Text text="{PurReq>Quantity}"/>
+					
+					<!-- col9 -->
+					<Text text="{PurReq>Unit}"/>
+					
+					<!-- col10 -->
+					<Text text="{
+						path: 'PurReq>NetValue',
+						formatter: '.formatter.toFixed2'
+					}"/>
+					
+					<!-- col11 -->
+					<Text text="{PurReq>Currency}"/>
+					
+					<!-- col12 -->
+					<Text text="{PurReq>VendorName}"/>
+					
+					<!-- col13 -->
+					<Text text="{PurReq>ProcStatTxt}"/>
+					
+					<!-- col14 -->
+					<Button
+						icon="sap-icon://add"
+						type="Transparent"
+						press="handleAddRDA"/>
+					
+				</cells>
+			</ColumnListItem>
+		</e:items>
+        
+    
+    </e:Table>
+
+</mvc:View>

@@ -1,0 +1,19 @@
+<core:FragmentDefinition
+  xmlns="sap.m"
+  xmlns:e="epta.ps.ui5.m"
+  xmlns:u="sap.ui.unified"
+  xmlns:core="sap.ui.core">
+	
+	<e:Dialog
+		title="{i18n>prpDialogBasicStart}"
+		showPropagateButton="false"
+		save="onDialogDateBasicStartSave">
+		<e:content>
+			<u:Calendar
+				select="onSelectDate"
+				intervalSelection="false" />
+		</e:content>	
+		
+	</e:Dialog>
+  
+</core:FragmentDefinition>

@@ -1,0 +1,97 @@
+<mvc:View
+	controllerName="epta.ps.views.project.fragments.advancePostponement.AdvancePostponement"
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:st="sap.ui.comp.smarttable"
+	xmlns:e="epta.ps.ui5.m"
+	height="100%">
+	
+	<e:Table
+		id="appTable"
+		mode="None"
+		fixedLayout="true"
+		growing="true"
+		growingThreshold="1000"
+		growingScrollToLoad="true"
+		sticky="ColumnHeaders"
+		items="{ path: 'WbselementData>/' }">
+        
+		<e:columns>
+			
+			<!-- col1 -->
+			<Column width="1rem">
+				<Text text="" />
+			</Column>
+			
+            <!-- col2 -->
+			<Column width="10rem">
+				<Text text="{i18n>tblWBE}" />
+			</Column>
+			
+			<!-- col3 -->
+			<Column>
+				<Text text="{i18n>tblWBEDescription}" />
+			</Column>
+			
+			<!-- col4 -->
+			<Column>
+				<Text text="{i18n>tblStatus}" />
+			</Column>
+			
+			<!-- col5 -->
+			<Column width="9rem">
+				<Text text="{i18n>tblDate}"/>
+			</Column>
+
+		</e:columns>
+		
+		<e:items>
+			<ColumnListItem>
+				<cells>
+                    
+                    <!-- col1 -->
+					<Text text="{WbselementData>Wbselementhierarchylevel}"/>
+					
+					<!-- col2 -->
+					<Text text="{WbselementData>Wbselement}"/>
+					
+					<!-- col3 -->
+					<Text text="{WbselementData>Wbsdescription}"/>
+					
+					<!-- col4 -->
+					<Text text="{WbselementData>UserStatus/StatusText}"/>
+					
+					<!-- col5 -->
+					<e:Input
+						type="Text"
+						value="{
+							path: 'WbselementData>Freedefineddate1',
+							type: 'sap.ui.model.type.Date',
+							formatOptions: {
+								pattern: 'dd/MM/yyyy'
+							}
+						}"
+						placeholder=""
+						valueHeplIcon="calendar"
+						showValueHelp="true"
+						valueHelpOnly="true"
+						valueHelpRequest="handleValueHelpDate"
+						enabled="{
+							parts : [
+								'WbselementData>Wbselement'
+							],
+							formatter: '._evaluateDateInput'
+						}"
+						class="sapUiSizeCompact eptaID"
+					/>
+					<!-- {WbselementData>isAPEnabled}" -->
+				</cells>
+			</ColumnListItem>
+		</e:items>
+        
+    
+    </e:Table>
+
+</mvc:View>

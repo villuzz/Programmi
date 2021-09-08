@@ -1,0 +1,60 @@
+<core:FragmentDefinition
+  xmlns="sap.m"
+  xmlns:e="epta.ps.ui5.m"
+  xmlns:core="sap.ui.core">
+	
+	<e:Dialog
+		title="{i18n>rsmDialogWorkCenter}"
+		save="onDialogSaveWorkCenter"
+		showClearButton="true"
+		clear="onDialogClear"
+		contentHeight="85%">
+		
+		<e:subHeader>
+			<Toolbar>
+				<SearchField liveChange="handleSearchWorkCenter"/>
+			</Toolbar>
+		</e:subHeader>
+		
+		<e:content>
+			<e:Table
+				items="{ path: 'WorkCenter>/' }"
+				mode="SingleSelectMaster"
+				sticky="ColumnHeaders"
+				selectionChange="onSelectionChange">
+				
+				<e:columns>
+					
+					<!-- col1 -->
+					<Column>
+						<Text text="{i18n>rsmWorkCenterId}" />
+					</Column>
+					
+					<!-- col2 -->
+					<Column>
+						<Text text="{i18n>rsmWorkCenterDescription}" />
+					</Column>
+					
+				</e:columns>
+				
+				<e:items>
+					<ColumnListItem>
+						<cells>
+							
+							<!-- col1 -->
+							<Text text="{WorkCenter>WorkCenter}"/>
+							
+							<!-- col2 -->
+							<Text text="{WorkCenter>Description}"/>
+						
+						</cells>
+					</ColumnListItem>
+				</e:items>
+				
+			</e:Table>
+			
+		</e:content>
+		
+	</e:Dialog>
+  
+</core:FragmentDefinition>

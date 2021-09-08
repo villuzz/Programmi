@@ -1,0 +1,111 @@
+<mvc:View
+	controllerName="epta.ps.views.search.fragments.gantt.Gantt"
+	xmlns="epta.ps.ui5.gantt"
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:table="sap.ui.table"
+	xmlns:e="epta.ps.ui5.m"
+	xmlns:m="sap.m"
+	height="100%">
+
+	<GanttChartContainer id="gntGanttChartContainer">
+
+		<ganttCharts>
+			<GanttChartWithTable
+				id="gntGanttChartTable"
+				selectionMode="Single"
+				shapeDragEnd="handleShapeDragEnd"
+				rowSelectionChange="onRowSelectionChange">
+				<columns>
+					
+					<!-- col1 -->
+					<table:Column label="{i18n>tblWBE}" width="12rem">
+						<table:template>
+							<e:Input
+								type="Text"
+								value="{table/Wbselement}"
+								valueHeplIcon="document-text"
+								showValueHelp="true"
+								valueHelpOnly="true"
+								valueHelpRequest="onNoteModify"
+								visible="{= ${table/Wbselement} !== undefined }"
+								class="sapUiSizeCompact eptaID eptaGanttNote" />
+						</table:template>
+					</table:Column>
+					
+					<!-- col2 -->			
+					<table:Column label="{i18n>tblWBEDescription}" width="16rem">
+						<table:template>
+							<m:Label text="{table/Wbsdescription}"/>
+						</table:template>
+					</table:Column>
+					
+					<!-- col3 -->		
+<!--
+					<table:Column label="{i18n>tblSoldTo}" width="8rem">
+						<table:template>
+							<m:Label text="{SoldTo}"/>
+						</table:template>
+					</table:Column>
+-->
+
+					<!-- col4 -->
+					<table:Column label="{i18n>tblWbsForecastStartDate}" width="6rem">
+						<table:template>
+							<m:Text text="{
+								path: 'table/Forecastedstartdate',
+								type: 'sap.ui.model.type.Date',
+								formatOptions: {
+									pattern: 'dd/MM/yyyy'
+								}
+							}"/>
+						</table:template>
+					</table:Column>
+					
+					<!-- col5 -->			
+					<table:Column label="{i18n>tblWbsForecastFinishDate}" width="6rem">
+						<table:template>
+							<m:Text text="{
+								path: 'table/Forecastedenddate',
+								type: 'sap.ui.model.type.Date',
+								formatOptions: {
+									pattern: 'dd/MM/yyyy'
+								}
+							}"/>
+						</table:template>
+					</table:Column>
+					
+					<!-- col6 -->			
+					<table:Column label="{i18n>tblWbsBasicStartDate}" width="6rem">
+						<table:template>
+							<m:Text text="{
+								path: 'table/Basicstartdate',
+								type: 'sap.ui.model.type.Date',
+								formatOptions: {
+									pattern: 'dd/MM/yyyy'
+								}
+							}"/>
+						</table:template>
+					</table:Column>
+					
+					<!-- col7 -->			
+					<table:Column label="{i18n>tblWbsBasicFinishDate}" width="6rem">
+						<table:template>
+							<m:Text text="{
+								path: 'table/Basicenddate',
+								type: 'sap.ui.model.type.Date',
+								formatOptions: {
+									pattern: 'dd/MM/yyyy'
+								}
+							}"/>
+						</table:template>
+					</table:Column>
+					
+				</columns>
+			</GanttChartWithTable>
+		</ganttCharts>
+
+	</GanttChartContainer>
+
+</mvc:View>

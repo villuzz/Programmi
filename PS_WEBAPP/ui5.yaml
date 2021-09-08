@@ -1,0 +1,30 @@
+specVersion: "1.0"
+metadata:
+  name: epta.ps.ZPS_WEBAPP
+type: application
+ui5Theme: sap_fiori_3
+server:
+  customMiddleware:
+    - name: fiori-tools-proxy
+      afterMiddleware: compression
+      configuration:
+        ignoreCertError: false
+        backend:
+          - path: /sap
+            destination: DEVEPTA_2
+            url: http://sapdev.epta.internal:8011
+          - path: /sap/opu/odata
+            pathPrefix: /sap/opu/odata
+            url: http://sapdev.epta.internal:8011
+            destination: DEVEPTA_2
+        ui5:
+          path:
+            - /resources
+            - /test-resources
+          url: https://ui5.sap.com
+          version: ""
+    - name: fiori-tools-appreload
+      afterMiddleware: compression
+      configuration:
+        port: 35729
+        path: webapp

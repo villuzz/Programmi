@@ -1,0 +1,66 @@
+<core:FragmentDefinition
+  xmlns="sap.m"
+  xmlns:e="epta.ps.ui5.m"
+  xmlns:core="sap.ui.core">
+	
+	<e:Dialog
+		title="{i18n>aimDialogResponsible}"
+		contentHeight="85%"
+		save="onDialogSave"
+		showClearButton="true"
+		clear="onDialogClear">
+		
+		<e:subHeader>
+			<Toolbar>
+				<SearchField liveChange="handleLiveSearch"/>
+			</Toolbar>
+		</e:subHeader>
+		
+		<e:content>
+			
+			<e:Table
+				items="{
+					path: 'InstallationManagerFilter>/',
+					sorter : {
+						path : 'ID',
+						descending : false
+					}
+				}"
+				sticky="ColumnHeaders"
+				mode="SingleSelectMaster" 
+				selectionChange="onSelectionChange">
+				
+				<e:columns>
+				
+					<!-- col1 -->
+					<Column width="8rem">
+						<Text text="{i18n>aimResponsibleNo}" />
+					</Column>
+					
+					<!-- col2 -->
+					<Column>
+						<Text text="{i18n>aimResponsibleName}" />
+					</Column>
+					
+				</e:columns>
+				
+				<e:items>
+					<ColumnListItem>
+						<cells>
+							
+							<!-- col1 -->
+							<Text text="{InstallationManagerFilter>ID}"/>
+							
+							<!-- col2 -->
+							<Text text="{InstallationManagerFilter>Name}"/>
+						
+						</cells>
+					</ColumnListItem>
+				</e:items>
+			</e:Table>
+			
+		</e:content>
+		
+	</e:Dialog>
+  
+</core:FragmentDefinition>
