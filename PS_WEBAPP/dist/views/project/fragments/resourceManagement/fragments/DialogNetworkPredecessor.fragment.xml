@@ -1,0 +1,61 @@
+<core:FragmentDefinition
+  xmlns="sap.m"
+  xmlns:e="epta.ps.ui5.m"
+  xmlns:core="sap.ui.core">
+	
+	<e:Dialog
+		title="{i18n>rsmDialogNetworkPredecessor}"
+		showPropagateButton="false"
+		showSaveButton="true"
+		showClearButton="true"
+		save="onDialogSaveNetworkPredecessor"
+		clear="onDialogClear"
+		contentHeight="85%">
+		
+		<e:subHeader>
+			<Toolbar>
+				<SearchField liveChange="handleSearchNetworkPredecessor"/>
+			</Toolbar>
+		</e:subHeader>
+		
+		<e:content>
+			
+			<e:Table
+				items="{ path: '_networkPredecessors>/' }"
+				mode="SingleSelectMaster" 
+				sticky="ColumnHeaders"
+				selectionChange="onSelectionChange">
+				
+				<e:columns>
+					
+					<!-- col1 -->
+					<Column width="8rem">
+						<Text text="{i18n>rsmNetwork}" />
+					</Column>
+					<!-- col2 -->
+					<Column>
+						<Text text="{i18n>rsmNetworkDescription}" />
+					</Column>
+					
+				</e:columns>
+				
+				<e:items>
+					<ColumnListItem>
+						<cells>
+							
+							<!-- col1 -->
+							<Text text="{_networkPredecessors>Network}"/>
+							<!-- col2 -->
+							<Text text="{_networkPredecessors>Description}"/>
+						
+						</cells>
+					</ColumnListItem>
+				</e:items>
+				
+			</e:Table>
+			
+		</e:content>
+		
+	</e:Dialog>
+  
+</core:FragmentDefinition>

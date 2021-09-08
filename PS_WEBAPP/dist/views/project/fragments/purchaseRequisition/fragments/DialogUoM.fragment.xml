@@ -1,0 +1,63 @@
+<core:FragmentDefinition
+  xmlns="sap.m"
+  xmlns:e="epta.ps.ui5.m"
+  xmlns:core="sap.ui.core">
+	
+	<e:Dialog
+		title="{i18n>rsmDialogUoM}"
+		showPropagateButton="false"
+		showSaveButton="true"
+		contentHeight="85%">
+		
+		<e:subHeader>
+			<Toolbar>
+				<SearchField liveChange="handleSearchUoM"/>
+			</Toolbar>
+		</e:subHeader>
+		
+		<e:content>
+			
+			<e:Table
+				items="{
+					path: 'SearchUom>/',
+					sorter: { path: 'Msehl' }
+				}"
+				mode="SingleSelectMaster" 
+				sticky="ColumnHeaders"
+				selectionChange="onSelectionChangeUoM">
+				
+				<e:columns>
+				
+					<!-- col1 -->
+					<Column width="8rem">
+						<Text text="{i18n>tblKey}" />
+					</Column>
+					
+					<!-- col2 -->
+					<Column>
+						<Text text="{i18n>tblValue}" />
+					</Column>
+					
+				</e:columns>
+				
+				<e:items>
+					<ColumnListItem>
+						<cells>
+							
+							<!-- col1 -->
+							<Text text="{SearchUom>Msehi}"/>
+							
+							<!-- col2 -->
+							<Text text="{SearchUom>Msehl}"/>
+						
+						</cells>
+					</ColumnListItem>
+				</e:items>
+				
+			</e:Table>
+			
+		</e:content>
+		
+	</e:Dialog>
+  
+</core:FragmentDefinition>

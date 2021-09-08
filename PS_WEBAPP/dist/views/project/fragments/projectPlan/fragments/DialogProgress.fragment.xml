@@ -1,0 +1,28 @@
+<core:FragmentDefinition
+  xmlns="sap.m"
+  xmlns:e="epta.ps.ui5.m"
+  xmlns:core="sap.ui.core">
+	
+	<e:Dialog
+		title="{i18n>prgPercentage}"
+		showPropagateButton="false"
+		save="onDialogProgressSave"
+		class="sapUiContentPadding eptaMDialogContCenter">
+		
+		<e:content>
+			
+			<Text text="{_dprog>/progress} %" 
+				  class="sapUiSmallMarginBottom eptaTXTPoC" />
+				  
+			<Slider value="{_dprog>/progress}"
+				min="0" 
+				max="100"
+				showAdvancedTooltip="false"
+				showHandleTooltip="false"
+				class="" />
+			
+		</e:content>
+		
+	</e:Dialog>
+  
+</core:FragmentDefinition>

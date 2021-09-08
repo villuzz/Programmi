@@ -1,0 +1,1 @@
+sap.ui.define(["epta/ps/ui5/controller/BaseController"],function(e){"use strict";return e.extend("epta.ps.views.app.App",{})});

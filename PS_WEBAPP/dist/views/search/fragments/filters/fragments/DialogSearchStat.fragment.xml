@@ -1,0 +1,65 @@
+<core:FragmentDefinition
+  xmlns="sap.m"
+  xmlns:e="epta.ps.ui5.m"
+  xmlns:core="sap.ui.core">
+	
+	<e:Dialog
+		title="{i18n>fltProjectStatus}"
+		showPropagateButton="false"
+		showSaveButton="false"
+		contentHeight="85%">
+		
+		<e:subHeader>
+			<Toolbar>
+				<SearchField liveChange="handleSearchSearchStat"/>
+			</Toolbar>
+		</e:subHeader>
+		
+		<e:content>
+			
+			<e:Table
+				items="{
+					path: 'SearchStat>/',
+					sorter : {
+						path : 'Status',
+						descending : false
+					}
+				}"
+				sticky="ColumnHeaders"
+				mode="SingleSelectMaster" 
+				selectionChange="handleConfirmSearchStat">
+				
+				<e:columns>
+				
+					<!-- col1 -->
+					<Column width="14rem">
+						<Text text="{i18n>tblKey}" />
+					</Column>
+					
+					<!-- col2 -->
+					<Column>
+						<Text text="{i18n>tblDescription}" />
+					</Column>
+					
+				</e:columns>
+				
+				<e:items>
+					<ColumnListItem>
+						<cells>
+							
+							<!-- col1 -->
+							<Text text="{SearchStat>Statusproject}"/>
+							
+							<!-- col2 -->
+							<Text text="{SearchStat>Descrstatus}"/>
+						
+						</cells>
+					</ColumnListItem>
+				</e:items>
+			</e:Table>
+			
+		</e:content>
+		
+	</e:Dialog>
+  
+</core:FragmentDefinition>

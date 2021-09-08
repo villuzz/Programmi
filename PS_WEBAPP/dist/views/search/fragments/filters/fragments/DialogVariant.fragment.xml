@@ -1,0 +1,21 @@
+<core:FragmentDefinition
+  xmlns="sap.m"
+  xmlns:e="epta.ps.ui5.m"
+  xmlns:core="sap.ui.core">
+	
+	<e:Dialog
+		title="{i18n>fltDialogVariant}"
+		showPropagateButton="false"
+		save="onSaveVariant">
+		
+		<e:content>
+			
+			<Input
+				type="Text"
+				placeholder="{i18n>fltTextArea}" />
+			
+		</e:content>
+		
+	</e:Dialog>
+  
+</core:FragmentDefinition>

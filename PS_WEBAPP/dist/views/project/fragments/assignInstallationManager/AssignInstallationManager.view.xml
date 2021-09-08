@@ -1,0 +1,86 @@
+<mvc:View
+	controllerName="epta.ps.views.project.fragments.assignInstallationManager.AssignInstallationManager"
+	xmlns:l="sap.ui.layout"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:e="epta.ps.ui5.m"
+	height="100%">
+
+	<e:Table
+		id="aimTable"
+		mode="None"
+		fixedLayout="true"
+		growing="true"
+		growingThreshold="1000"
+		growingScrollToLoad="true"
+		sticky="ColumnHeaders"
+		items="{ 
+			path: 'WbselementData>/' 
+		}">
+        
+		<e:columns>
+			
+            <!-- col1 -->
+			<Column width="1rem">
+				<Text text="" />
+			</Column>
+			
+            <!-- col2 -->
+			<Column width="10rem">
+				<Text text="{i18n>tblWBE}" />
+			</Column>
+			
+			<!-- col3 -->
+			<Column>
+				<Text text="{i18n>tblWBEDescription}" />
+			</Column>
+			
+            <!-- col4 -->
+			<Column width="8rem">
+				<Text text="{i18n>tblResponsibleNo}" />
+			</Column>
+			
+            <!-- col5 -->
+			<Column>
+				<Text text="{i18n>tblResponsibleName}" />
+			</Column>
+
+		</e:columns>
+		
+		<e:items>
+			<ColumnListItem>
+				<cells>
+                    <!-- col1 -->
+					<Text text="{WbselementData>Wbselementhierarchylevel}"/>
+					
+					<!-- col2 -->
+					<Text text="{WbselementData>Wbselement}"/>
+					
+					<!-- col3 -->
+					<Text text="{WbselementData>Wbsdescription}"/>
+					
+					<!-- col4 -->
+					<e:Input
+						type="Text"
+						value="{WbselementData>Responsibleperson}"
+						placeholder=""
+						showValueHelp="true"
+						valueHelpOnly="true"
+						valueHelpRequest="handleValueHelpResponsible"
+						enabled="{
+							path: 'WbselementData>Wbselementhierarchylevel',
+							formatter: '._isEditable'
+						}"
+						class="sapUiSizeCompact eptaID"/>
+					
+					<!-- col5 -->
+					<Text text="{WbselementData>Responsiblepersonname}"/>
+					
+				</cells>
+			</ColumnListItem>
+		</e:items>
+        
+    
+    </e:Table>
+
+</mvc:View>

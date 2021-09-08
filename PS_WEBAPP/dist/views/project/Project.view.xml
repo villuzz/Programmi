@@ -1,0 +1,207 @@
+<mvc:View
+	height="100%"
+	controllerName="epta.ps.views.project.Project"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m">
+	<Page
+		showFooter="{
+			path: 'layout>/footer/enabled',
+    		formatter: '.formatter.isFooterVisible'
+		}">
+		<customHeader>
+			<Toolbar>
+				<Button type="Default" icon="sap-icon://search" press="onNavBack" />
+				<ToolbarSpacer/>
+				<Image width="420px" src="images/logoEPTA.png"></Image>
+				<ToolbarSpacer/>
+			</Toolbar>
+		</customHeader>
+		
+		<content>
+			
+			<l:FixFlex class="fixFlexVertical">
+				<l:fixContent>
+					
+					<Panel id="prjPanel" expandable="true" expanded="true" width="auto" class="eptaPanel eptaPanel125">
+						<headerToolbar>
+							<Toolbar height="3rem" style="Clear">
+								<ObjectStatus
+									width="5.5rem"
+									active="true"
+									press="onShowProgressInfo"
+									text="{
+										path: 'ProjectHeader>/Ontime',
+										formatter: '.formatter.projectStatusText'
+									}"
+									state="{
+										path: 'ProjectHeader>/Ontime',
+										formatter: '.formatter.projectStatus'
+									}" />
+								<Text text="{ProjectHeader>/Wbselement} - {ProjectHeader>/Wbsdescription}"></Text>
+							</Toolbar>
+						</headerToolbar>
+						
+						<content>
+							<FlexBox>
+								<items>
+									<ObjectHeader class="eptaMOH">
+										<attributes>
+											<ObjectAttribute title="{i18n>prjAddress}" text="{ProjectHeader>/Address/Adresse}" />
+											<ObjectAttribute title="{i18n>prjSoldTo}" text="{ProjectHeader>/Soldto/NameList}" />
+											<ObjectAttribute title="{i18n>prjProjectManager}" text="{ProjectHeader>/Responsibleperson} - {ProjectHeader>/Responsiblepersonname}" />
+											<ObjectAttribute title="{i18n>prjInstallationAreaManager}" text="{ProjectHeader>/Iammperson} - {ProjectHeader>/Iammpersonname}" />
+											<ObjectAttribute title="{i18n>tblPoc}" text="{ProjectHeader>/Percentheader}%" />
+										</attributes>
+									</ObjectHeader>
+								</items>
+								<items>
+									<Panel expandable="false" expanded="true" width="555px" class="eptaPanel eptaPanel0875 eptaPanelMarginTop eptaPNLMargin">
+										<headerToolbar>
+											<Toolbar height="3rem" style="Clear">
+												<Text text="{i18n>prjNote}" />
+												<ToolbarSpacer />
+												<Button icon="sap-icon://edit" press="onNoteModify"></Button>
+											</Toolbar>
+										</headerToolbar>
+										<content>
+											<TextArea value="{ProjectHeader>/Longtext}" rows="3" class="eptaTXTANote eptaTXTArea" enabled="false"/>
+										</content>
+									</Panel>
+									
+								</items>
+							</FlexBox>
+						</content>
+					</Panel>
+				
+				</l:fixContent>
+				<l:flexContent>
+					
+					<IconTabBar
+						id="prjTabBar"
+						expanded="false"
+						expandable="true"
+						select="onIconTabItemSelect"
+						stretchContentHeight="true"
+						class="eptaITB">
+						<items>
+							
+							<!-- Project Plan -->
+							<IconTabFilter icon="sap-icon://gantt-bars" design="Horizontal" text="PROJECT PLAN">
+								<mvc:XMLView viewName="epta.ps.views.project.fragments.projectPlan.ProjectPlan"/>
+							</IconTabFilter>
+							
+							<IconTabSeparator/>
+							
+							<!-- Assign Installation Manager -->
+							<IconTabFilter icon="sap-icon://eam-work-order" design="Horizontal" text="ASSIGN INSTALLATION MANAGER">
+								<ScrollContainer
+									height="100%"
+									width="100%"
+									horizontal="false"
+									vertical="true"
+									focusable="true">
+									<mvc:XMLView viewName="epta.ps.views.project.fragments.assignInstallationManager.AssignInstallationManager"/>
+								</ScrollContainer>
+							</IconTabFilter>
+							
+							<IconTabSeparator/>
+							
+							<!-- Advance/Postponement -->
+							<IconTabFilter icon="sap-icon://date-time" design="Horizontal" text="ADVANCE/ POSTPONEMENT">
+								<ScrollContainer
+									height="100%"
+									width="100%"
+									horizontal="false"
+									vertical="true"
+									focusable="true">
+									<mvc:XMLView viewName="epta.ps.views.project.fragments.advancePostponement.AdvancePostponement"/>
+								</ScrollContainer>
+							</IconTabFilter>
+							
+							<IconTabSeparator/>
+							
+							<!-- Resource Management -->
+							<IconTabFilter icon="sap-icon://collaborate" design="Horizontal" text="RESOURCE MANAGEMENT">
+								<ScrollContainer
+									height="100%"
+									width="100%"
+									horizontal="false"
+									vertical="true"
+									focusable="true">
+									<mvc:XMLView viewName="epta.ps.views.project.fragments.resourceManagement.ResourceManagement"/>
+								</ScrollContainer>
+							</IconTabFilter>
+							
+							<IconTabSeparator/>
+							
+							<!-- Purchase Requisition -->
+							<IconTabFilter icon="sap-icon://sales-order-item" design="Horizontal" text="PURCHASE REQUISITION">
+								<ScrollContainer
+									height="100%"
+									width="100%"
+									horizontal="true"
+									vertical="true"
+									focusable="true">
+									<mvc:XMLView viewName="epta.ps.views.project.fragments.purchaseRequisition.PurchaseRequisition"/>
+								</ScrollContainer>
+							</IconTabFilter>
+							
+							<IconTabSeparator/>
+							
+							<!-- Progress -->
+							<IconTabFilter icon="sap-icon://line-chart-time-axis" design="Horizontal" text="PROGRESS">
+								<ScrollContainer
+									height="100%"
+									width="100%"
+									horizontal="false"
+									vertical="true"
+									focusable="true">
+									<mvc:XMLView viewName="epta.ps.views.project.fragments.progress.Progress"/>
+								</ScrollContainer>
+							</IconTabFilter>
+							
+						</items>
+					</IconTabBar>
+					
+				</l:flexContent>
+			</l:FixFlex>
+			
+		</content>
+		<!-- Footer -->
+		<footer>
+			<OverflowToolbar>
+				<Button
+					icon="sap-icon://message-popup"
+					text="{layout>/footer/messages}"
+					type="Transparent"
+					press="handleMessagePopoverPress"/>
+				<ToolbarSpacer/>
+				<Button
+					text="{i18n>prjCancel}"
+					type="Transparent"
+					class="eptaBtnHeader"
+					press="onBatchCancel"
+					enabled="{layout>/cancel}"
+					visible="{layout>/footer/cancel}" />
+				<Button
+					id="prjSave"
+					text ="{i18n>prjSave}"
+					type="Transparent"
+					class="eptaBtnHeader"
+					press="onBatchSave"
+					enabled="{layout>/save}"
+					visible="{layout>/footer/save}" />
+				<Button
+					id="prjFilter"
+					text ="{i18n>prjFilter}"
+					type="Transparent"
+					class="eptaBtnHeader"
+					press="onTableFilter"
+					visible="{layout>/footer/filter}" />
+            </OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>

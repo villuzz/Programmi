@@ -1,0 +1,268 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~ A P P ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.sapMShellBrandingBar {
+	background: transparent !important;
+}
+
+/* ~~~ Button Header ~~~~~~~~~~~~~~~~~ */
+.eptaBtnHeader span.sapMBtnInner.sapMBtnReject,
+.eptaBtnHeader span.sapMBtnInner.sapMBtnAccept {
+	border: none !important;
+	background-color: transparent;
+}
+
+.eptaBtnHeader.sapMBtnDisabled span.sapMBtnInner .sapUiIcon {
+	color: grey !important;
+}
+
+/* ~~~ Color ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.eptaColorGray {
+	color:#666666 !important;
+}
+
+
+/* ~~~ layout note ~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.eptaTXTANote {
+	width:100%;
+}
+
+.eptaPNLMargin {
+	margin-top: -1rem;
+}
+
+.eptaBTTNoteButton {
+	height: 2rem !important;
+}
+.sapMBtnIcon .eptaBTIcon{
+	width: auto;
+}
+
+/* ~~~ Search Results page ~~~~~~~~~~~~~~~~~~~ */
+.eptaGanttNote .sapMInputBaseContentWrapper {
+	border: none !important;
+	background: transparent !important;
+}
+
+/* ~~~ Project Plan page ~~~~~~~~~~~~~~~~~~~~~ */
+#ZPS_WEBAPP---project--prjTabBar .sapMITBContent {
+	padding-bottom: 20px;
+}
+
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~ S A P U I 5 ~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+/* ~~~ sap.m.Button ~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.eptaBTTNote .sapMBtnIcon, .eptaBTTNote .sapMBtnInner{
+	width: auto;
+    min-width: 1.5rem;
+	line-height: 1.375rem;
+	height: 1.5rem !important;
+	padding:0;
+}
+
+.eptaBTTSearchProject .sapMBtnInner {
+	border:1px solid;
+	border-color:#427cac !important;
+}
+
+
+/* ~~~ sap.m.Dialog ~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.sapMDialog h1.sapMTitle {
+    font-size: 1.1em;
+    padding-left: 15px;
+}
+
+.sapMDialog.eptaMDialogContCenter .sapMDialogSection .sapMDialogScroll .sapMDialogScrollCont {
+	text-align: center;
+}
+
+
+/* ~~~ sap.m.IconTabBar ~~~~~~~~~~~~~~~~~~~~~~ */
+.eptaITB .sapMITBContent {
+	padding: 0;
+	margin-bottom: -16px;
+}
+
+.eptaITB .sapMITBHorizontalWrapper {
+	width:5.4rem;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    top:0;
+}
+
+.eptaITB .sapMITBHorizontal.sapMITBFilter .sapMITBText {
+	padding:0;
+}
+
+.eptaITB .sapMITBHead {
+	white-space: normal;
+	font-size:0.65rem;
+}
+
+.eptaITB .sapMITBHorizontal.sapMITBFilter>.sapMITBContentArrow {
+	width:100%;
+}
+
+.eptaITB .sapMITBCount {
+	display: none !important;
+}
+
+
+/* ~~~ sap.m.Input ~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.eptaID.sapMInput.sapMInputBase {
+	height: auto;
+}
+.eptaID.sapMInput.sapMInputBaseHeightMargin {
+	margin: 0;
+}
+
+.eptaID.sapMInput .sapMInputBaseContentWrapper {
+	border: none;
+	border-bottom: 1px solid #bfbfbf;
+}
+.eptaID.sapMInput .sapMInputBaseDisabledWrapper.sapMInputBaseContentWrapper {
+	border: none;
+	border-bottom: 0px;
+}
+
+
+.eptaID.sapMInput.sapMInputBaseDisabled {
+	opacity: 1;
+}
+
+.eptaID.sapMInput.sapMInputBaseDisabled .sapMInputBaseDisabledWrapper {
+	background: transparent;
+}
+
+.eptaID.eptaIDRight .sapMInputBaseInner {
+	text-align: right;
+}
+
+
+/* ~~~ sap.m.MessageToast ~~~~~~~~~~~~~~~~~~~~ */
+
+.sapContrast.sapMMessageToast, .sapContrast .sapMMessageToast {
+    background: rgba(16,126,62,0.6) !important;
+    color: #333 !important;
+}
+
+.sapMMessageToast {
+	margin-bottom: 1rem;
+    border-radius: 0.3rem !important;
+}
+
+
+/* ~~~ sap.m.ObjectHeader ~~~~~~~~~~~~~~~~~~~~ */
+
+.eptaMOH.sapMOH {
+	padding: 0;
+	padding-left: 2rem;
+	padding-right: 5rem;
+}
+
+.eptaMOH .sapMOHBottomRow {
+	margin-top: 0;
+}
+
+.eptaMOH.sapMOH .sapMOHAttr .sapMObjectAttributeText {
+	font-size: 1rem;
+}
+
+.eptaMOH .sapMOHBottomRow .sapMOHAttrRow {
+	/* margin-top: 0; */
+}
+
+.eptaMOH.sapMOH .sapMOHAttr .sapMObjectAttributeTitle {
+	width: 6rem;
+	display: inline-block;
+}
+
+.eptaMOH.sapMOH .sapMOHAttr .sapMObjectAttributeColon {
+	display: none;
+}
+
+
+/* ~~~ sap.m.Panel ~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.eptaPanel .sapMPanelWrappingDivTb {
+	border-bottom: none;
+	background: #eff4f9;
+}
+
+.eptaPanel .sapMPanelContent:not(.sapMPanelBGTransparent) {
+	border-bottom: none;
+}
+
+.eptaPanel .sapMPanelBGSolid,
+.eptaPanel .sapMPanelBGTranslucent {
+	background: #eff4f9;
+}
+
+.eptaPanel125 .sapMIBar.sapMPanelHeaderTB.sapMTB .sapMText {
+	font-size: 1.25rem;
+}
+
+.eptaPanel0875 .sapMIBar.sapMPanelHeaderTB.sapMTB .sapMText {
+	font-size: 0.875rem;
+}
+
+.eptaPanel.eptaPanelBorderBottom {
+	padding-bottom: 0.125rem;
+	border-bottom: 0.125rem solid #eff4f9;
+	box-shadow: inset 0 -0.25rem 0 -0.125rem #d1e0ee;
+}
+
+.eptaPanel .sapMInputBaseDisabled{
+	opacity: 1;
+}
+
+.eptaPanelMarginTop .sapMInputBaseHeightMargin {
+	margin-top:-10px;
+}
+
+
+/* ~~~ sap.m.Popover ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.eptaSettinsgsPopover {
+	margin-top: -1rem;
+}
+
+.eptaSettinsgsPopover .sapMPopoverCont .sapMListInsetBG {
+	padding: 0.5rem;
+}
+
+.eptaSettinsgsPopover .sapMPopoverArr {
+	display: none;
+}
+
+
+/* ~~~ sap.m.Scroll ~~~~~~~~~~~~~~~~~~~~~~~~ */
+.sapMScrollContVH .sapMScrollContScroll {
+	height: calc(100% - 15px);
+	overflow-x: scroll;
+}
+
+
+/* ~~~ sap.m.Table ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.sapMList .sapMListTblCell {
+	padding: .0rem .5rem;
+	vertical-align: middle;
+}
+
+
+/* ~~~ sap.m.Text ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.eptaTXTPoC {
+	font-size: 2rem !important;
+	margin-right: -2.5rem;
+}
+
+
+/* ~~~ sap.m.TextArea ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.eptaTXTArea .sapMInputBaseDisabledWrapper{
+	background:transparent;
+}

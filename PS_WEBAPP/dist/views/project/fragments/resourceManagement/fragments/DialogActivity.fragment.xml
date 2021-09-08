@@ -1,0 +1,96 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:e="epta.ps.ui5.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	
+	<e:Dialog
+		title="{i18n>rsmDialogactivity}"
+		showPropagateButton="false"
+		contentWidth="650px"
+		save="onActivityCreate">
+		
+		<f:Form editable="true">
+			
+			<f:layout>
+				<f:ResponsiveGridLayout
+					labelSpanXL="3"
+					labelSpanL="3"
+					labelSpanM="3"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="0"
+					emptySpanL="0"
+					emptySpanM="0"
+					emptySpanS="0"
+					columnsXL="1"
+					columnsL="1"
+					columnsM="1"
+					singleContainerFullSize="false" />
+			</f:layout>
+			
+			<f:formContainers>
+				<f:FormContainer>
+					<f:formElements>
+						
+						<f:FormElement label="{i18n>rsmNetwork}">
+							<f:fields>
+								<Text text="{_activity>/Projectnetwork} - {_activity>/Description}"/>
+							</f:fields>
+						</f:FormElement>
+						
+						<f:FormElement label="{i18n>rsmNetworkPredecessor}">
+							<f:fields>
+								<e:Input
+									type="Text"
+									value="{_activity>/NetworkPredecessor} - {_activity>/NetworkPredecessorDescription}"
+									showValueHelp="true"
+									valueHelpOnly="true"
+									valueHelpRequest="handleValueHelpNetworkPredecessor" />
+							</f:fields>
+						</f:FormElement>
+						
+						<f:FormElement label="{i18n>rsmActivityPredecessor}">
+							<f:fields>
+								<e:Input
+									type="Text"
+									value="{_activity>/ActivityPredecessor}"
+									showValueHelp="true"
+									valueHelpOnly="true"
+									valueHelpRequest="handleValueHelpActivityPredecessor" />
+							</f:fields>
+						</f:FormElement>
+						
+						<f:FormElement label="{i18n>rsmActivity}">
+							<f:fields>
+								<Text text="{_activity>/Networkactivity}" />
+							</f:fields>
+						</f:FormElement>
+						
+						<f:FormElement label="{i18n>rsmActivityDescription}">
+							<f:fields>
+								<Input value="{_activity>/Description}" />
+							</f:fields>
+						</f:FormElement>
+						
+						<f:FormElement label="{i18n>rsmActivityDuration}">
+							<f:fields>
+								<Input value="{_activity>/Basicduration}" />
+								<Text text="{_activity>/DurationNormalUnit}">
+									<layoutData>
+										<l:GridData span="XL1 L2 M2 S4" />
+									</layoutData>
+								</Text>
+							</f:fields>
+						</f:FormElement>
+						
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+			
+		</f:Form>
+		
+	</e:Dialog>
+  
+</core:FragmentDefinition>

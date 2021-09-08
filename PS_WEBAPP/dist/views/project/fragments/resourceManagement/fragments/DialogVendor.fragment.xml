@@ -1,0 +1,61 @@
+<core:FragmentDefinition
+  xmlns="sap.m"
+  xmlns:e="epta.ps.ui5.m"
+  xmlns:core="sap.ui.core">
+	
+	<e:Dialog
+		title="{i18n>rsmDialogVendor}"
+		save="onDialogSaveVendor"
+		showClearButton="true"
+		clear="onDialogClear"
+		contentHeight="85%">
+		
+		<e:subHeader>
+			<Toolbar>
+				<SearchField liveChange="handleSearchVendor"/>
+			</Toolbar>
+		</e:subHeader>
+		
+		<e:content>
+			
+			<e:Table
+				items="{ path: 'Vendor>/' }"
+				mode="SingleSelectMaster" 
+				sticky="ColumnHeaders"
+				selectionChange="onSelectionChange">
+				
+				<e:columns>
+				
+					<!-- col1 -->
+					<Column width="8rem">
+						<Text text="{i18n>rsmVendorId}" />
+					</Column>
+					
+					<!-- col2 -->
+					<Column>
+						<Text text="{i18n>rsmVendorName}" />
+					</Column>
+					
+				</e:columns>
+				
+				<e:items>
+					<ColumnListItem>
+						<cells>
+							
+							<!-- col1 -->
+							<Text text="{Vendor>ID}"/>
+							
+							<!-- col2 -->
+							<Text text="{Vendor>Name}"/>
+						
+						</cells>
+					</ColumnListItem>
+				</e:items>
+				
+			</e:Table>
+			
+		</e:content>
+		
+	</e:Dialog>
+  
+</core:FragmentDefinition>

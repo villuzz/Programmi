@@ -1,0 +1,43 @@
+<mvc:View
+	controllerName="epta.ps.views.search.Search"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+	xmlns:semantic="sap.f.semantic"
+	height="100%">
+	
+	<Page>
+		<customHeader>
+			<Bar class="custom-header header-background">
+			    <contentMiddle class="custom-header">
+			    	<Image width="420px" src="images/logoEPTA.png"></Image>
+			    </contentMiddle>
+			</Bar>
+		</customHeader>
+		<content>
+			
+			<l:FixFlex class="fixFlexVertical">
+				<l:fixContent>
+					<mvc:XMLView viewName="epta.ps.views.search.fragments.filters.Filters"/>	
+				</l:fixContent>
+				<l:flexContent>
+					<mvc:XMLView viewName="epta.ps.views.search.fragments.gantt.Gantt"/>	
+				</l:flexContent>
+			</l:FixFlex>
+			
+		</content>
+		<!-- Footer -->
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button
+					text="{i18n>srcDetail} {footer>/project}"
+					type="Transparent"
+					class="eptaBtnHeader"
+					press="onViewDetails"
+					visible="{footer>/enable}" />
+            </OverflowToolbar>
+		</footer>
+	</Page>
+
+</mvc:View>

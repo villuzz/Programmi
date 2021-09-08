@@ -1,0 +1,12 @@
+{
+    "base": "./dist",
+    "conn_usestrictssl" : false,
+    "conn_server": "http://sapdev.epta.internal:8011/",
+    "conn_client" : "200",
+    "conn_user": "C-DIVJANP",
+    "conn_password": "rujan111",
+    "abap_package": "ZPS_WEBAPP",
+    "abap_bsp": "ZPS_WEBAPP",
+    "abap_bsp_text": "UI5 upload through VSCode App",
+    "abap_transport": "DEVK9H0SYR" 
+}

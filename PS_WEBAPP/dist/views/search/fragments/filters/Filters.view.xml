@@ -1,0 +1,160 @@
+<mvc:View
+	controllerName="epta.ps.views.search.fragments.filters.Filters"
+	xmlns:l="sap.ui.layout"
+	xmlns:e="epta.ps.ui5.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m"
+	height="100%">
+
+	<Panel
+		id="fltPanel"
+		expandable="true"
+		expanded="true"
+		width="auto"
+		class="eptaPanel eptaPanelBorderBottom">
+		<headerToolbar>
+			<Toolbar height="3rem">
+				<!--
+				<ToolbarSpacer />
+				
+				Search Variant
+				<ComboBox
+					id="fltVariant"
+					width="30rem"
+					placeholder="{i18n>fltVariant}"
+					items="{
+						path: 'variants>/',
+						sorter: { path: 'text' }
+					}"
+					change="onVariantSelect">
+					<core:Item key="{variants>key}" text="{variants>text}" />
+				</ComboBox> 
+				
+				-->
+				
+			</Toolbar>
+		</headerToolbar>
+		
+		<content>
+			
+			<l:VerticalLayout width="100%" class="gridWrapper">
+
+				<l:Grid containerQuery="true" defaultSpan="XL3 L3 M4 S12">
+					
+					<!-- WBS ID (first level) -->
+					<e:Input
+						type="Text"
+						placeholder="{i18n>fltWbsId}"
+						value="{_flt>/Wbselement/value}"
+						showValueHelp="true"
+						valueHelpOnly="true"
+						valueHelpRequest="handleValueHelpWbs" />
+					
+					<!-- Sold-to -->
+					<e:Input
+						type="Text"
+						placeholder="{i18n>fltSoldTo}"
+						value="{_flt>/SoldTo/value}"
+						showValueHelp="true"
+						valueHelpOnly="true"
+						valueHelpRequest="handleValueHelpSoldTo" />
+					
+					<!-- Ship-to -->
+					<e:Input
+						type="Text"
+						placeholder="{i18n>fltShipTo}"
+						value="{_flt>/ShipTo/value}"
+						showValueHelp="true"
+						valueHelpOnly="true"
+						valueHelpRequest="handleValueHelpShipTo" />
+					
+					<!-- Serial Number -->
+					<e:Input
+						type="Text"
+						placeholder="{i18n>fltSerialNumber}"
+						value="{_flt>/Serialno/value}"
+						showValueHelp="true"
+						valueHelpOnly="true"
+						valueHelpRequest="handleValueHelpSerialno" />
+					
+					<!-- Project Manager -->
+					<e:Input
+						type="Text"
+						placeholder="{i18n>fltProjectManager}"
+						value="{_flt>/Responsibleperson/value}"
+						showValueHelp="true"
+						valueHelpOnly="true"
+						valueHelpRequest="handleValueHelpResponsibleperson" />
+						
+					<!-- Installation Manager -->
+					<e:Input
+						type="Text"
+						placeholder="{i18n>fltInstallationManager}"
+						value="{_flt>/Iammperson/value}"
+						showValueHelp="true"
+						valueHelpOnly="true"
+						valueHelpRequest="handleValueHelpIammperson" />
+						
+					<!-- System Status -->
+					<e:Input
+						type="Text"
+						placeholder="{i18n>fltSystemStatus}"
+						value="{_flt>/SystemStatus/value}"
+						showValueHelp="true"
+						valueHelpOnly="true"
+						valueHelpRequest="handleValueHelpSystemStatus" />
+						
+					<!-- User Status -->
+					<e:Input
+						type="Text"
+						placeholder="{i18n>fltUserStatus}"
+						value="{_flt>/UserStatus/value}"
+						showValueHelp="true"
+						valueHelpOnly="true"
+						valueHelpRequest="handleValueHelpUserStatus" />
+					
+					<!-- Delivery Week -->
+					<DateRangeSelection
+						placeholder="{i18n>fltStartDate}"
+						dateValue="{_flt>/Basicstartdate}"
+						secondDateValue="{_flt>/BasicstartdateTo}"
+						displayFormat="short"
+						change="handleBasicStartDateChange"/>
+						
+					<!-- Project Status -->
+					<e:Input
+						type="Text"
+						placeholder="{i18n>fltProjectStatus}"
+						value="{_flt>/SearchStat/value}"
+						showValueHelp="true"
+						valueHelpOnly="true"
+						valueHelpRequest="handleValueHelpSearchStat" />
+					
+					<l:HorizontalLayout>
+						<!--<Button	type="Transparent"
+						icon="sap-icon://save"
+						text="{i18n>fltSaveVariant}"
+						press="onSubmitDialog" />-->
+
+						<Button type="Transparent"
+						icon="sap-icon://clear-filter"
+						text="{i18n>fltClear}"
+						press="onClearFilters" />
+			
+			<Button type="Transparent" tooltip="List" text="{i18n>ListVar}" icon="sap-icon://activity-items" press="onListVariant"/>
+			<Button type="Transparent" tooltip="Save" text="{i18n>SaveVar}" icon="sap-icon://save" press="onPressVariant"/>
+			<Button type="Transparent" icon="sap-icon://search" press="onSearch" text="{i18n>SearchVar}" />
+					</l:HorizontalLayout>
+					
+				</l:Grid>
+			</l:VerticalLayout>
+			
+		</content>
+		<dependents>
+			<core:Fragment fragmentName="epta.ps.views.search.fragments.filters.fragments.Variant" type="XML"></core:Fragment>
+			<core:Fragment fragmentName="epta.ps.views.search.fragments.filters.fragments.SaveVariant" type="XML"></core:Fragment>
+		</dependents>
+	</Panel>
+
+</mvc:View>

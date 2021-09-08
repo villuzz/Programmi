@@ -1,0 +1,65 @@
+<core:FragmentDefinition
+  xmlns="sap.m"
+  xmlns:e="epta.ps.ui5.m"
+  xmlns:core="sap.ui.core">
+	
+	<e:Dialog
+		title="{i18n>fltProjectManager}"
+		showPropagateButton="false"
+		showSaveButton="false"
+		contentHeight="85%">
+		
+		<e:subHeader>
+			<Toolbar>
+				<SearchField liveChange="handleSearchResponsibleperson"/>
+			</Toolbar>
+		</e:subHeader>
+		
+		<e:content>
+			
+			<e:Table
+				items="{
+					path: 'Responsibleperson>/',
+					sorter : {
+						path : 'ID',
+						descending : false
+					}
+				}"
+				sticky="ColumnHeaders"
+				mode="SingleSelectMaster" 
+				selectionChange="handleConfirmResponsibleperson">
+				
+				<e:columns>
+				
+					<!-- col1 -->
+					<Column width="14rem">
+						<Text text="{i18n>tblKey}" />
+					</Column>
+					
+					<!-- col2 -->
+					<Column>
+						<Text text="{i18n>tblDescription}" />
+					</Column>
+					
+				</e:columns>
+				
+				<e:items>
+					<ColumnListItem>
+						<cells>
+							
+							<!-- col1 -->
+							<Text text="{Responsibleperson>ID}"/>
+							
+							<!-- col2 -->
+							<Text text="{Responsibleperson>Name}"/>
+						
+						</cells>
+					</ColumnListItem>
+				</e:items>
+			</e:Table>
+			
+		</e:content>
+		
+	</e:Dialog>
+  
+</core:FragmentDefinition>
