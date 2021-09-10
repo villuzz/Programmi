@@ -97,6 +97,7 @@ sap.ui.define([
 				this.setModel(new JSONModel(), "SearchUom");
 				this.setModel(new JSONModel(), "SearchCurc");
 				this.setModel(new JSONModel(), "InstallationManagerFilter");
+				this.setModel(new JSONModel(), "OrderEOS");
 				// Set busy indicator
 				this.getView().setBusy(true);
 			},
@@ -543,7 +544,8 @@ sap.ui.define([
 							"WorkCenter" : oData.__batchResponses[7].data.results,
 							"SearchUom" : oData.__batchResponses[8].data.results,
 							"SearchCurc" : oData.__batchResponses[9].data.results,
-							"InstallationManagerFilter" : oData.__batchResponses[10].data.results
+							"InstallationManagerFilter" : oData.__batchResponses[10].data.results,
+							"OrderEOS" : oData.__batchResponses[11].data.results,
 						};
 						self.getModel("Hierarchy").setData( oResult.Hierarchy );
 						self.getModel("NetworkActivity").setData( self._prepareNetworkActivity(oResult.NetworkActivity) );
@@ -556,6 +558,7 @@ sap.ui.define([
 						self.getModel("SearchUom").setData( oResult.SearchUom );
 						self.getModel("SearchCurc").setData( oResult.SearchCurc );
 						self.getModel("InstallationManagerFilter").setData( oResult.InstallationManagerFilter );
+						self.getModel("OrderEOS").setData( oResult.OrderEOS );
 						self.getView().setBusy(false);
 						self.getEventBus().publish("_onProjectDetail", "read", oResult);
 					},

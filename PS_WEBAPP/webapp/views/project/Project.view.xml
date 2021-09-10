@@ -163,6 +163,17 @@
 								</ScrollContainer>
 							</IconTabFilter>
 							
+							<!-- Progress -->
+							<IconTabFilter icon="sap-icon://list" design="Horizontal" text="ORDINI EOS">
+								<ScrollContainer
+									height="100%"
+									width="100%"
+									horizontal="false"
+									vertical="true"
+									focusable="true">
+									<mvc:XMLView viewName="epta.ps.views.project.fragments.order.Order"/>
+								</ScrollContainer>
+							</IconTabFilter>
 						</items>
 					</IconTabBar>
 					

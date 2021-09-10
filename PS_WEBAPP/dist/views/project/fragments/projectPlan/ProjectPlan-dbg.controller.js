@@ -55,6 +55,7 @@ sap.ui.define([
 			},
 			exportExcel: function (oEvent) {
 
+
 				var listBinding = this.getView().byId("prpGanttChartTable").getBinding("rows");
 				return listBinding.getLength() < 1 ? null : this.exportSpreadsheet({
 					workbook: {
@@ -71,7 +72,7 @@ sap.ui.define([
 						sizeLimit: 5,
 					},
 					worker: true
-				}); 
+				});  
 	/*
 				var aCols, oRowBinding, oSettings, oSheet, oTable;
 	

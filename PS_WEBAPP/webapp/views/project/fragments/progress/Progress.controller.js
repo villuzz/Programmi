@@ -68,6 +68,7 @@ sap.ui.define([
 			 * @param {sap.ui.base.Event} oEvent the event related to the selection
 			 */
 			onDialogSave : function (oEvent) {
+				debugger;
 				var self = this;
 				
 				// update all records
@@ -98,13 +99,27 @@ sap.ui.define([
 				}
 				// update single record
 				else {
-					
+					debugger
 					// update local model
 					this._oInputBinding.oModel.setProperty(
 						this._oInputBinding.sPath + "/Apoc",
 						this.getModel("_dprog").getProperty("/progress")
 					);
-					
+					//Datab
+					this._oInputBinding.oModel.setProperty(
+						this._oInputBinding.sPath + "/Datab",
+						new Date
+					);
+					this._addChange(
+						this._controller,
+						"Progress",
+						"/NetworkActivitySet(Projectnetwork='" + self._oInputBinding.oModel.getProperty(self._oInputBinding.sPath+"/Projectnetwork") + "',"
+							+ "Networkactivity='" + self._oInputBinding.oModel.getProperty(self._oInputBinding.sPath+"/Networkactivity") + "',"
+							+ "Wbselement='" + self._oInputBinding.oModel.getProperty(self._oInputBinding.sPath+"/Wbselement") + "')",
+						{ "Datab": new Date },
+						this.getService()._sGroupUpdateId
+					);
+
 					// update service model
 					this._addChange(
 						this._controller,

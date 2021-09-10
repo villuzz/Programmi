@@ -135,6 +135,8 @@ sap.ui.define([
 				this._oModel.read("/SearchUomSet", {groupId: sGroup});
 				this._oModel.read("/SearchCurcSet", {groupId: sGroup});
 				this._oModel.read("/ZINSTALLATIONMANAGER2_VH(poski='" + args.projectId + "')/Set", {groupId: sGroup});
+				this._oModel.read("/OrderEOSSet('" + args.projectId + "')", {groupId: sGroup});
+
 				
 				// perform batch call
 				this._oModel.submitChanges({

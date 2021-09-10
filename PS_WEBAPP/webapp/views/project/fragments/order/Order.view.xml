@@ -1,0 +1,117 @@
+<mvc:View
+	controllerName="epta.ps.views.project.fragments.order.Order"
+	xmlns:l="sap.ui.layout"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:e="epta.ps.ui5.m"
+	height="100%">
+
+	<e:Table
+		id="prgTable"
+		mode="None"
+		fixedLayout="true"
+		growing="true"
+		growingThreshold="1000"
+		growingScrollToLoad="true"
+		sticky="ColumnHeaders"
+		items="{
+			path: 'OrderEOS>/',
+			sorter: [{
+				path: 'Wbselement', 
+				descending: false
+			}, {
+				path: 'Networkactivity',
+				descending: false
+			}]
+		}">
+        
+		<e:columns>
+			
+			<!-- col1 -->
+			<Column width="1rem">
+				<Text text="" />
+			</Column>
+			
+            <!-- col2 -->
+			<Column width="10rem">
+				<Text text="{i18n>tblWBE}" />
+			</Column>
+			
+			<!-- col3 -->
+			<Column>
+				<Text text="{i18n>tblWBEDescription}" />
+			</Column>
+			
+            <!-- col4 -->
+			<Column>
+				<Text text="{i18n>tblActivityDescription}" />
+			</Column>
+			
+            <!-- col5 -->
+			<Column width="7rem">
+				<Text text="{i18n>tblWbsBasicStartDate}" />
+			</Column>
+			
+			<!-- col6 -->
+			<Column width="7rem">
+				<Text text="{i18n>tblWbsBasicFinishDate}" />
+			</Column>
+			
+            <!-- col8 -->
+			<Column width="7rem">
+				<Text text="{i18n>tblWbsActualDate}" />
+			</Column>
+
+		</e:columns>
+		
+		<e:items>
+			<ColumnListItem>
+				<cells>
+                    
+                    <!-- col1 -->
+					<Text text="{OrderEOS>Wbselementhierarchylevel}"/>
+					
+					<!-- col2 -->
+					<Text text="{OrderEOS>Wbselement}"/>
+					
+					<!-- col3 -->
+					<Text text="{OrderEOS>Wbsdescription}"/>
+					
+					<!-- col4 -->
+					<Text text="{OrderEOS>Description}"/>
+					
+					<!-- col5 -->
+					<Text text="{
+						path: 'OrderEOS>Basicstartdate',
+						type: 'sap.ui.model.type.Date',
+						formatOptions: {
+							pattern: 'dd/MM/yyyy'
+						}
+					}" />
+					
+                    <!-- col6 -->
+					<Text text="{
+						path: 'OrderEOS>Basicenddate',
+						type: 'sap.ui.model.type.Date',
+						formatOptions: {
+							pattern: 'dd/MM/yyyy'
+						}
+					}" />
+
+					<!-- col8 -->
+					<Text text="{
+						path: 'OrderEOS>Datab',
+						type: 'sap.ui.model.type.Date',
+						formatOptions: {
+							pattern: 'dd/MM/yyyy'
+						}
+					}" />
+					
+				</cells>
+			</ColumnListItem>
+		</e:items>
+        
+    
+    </e:Table>
+
+</mvc:View>
