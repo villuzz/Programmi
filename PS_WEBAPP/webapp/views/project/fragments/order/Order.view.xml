@@ -31,11 +31,11 @@
                 <Text text="{i18n>tblWBE}" />
             </Column>
             <!-- col3 -->
-            <Column>
+            <Column width="18rem">
                 <Text text="{i18n>tblWBEDescription}" />
             </Column>
             <!-- col4 -->
-            <Column>
+            <Column width="7rem">
                 <Text text="{i18n>tblVbeln}" />
             </Column>
             <!-- col5 -->
@@ -43,11 +43,11 @@
                 <Text text="{i18n>tblPosnr}" />
             </Column>
             <!-- col6 -->
-            <Column width="7rem">
+            <Column width="10rem">
                 <Text text="{i18n>tblMatnr}" />
             </Column>
             <!-- col7 -->
-            <Column width="7rem">
+            <Column width="18rem">
                 <Text text="{i18n>tblMaktx}" />
             </Column>
             <!-- col8 -->

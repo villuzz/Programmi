@@ -530,6 +530,7 @@ sap.ui.define([
 			_refreshData : function(sProjectId) {
 				var self = this;
 				this.getView().setBusy(true);
+				debugger
 				this.getService().readProjectDataById({
 					projectId: sProjectId,
 					success: function (oData) {
