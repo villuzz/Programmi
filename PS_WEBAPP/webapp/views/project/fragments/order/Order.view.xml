@@ -97,7 +97,7 @@
                     <!-- col3 -->
                     <Text text="{OrderEOS>Wbsdescription}"/>
                     <!-- col4 -->
-                    <Text text="{OrderEOS>Vbeln}"/>
+                    <Button type="Transparent" text="{OrderEOS>Vbeln}" press="callDisplayBilling" visible="{ parts:['OrderEOS>Vbeln'], formatter: '.formatter.visibleVbeln'}"  />
                     <!-- col5 -->
                     <Text text="{OrderEOS>Posnr}" />
                     <!-- col6 -->
@@ -107,21 +107,9 @@
                     <!-- col8 -->
                     <Text text="{OrderEOS>Abgru}" />
                     <!-- col9 -->
-                    <Text text="{
-						path: 'OrderEOS>Erdat',
-						type: 'sap.ui.model.type.Date',
-						formatOptions: {
-							pattern: 'dd/MM/yyyy'
-						}
-					}" />
+                    <Text text="{ parts:['OrderEOS>Erdat'], formatter: '.formatter.DateSet'}"  />
                     <!-- col10 -->
-                    <Text text="{
-						path: 'OrderEOS>Edatu',
-						type: 'sap.ui.model.type.Date',
-						formatOptions: {
-							pattern: 'dd/MM/yyyy'
-						}
-					}" />
+                    <Text text="{ parts:['OrderEOS>Edatu'], formatter: '.formatter.DateSet'}"  />
                     <!-- col11 -->
                     <Text text="{OrderEOS>Lifsk}" />
                     <!-- col12 -->
@@ -133,13 +121,8 @@
                     <!-- col15 -->
                     <Text text="{OrderEOS>VbfaPosnn}" />
                     <!-- col16 -->
-					<Text text="{
-						path: 'OrderEOS>WadatIst',
-						type: 'sap.ui.model.type.Date',
-						formatOptions: {
-							pattern: 'dd/MM/yyyy'
-						}
-					}" />
+                    <Text text="{ parts:['OrderEOS>WadatIst'], formatter: '.formatter.DateSet'}"  />
+					
                 </cells>
             </ColumnListItem>
         </e:items>

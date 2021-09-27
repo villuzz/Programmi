@@ -34,6 +34,28 @@ sap.ui.define([
 				this.getModel("layout").setProperty( "/footer/cancel", false );
 				this.getModel("layout").setProperty( "/footer/filter", false );
 				this.getModel("layout").setProperty("/footer/enabled", true);
+			},
+			callDisplayBilling: function (oEvent) {
+				var url = {
+					target: {
+						semanticObject: "ZVA03_WBS",
+						action: "display"
+					},
+					params: {
+						"SalesOrder": oEvent.getSource().getText()
+					}
+				};
+				this.callTransaction(url);
+	
+			},
+			callTransaction: function (url) {
+				var oCrossAppNavigator = sap.ushell.Container.getService("CrossApplicationNavigation");
+				var hashUrl = (oCrossAppNavigator && oCrossAppNavigator.hrefForExternal(url));
+				oCrossAppNavigator.toExternal({
+					target: {
+						shellHash: hashUrl
+					}
+				});
 			}
 	
 		});

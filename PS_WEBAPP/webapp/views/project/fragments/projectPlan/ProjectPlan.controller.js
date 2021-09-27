@@ -55,38 +55,14 @@ sap.ui.define([
 			},
 			exportExcel: function (oEvent) {
 
-
-				var listBinding = this.getView().byId("prpGanttChartTable").getBinding("rows");
-				return listBinding.getLength() < 1 ? null : this.exportSpreadsheet({
-					workbook: {
-						columns: this.createColumnConfig(),
-						hierarchyLevel: "Level",
-					},
-					dataSource: {
-						type: "OData",
-						useBatch: true,
-						serviceUrl: listBinding.getModel().sServiceUrl,
-						headers: listBinding.getHeaders ? listBinding.getHeaders() : null,
-						dataUrl: listBinding.getDownloadUrl ? listBinding.getDownloadUrl() : null,
-						count: listBinding.getLength(),
-						sizeLimit: 5,
-					},
-					worker: true
-				});  
-	/*
-				var aCols, oRowBinding, oSettings, oSheet, oTable;
-	
-				oTable = this.getView().byId("prpGanttChartTable");
-				debugger;
-				oRowBinding = oTable.getBinding('rows');
-				aCols = this.createColumnConfig();
+				var oSettings, oSheet;
 				oSettings = {
 					workbook: {
-						columns: aCols,
-						//hierarchyLevel: 'Level'
+						columns: this.createColumnConfig(),
+						hierarchyLevel: 'Level'
 					},
-					dataSource: oRowBinding,
-					fileName: 'sample.xlsx',
+					dataSource: this.aWBSActivityList,
+					fileName: 'ProjectPlan.xlsx',
 					worker: false // We need to disable worker because we are using a MockServer as OData Service
 				};
 		
@@ -94,9 +70,7 @@ sap.ui.define([
 				oSheet.build().finally(function() {
 					oSheet.destroy();
 				});
-				*/
-	
-				//sap.ui.controller("epta.ps.views.project.fragments.projectPlan.ProjectPlan").exportExcel(oEvent);
+
 			},
 	
 			createColumnConfig: function () {
@@ -104,13 +78,122 @@ sap.ui.define([
 				var i18n = this.getModel("i18n").getResourceBundle();
 	
 				var aCols = [];
-	
+				
+				aCols.push({
+					label: 'Level',
+					property: 'Wbselementhierarchylevel',
+					type: EdmType.String
+				});
+
 				aCols.push({
 					label: i18n.getText("tblWBE"),
 					property: 'Wbselement',
-					type: EdmType.String
+					type: EdmType.String,
+					width: '11em'
 				});
 	
+				aCols.push({
+					label: i18n.getText("tblWBEDescription"),
+					property: 'Wbsdescription',
+					type: EdmType.String,
+					width: '20em'
+				});
+				aCols.push({
+					label: i18n.getText("tblSerialNo"),
+					property: 'Serialno',
+					type: EdmType.String
+				});
+				aCols.push({
+					label: i18n.getText("tblNetwork"),
+					property: 'Projectnetwork',
+					type: EdmType.String
+				});
+				aCols.push({
+					label: i18n.getText("tblActivity"),
+					property: 'Networkactivity',
+					type: EdmType.String
+				});
+				aCols.push({
+					label: i18n.getText("tblActivityDescription"),
+					property: 'Description',
+					type: EdmType.String
+				});
+				aCols.push({
+					label: i18n.getText("tblNetworkPredecessor"),
+					property: 'NetworkPredecessor',
+					type: EdmType.String
+				});
+				aCols.push({
+					label: i18n.getText("tblActivityPredecessor"),
+					property: 'ActivityPredecessor',
+					type: EdmType.String
+				});
+				aCols.push({
+					label: i18n.getText("tblUserStatus"),
+					property: 'UserStatus',
+					type: EdmType.String
+				});
+				aCols.push({
+					label: 'Description',
+					property: 'StatusText',
+					type: EdmType.String
+				});
+				aCols.push({
+					label: i18n.getText("tblWbsForecastDuration"),
+					property: 'Forecastedduration',
+					type: EdmType.Number
+				});
+				aCols.push({
+					label: i18n.getText("tblWbsForecastStartDate"),
+					property: 'Forecastedstartdate',
+					type: EdmType.Date
+				});
+				aCols.push({
+					label: i18n.getText("tblWbsForecastFinishDate"),
+					property: 'Forecastedenddate',
+					type: EdmType.Date
+				});
+				aCols.push({
+					label: i18n.getText("tblWbsBasicDuration"),
+					property: 'Basicduration',
+					type: EdmType.Number
+				});
+				aCols.push({
+					label: i18n.getText("tblWbsBasicStartDate"),
+					property: 'Basicstartdate',
+					type: EdmType.Date
+				});
+				aCols.push({
+					label: i18n.getText("tblWbsBasicFinishDate"),
+					property: 'Basicenddate',
+					type: EdmType.Date
+				});
+				aCols.push({
+					label: i18n.getText("tblWbsAddStartDate"),
+					property: 'Addstartdate',
+					type: EdmType.Date
+				});
+				aCols.push({
+					label: i18n.getText("tblWbsAddFinishDate"),
+					property: 'Addfinishdate',
+					type: EdmType.Date
+				});
+				aCols.push({
+					label: i18n.getText("tblAdvPostDate"),
+					property: 'Freedefineddate1',
+					type: EdmType.Date
+				});
+				aCols.push({
+					label: i18n.getText("tblPoc"),
+					property: 'Apoc',
+					type: EdmType.Number
+				});
+				aCols.push({
+					label: i18n.getText("tblWbsActualDate"),
+					property: 'Datab',
+					type: EdmType.Date
+				});
+
 				return aCols;
 	
 			},
@@ -675,6 +758,8 @@ sap.ui.define([
 					"name": ("00" + dHandoverDate.getDate()).substr(-2) + "/" + ("00" + (dHandoverDate.getMonth() + 1)).substr(-2)
 				}];
 				
+				this.aWBSActivityList = aWBSActivityList;
+
 				for (var i = 0; i < aWBSActivityList.length; i++ ) {
 					
 					var oActivity = aWBSActivityList[i];

@@ -618,9 +618,17 @@ sap.ui.define([
 			onVariantPress: function (oEvent) {
 
 				var selRow = JSON.parse(oEvent.getSource().getBindingContext().getObject().Filter);
-				debugger
-				selRow.Basicstartdate = new Date(selRow.Basicstartdate);
-				selRow.BasicstartdateTo = new Date(selRow.BasicstartdateTo);
+				
+				if(selRow.Basicstartdate !== null){
+					selRow.Basicstartdate = new Date(selRow.Basicstartdate);
+				} else {
+					selRow.Basicstartdate = null;
+				}
+				if(selRow.BasicstartdateTo !== null){
+					selRow.BasicstartdateTo = new Date(selRow.BasicstartdateTo);
+				} else {
+					selRow.BasicstartdateTo = null;
+				}
 				this.getModel("_flt").setData(selRow);
 				
 

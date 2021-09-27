@@ -1,5 +1,6 @@
 sap.ui.define([
-	] , function () {
+	"sap/ui/core/format/DateFormat"
+	] , function (DateFormat) {
 		"use strict";
 
 		return {
@@ -99,6 +100,32 @@ sap.ui.define([
 			 */
 			isNotNull: function (dValue) {
 				return dValue !== null;
+			},
+			visibleVbeln: function (value) {
+				if (value === 0 || value === "" || value === null || value === undefined) {
+					return false;
+				} else {
+					return true;
+				}
+			},
+			DateSet: function (value) {
+				if (value === 0 || value === "" || value === "00000000" || value === null || value === undefined) {
+					return "";
+				} else {
+					var d = new Date();
+					d.setMonth(value.substring(4, 6) - 1);
+					d.setDate(value.substring(6, 8));
+					d.setFullYear(value.substring(0, 4));
+					//d.setMonth(value.substring(2, 4) - 1);
+					//d.setDate(value.substring(0, 2));
+					//d.setFullYear(value.substring(4, 8));
+					var options = {
+						style: 'medium'
+					};
+					var df = DateFormat.getDateInstance(options);
+					return df.format(d);
+	
+				}
 			}
 			
 			

@@ -168,7 +168,7 @@
 								<ScrollContainer
 									height="100%"
 									width="100%"
-									horizontal="false"
+									horizontal="true"
 									vertical="true"
 									focusable="true">
 									<mvc:XMLView viewName="epta.ps.views.project.fragments.order.Order"/>

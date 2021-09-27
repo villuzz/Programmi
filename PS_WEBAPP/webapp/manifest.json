@@ -19,6 +19,22 @@
 				}
 			}
 		},
+		"crossNavigation": {
+			"inbounds": {
+				
+				"intent2": {
+					"signature": {
+						"parameters": {
+							"Quotation": {}
+						},
+						"additionalParameters": "allowed"
+					},
+					"semanticObject": "ZVA03_WBS",
+					"action": "display"
+				}
+			}
+		},
+	
 		"sourceTemplate": {
 			"id": "servicecatalog.connectivityComponent",
 			"version": "0.0.0"
