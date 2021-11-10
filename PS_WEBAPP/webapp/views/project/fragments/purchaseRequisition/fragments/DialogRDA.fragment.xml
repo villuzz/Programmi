@@ -81,6 +81,12 @@
 							</f:fields>
 						</f:FormElement>
 						
+						<f:FormElement label="{i18n>prrDesc}">
+							<f:fields>
+								<e:Input type="Text" value="{_rda>/ShortText}"  />	
+							</f:fields>
+						</f:FormElement>
+
 						<f:FormElement label="{i18n>prrText}">
 							<f:fields>
 								<TextArea value="{_rda>/Longtext}" />

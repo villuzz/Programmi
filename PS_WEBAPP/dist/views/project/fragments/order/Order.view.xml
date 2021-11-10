@@ -97,7 +97,8 @@
                     <!-- col3 -->
                     <Text text="{OrderEOS>Wbsdescription}"/>
                     <!-- col4 -->
-                    <Button type="Transparent" text="{OrderEOS>Vbeln}" press="callDisplayBilling" visible="{ parts:['OrderEOS>Vbeln'], formatter: '.formatter.visibleVbeln'}"  />
+                    <!--<Button type="Transparent" text="{OrderEOS>Vbeln}" press="callDisplayBilling" visible="{ parts:['OrderEOS>Vbeln'], formatter: '.formatter.visibleVbeln'}"  />-->
+                    <Text text="{OrderEOS>Vbeln}" />
                     <!-- col5 -->
                     <Text text="{OrderEOS>Posnr}" />
                     <!-- col6 -->

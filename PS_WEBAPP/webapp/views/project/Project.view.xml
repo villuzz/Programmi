@@ -164,7 +164,7 @@
 							</IconTabFilter>
 							
 							<!-- Progress -->
-							<IconTabFilter icon="sap-icon://list" design="Horizontal" text="ORDINI EOS">
+							<IconTabFilter icon="sap-icon://list" design="Horizontal" text="EOS">
 								<ScrollContainer
 									height="100%"
 									width="100%"

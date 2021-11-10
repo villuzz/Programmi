@@ -397,10 +397,11 @@ sap.ui.define([
 				
 				var dMinDate = new Date("1970-01-01");
 				var dMaxDate = new Date("9999-12-31");
-				if( sName === "Addstartdate" ) {
-					dMinDate = this._oInputBinding.oModel.getProperty(this._oInputBinding.sPath + "/table/BasicstartdateLimit");
-					dMaxDate = this._oInputBinding.oModel.getProperty(this._oInputBinding.sPath + "/table/Addfinishdate");
-				} else if( sName === "Addfinishdate" ) {
+				//if( sName === "Addstartdate" ) {
+				//	dMinDate = this._oInputBinding.oModel.getProperty(this._oInputBinding.sPath + "/table/BasicstartdateLimit");
+				//	dMaxDate = this._oInputBinding.oModel.getProperty(this._oInputBinding.sPath + "/table/Addfinishdate");
+				//} else 
+				if( sName === "Addfinishdate" ) {
 					dMinDate = this._oInputBinding.oModel.getProperty(this._oInputBinding.sPath + "/table/Addstartdate");
 				}
 				
@@ -602,6 +603,7 @@ sap.ui.define([
 						"Days": "'" + oEvent.getParameter("value") + "'"
 					},
 					success: function (oData) {
+						debugger;
 						self.getView().setBusy(false);
 						self._updateTime(oContext.oModel, oContext.sPath, "/order/0/endTime", oData.DateTo);
 					},
@@ -703,9 +705,10 @@ sap.ui.define([
 			 * Handle the change in the central storage for the later batch request 
 			 */
 			_handleChange: function(oData, oUpdate, aUpdKeys, isAddDates) {
-				// list of elements that can be updated
+				// list of elements that can be update
+				debugger
 				if( !aUpdKeys ) {
-					aUpdKeys = ["Description","Apoc","Basicduration","Basicstartdate","Basicenddate"];
+					aUpdKeys = ["Description","Apoc","Basicduration","Basicstartdate","Basicenddate"]; 
 				}
 				// TODO
 				if( typeof isAddDates === "undefined" ) {
@@ -824,7 +827,7 @@ sap.ui.define([
 					// status of the activity
 					oActivity.dealyStatus = "None";
 					if( oActivity.Wbselementhierarchylevel === 3 && oActivity.Forecastedenddate && oActivity.Basicenddate  ) {
-						oActivity.dealyStatus = oActivity.Basicenddate < oActivity.Forecastedenddate ? "None" : "Error";
+						oActivity.dealyStatus = oActivity.Basicenddate <= oActivity.Forecastedenddate ? "None" : "Error";
 					}
 					
 					// set the WBS description

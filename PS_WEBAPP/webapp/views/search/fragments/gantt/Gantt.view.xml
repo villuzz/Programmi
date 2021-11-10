@@ -20,7 +20,7 @@
 				<columns>
 					
 					<!-- col1 -->
-					<table:Column label="{i18n>tblWBE}" width="12rem">
+					<table:Column label="{i18n>tblWBE}" sortProperty="table/Wbselement" filterProperty="table/Wbselement" width="12rem">
 						<table:template>
 							<e:Input
 								type="Text"
@@ -35,7 +35,7 @@
 					</table:Column>
 					
 					<!-- col2 -->			
-					<table:Column label="{i18n>tblWBEDescription}" width="16rem">
+					<table:Column label="{i18n>tblWBEDescription}" sortProperty="table/Wbsdescription" width="16rem">
 						<table:template>
 							<m:Label text="{table/Wbsdescription}"/>
 						</table:template>
@@ -51,7 +51,7 @@
 -->
 
 					<!-- col4 -->
-					<table:Column label="{i18n>tblWbsForecastStartDate}" width="6rem">
+					<table:Column label="{i18n>tblWbsForecastStartDate}" sortProperty="table/Forecastedstartdate" width="6rem">
 						<table:template>
 							<m:Text text="{
 								path: 'table/Forecastedstartdate',
@@ -64,7 +64,7 @@
 					</table:Column>
 					
 					<!-- col5 -->			
-					<table:Column label="{i18n>tblWbsForecastFinishDate}" width="6rem">
+					<table:Column label="{i18n>tblWbsForecastFinishDate}" sortProperty="table/Forecastedenddate" width="6rem">
 						<table:template>
 							<m:Text text="{
 								path: 'table/Forecastedenddate',
@@ -77,7 +77,7 @@
 					</table:Column>
 					
 					<!-- col6 -->			
-					<table:Column label="{i18n>tblWbsBasicStartDate}" width="6rem">
+					<table:Column label="{i18n>tblWbsBasicStartDate}" sortProperty="table/Basicstartdate" filterProperty="table/Basicstartdate" width="6rem">
 						<table:template>
 							<m:Text text="{
 								path: 'table/Basicstartdate',
@@ -90,7 +90,7 @@
 					</table:Column>
 					
 					<!-- col7 -->			
-					<table:Column label="{i18n>tblWbsBasicFinishDate}" width="6rem">
+					<table:Column label="{i18n>tblWbsBasicFinishDate}" sortProperty="table/Basicenddate" filterProperty="table/Basicenddate" width="6rem">
 						<table:template>
 							<m:Text text="{
 								path: 'table/Basicenddate',

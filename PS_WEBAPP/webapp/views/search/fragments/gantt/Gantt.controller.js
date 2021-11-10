@@ -6,10 +6,12 @@ sap.ui.define([
 		"epta/ps/model/models",
 		"sap/ui/model/Filter",
 		"sap/ui/model/FilterOperator",
-		"epta/ps/ui5/controller/ErrorHandler"
-	], function (SearchController, JSONModel, formatter, models, Filter, FilterOperator, ErrorHandler) {
+		"epta/ps/ui5/controller/ErrorHandler",
+		'sap/ui/export/library',
+		'sap/ui/export/Spreadsheet'
+	], function (SearchController, JSONModel, formatter, models, Filter, FilterOperator, ErrorHandler, exportLibrary, Spreadsheet) {
 		"use strict";
-
+		var EdmType = exportLibrary.EdmType;
 		return SearchController.extend("epta.ps.views.search.fragments.gantt.Gantt", {
 			
 	/* =========================================================== */
@@ -24,6 +26,17 @@ sap.ui.define([
 				// Subscribe to search event emitted by 'Filters' view
 				this.getEventBus().subscribe("_onSearch", "start", this._onSearch, this);
 				this.getEventBus().subscribe("_onSearch", "end", this._onSearch, this);
+				debugger
+				this.getView().byId("gntGanttChartContainer").addCustomToolbarItem(new sap.m.Toolbar({
+					content: [
+						new sap.m.Button({
+							icon: "sap-icon://download",
+							press: this.exportExcel.bind(this)
+						}),
+						new sap.m.ToolbarSpacer({ width: "10px" })
+					]
+				}));
+				this.activitiesTree = [];
 				
 			},
 			
@@ -41,7 +54,7 @@ sap.ui.define([
 				// Retrieve the context of the event
 				debugger
 				var oCtx = oEvent.getParameters().originEvent.getParameter("rowContext");
-				
+				/*
 				// Check if the selection is empty
 				if( !oCtx ) {
 					this.getView().getModel("footer").setProperty("/project", "");
@@ -55,7 +68,7 @@ sap.ui.define([
 					this.getView().getModel("footer").setProperty("/enable", false);
 					return;
 				}
-				
+				*/
 				// Get the ID of the selected project
 				var sProjectId = oCtx.getModel().getProperty( oCtx.getPath() + "/table/Wbselement" );
 				
@@ -147,6 +160,9 @@ sap.ui.define([
 				// Structure activities array as a tree
 				var activitiesTree = this._activitiesToTree(oData.results);
 				// Set data to the Gantt
+				debugger
+				this.activitiesTree = oData.results;
+
 				this.getView().byId("gntGanttChartTable").setData(activitiesTree);
 				
 				// Hide the busy indicator
@@ -276,6 +292,71 @@ sap.ui.define([
 				
 				return oTree; 
 				
+			},
+			exportExcel: function (oEvent) {
+
+				var oSettings, oSheet;
+				oSettings = {
+					workbook: {
+						columns: this.createColumnConfig(),
+						hierarchyLevel: 'Level'
+					},
+					dataSource: this.activitiesTree,
+					fileName: 'ProjectManage.xlsx',
+					worker: false // We need to disable worker because we are using a MockServer as OData Service
+				};
+		
+				oSheet = new Spreadsheet(oSettings);
+				oSheet.build().finally(function() {
+					oSheet.destroy();
+				});
+
+			},
+			createColumnConfig: function () {
+	
+				var i18n = this.getModel("i18n").getResourceBundle();
+	
+				var aCols = [];
+
+				aCols.push({
+					label: i18n.getText("tblWBE"),
+					property: 'Wbselement',
+					type: EdmType.String,
+					width: '11em'
+				});
+	
+				aCols.push({
+					label: i18n.getText("tblWBEDescription"),
+					property: 'Wbsdescription',
+					type: EdmType.String,
+					width: '20em'
+				});
+				aCols.push({
+					label: i18n.getText("tblWbsForecastStartDate"),
+					property: 'Forecastedstartdate',
+					type: EdmType.Date
+				});
+				aCols.push({
+					label: i18n.getText("tblWbsForecastFinishDate"),
+					property: 'Forecastedenddate',
+					type: EdmType.Date
+				});
+
+				aCols.push({
+					label: i18n.getText("tblWbsBasicStartDate"),
+					property: 'Basicstartdate',
+					type: EdmType.Date
+				});
+
+				aCols.push({
+					label: i18n.getText("tblWbsBasicFinishDate"),
+					property: 'Basicenddate',
+					type: EdmType.Date
+				});
+
+
+				return aCols;
+	
 			}
 			
 		});

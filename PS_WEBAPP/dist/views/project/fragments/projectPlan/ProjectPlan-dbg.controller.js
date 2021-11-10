@@ -397,10 +397,11 @@ sap.ui.define([
 				
 				var dMinDate = new Date("1970-01-01");
 				var dMaxDate = new Date("9999-12-31");
-				if( sName === "Addstartdate" ) {
-					dMinDate = this._oInputBinding.oModel.getProperty(this._oInputBinding.sPath + "/table/BasicstartdateLimit");
-					dMaxDate = this._oInputBinding.oModel.getProperty(this._oInputBinding.sPath + "/table/Addfinishdate");
-				} else if( sName === "Addfinishdate" ) {
+				//if( sName === "Addstartdate" ) {
+				//	dMinDate = this._oInputBinding.oModel.getProperty(this._oInputBinding.sPath + "/table/BasicstartdateLimit");
+				//	dMaxDate = this._oInputBinding.oModel.getProperty(this._oInputBinding.sPath + "/table/Addfinishdate");
+				//} else 
+				if( sName === "Addfinishdate" ) {
 					dMinDate = this._oInputBinding.oModel.getProperty(this._oInputBinding.sPath + "/table/Addstartdate");
 				}
 				
@@ -824,7 +825,7 @@ sap.ui.define([
 					// status of the activity
 					oActivity.dealyStatus = "None";
 					if( oActivity.Wbselementhierarchylevel === 3 && oActivity.Forecastedenddate && oActivity.Basicenddate  ) {
-						oActivity.dealyStatus = oActivity.Basicenddate < oActivity.Forecastedenddate ? "None" : "Error";
+						oActivity.dealyStatus = oActivity.Basicenddate <= oActivity.Forecastedenddate ? "None" : "Error";
 					}
 					
 					// set the WBS description

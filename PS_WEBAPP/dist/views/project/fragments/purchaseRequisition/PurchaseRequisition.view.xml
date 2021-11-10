@@ -49,10 +49,15 @@
 			</Column>
 			
             <!-- col7 -->
-			<Column width="5rem" hAlign="End">
+			<Column width="6rem" hAlign="End">
 				<Text text="{i18n>tblPurchaseRequisitionItem}" />
 			</Column>
 			
+			<!-- col14 -->
+			<Column width="12rem">
+				<Text text="{i18n>prrDesc}" />
+			</Column>
+
 			<!-- col8 -->
 			<Column width="4rem" hAlign="End">
 				<Text text="{i18n>tblQuantity}" />
@@ -121,6 +126,9 @@
 					<!-- col7 -->
 					<Text text="{PurReq>Purchaserequisitionitem}"/>
 					
+					<!-- col14 -->
+					<Text text="{PurReq>SHORT_TEXT}"/>
+
 					<!-- col8 -->
 					<Text text="{PurReq>Quantity}"/>
 					
