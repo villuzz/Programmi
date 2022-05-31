@@ -547,16 +547,38 @@ sap.ui.define([
 				// create entity
 				this.getService().getModel().create( "/NetworkActivitySet", oDataActivity, {
 					success: function(oData){
-						// update local model
-						var oModelData = self.getModel("NetworkActivity").getData();
-						oModelData.push(oDataActivity);
-						self.getModel("NetworkActivity").setData(oModelData);
+				
+						self.getService().getCalendarDates({
+							urlParameters: {
+								"DateFrom": "datetime'" + oDataActivity.Basicenddate.toISOString().substr(0,19) + "'",
+								"Days": "'" + oDataActivity.Basicduration + "'",
+								"Addoneday": "'2'"
+							},
+							success: function (oData) {
+								self.getView().setBusy(false);
+								oDataActivity.Basicenddate = oData.DateTo;
+								oDataActivity.Basicstartdate = oData.DateFrom;
+    
+								// update local model
+								var oModelData = self.getModel("NetworkActivity").getData();
+								oModelData.push(oDataActivity);
+								self.getModel("NetworkActivity").setData(oModelData);
+								
+								self.getView().setBusy(false);
+								// success popup dialog 
+								self._onSuccessOrFailureDialog(oData, "{i18n>ui5Success}", "Success", "{i18n>ui5SuccessText}");
+								// refresh data
+								self.getEventBus().publish("_onProjectDetail", "refresh", self.getModel("NetworkActivity").getData());
+
+							},
+							error: function () {
+								self.getView().setBusy(false);
+								// error popup dialog
+								self._onSuccessOrFailureDialog(oError, "{i18n>ui5Failure}", "Error", "{i18n>ui5FailureText}");
+							}
+						});
+
 						
-						self.getView().setBusy(false);
-						// success popup dialog 
-						self._onSuccessOrFailureDialog(oData, "{i18n>ui5Success}", "Success", "{i18n>ui5SuccessText}");
-						// refresh data
-						self.getEventBus().publish("_onProjectDetail", "refresh", self.getModel("NetworkActivity").getData());
 					},
 					error: function(oError) {
 						self.getView().setBusy(false);

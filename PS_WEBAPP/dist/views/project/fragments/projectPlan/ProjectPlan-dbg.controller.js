@@ -597,6 +597,7 @@ sap.ui.define([
 					                + ( "00" + (oContext.oModel.getProperty(oContext.sPath + "/table/Basicstartdate").getDate()) ).substr(-2)
 					                + "T00:00:00";
 				// update end date based on calendar
+				debugger
 				this.getService().getCalendarDates({
 					urlParameters: {
 						"DateFrom": "datetime'" + oContext.oModel.getProperty(oContext.sPath + "/table/Basicstartdate").toISOString().substr(0,19) + "'",
@@ -629,7 +630,6 @@ sap.ui.define([
 			 */
 			_updateTime : function (oModel, sPath, sPathSuffix, time, bCalcDuration) {
 				var self = this;
-				
 				var sPathDate = oModel.getProperty(sPath + sPathSuffix.substr(0,sPathSuffix.lastIndexOf("/")+1) + "type") + sPathSuffix.substr(sPathSuffix.lastIndexOf("/")+1).replace("Time","date");
 				if( sPathDate === "Addenddate" ) sPathDate = "Addfinishdate";
 				var oUpdate = JSON.parse("{\"" + sPathDate + "\":null}");
@@ -684,7 +684,6 @@ sap.ui.define([
 					});
 					
 				}
-				
 				// update gantt label
 				var sTooltip = "";
 				// start date
@@ -704,9 +703,9 @@ sap.ui.define([
 			 * Handle the change in the central storage for the later batch request 
 			 */
 			_handleChange: function(oData, oUpdate, aUpdKeys, isAddDates) {
-				// list of elements that can be updated
+				// list of elements that can be update
 				if( !aUpdKeys ) {
-					aUpdKeys = ["Description","Apoc","Basicduration","Basicstartdate","Basicenddate"];
+					aUpdKeys = ["Description","Apoc","Basicduration","Basicstartdate","Basicenddate"]; 
 				}
 				// TODO
 				if( typeof isAddDates === "undefined" ) {

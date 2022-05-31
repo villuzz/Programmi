@@ -21,9 +21,14 @@
 				items="{
 					path: 'SearchStat>/',
 					sorter : {
-						path : 'Status',
+						path : 'Statusproject',
 						descending : false
-					}
+					},
+					filters: [{
+						path: 'Statusproject',
+						operator: 'NE',
+						value1: 'D'
+					}]
 				}"
 				sticky="ColumnHeaders"
 				mode="SingleSelectMaster" 

@@ -127,7 +127,7 @@
 					<Text text="{PurReq>Purchaserequisitionitem}"/>
 					
 					<!-- col14 -->
-					<Text text="{PurReq>SHORT_TEXT}"/>
+					<Text text="{PurReq>ShortText}"/>
 
 					<!-- col8 -->
 					<Text text="{PurReq>Quantity}"/>

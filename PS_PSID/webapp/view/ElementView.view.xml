@@ -329,6 +329,7 @@
 											</VBox>
 										</ui:template>
 									</ui:Column>
+									
 									<ui:Column id="B1" visible="{= ${LOCALPARAMS>/Billing} }" width="7em" hAlign="Center" sortProperty="VbelnB" filterProperty="VbelnB"  tooltip="{i18n>VbelnB}">
 										<Label text="{i18n>VbelnB}" />
 										<ui:template>
@@ -788,6 +789,26 @@
 											<Label text="{ parts:['Erdat'], formatter: '.LocalFormatter.DateSet'}" visible="{ parts: [{path: 'MultiLogistic'}], formatter: '.LocalFormatter.MultiLogistic' }" />
 										</ui:template>
 									</ui:Column>
+									<ui:Column id="L32" visible="{= ${LOCALPARAMS>/Logistic} }" width="7em" tooltip="{i18n>Ntgew}" hAlign="Center" sortProperty="Ntgew" filterProperty="Ntgew"
+										filterType="sap.ui.model.type.Integer">
+										<Label text="{i18n>Ntgew}"  />
+										<ui:template>
+											<Text text="{ parts: [{path: 'Ntgew'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="L33" visible="{= ${LOCALPARAMS>/Logistic} }" width="7em" tooltip="{i18n>Brgew}" hAlign="Center" sortProperty="Brgew" filterProperty="Brgew">
+										<Label text="{i18n>Brgew}"  />
+										<ui:template>
+											<Text text="{ parts: [{path: 'Brgew'}], formatter: '.LocalFormatter.DeleteZero' }" wrapping="true"/>
+										</ui:template>
+									</ui:Column>
+									<ui:Column id="L34" visible="{= ${LOCALPARAMS>/Logistic} }" width="7em" sortProperty="Gewei" filterProperty="Gewei" tooltip="{i18n>Gewei}">
+										<Label text="{i18n>Gewei}"   />
+										<ui:template>
+												<Label text="{Gewei}"/>
+										</ui:template>
+									</ui:Column>
+
 								</ui:columns>
 							</ui:TreeTable>
 						</Page>

@@ -52,7 +52,7 @@ sap.ui.define([
 			 */
 			onRowSelectionChange : function (oEvent) {
 				// Retrieve the context of the event
-				debugger
+				
 				var oCtx = oEvent.getParameters().originEvent.getParameter("rowContext");
 				/*
 				// Check if the selection is empty
